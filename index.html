@@ -1,5 +1,57 @@
 <html>
+    <head>
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="scripts/jsrender.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <body>
-        Michael Jacobs
+        <nav>
+            <span>Michael Jacobs</span><br>
+            <!-- &middot; -->
+            <a href="#s">Paint & Ink</a>
+            <br>
+            <a href="#s">Software</a>
+            <!-- <br> -->
+            <!-- <a href="#s">Graphix</a> -->
+            <!-- <br> -->
+            <!-- <a href="#s">Video</a> -->
+            <!-- <br> -->
+            <!-- <a href="#s">Music</a> -->
+            <br>
+            <a href="about.html">About</a>
+            <br>
+            <a href="#s">Contact</a>
+        </nav>
+        <main>
+            <section>
+                <img src="work/drill.gif" alt="">
+                <img src="work/drill.jpg" alt="">
+                <div class="blurb">
+                    <div class="b1">Drill does its best given the current political climate</div>
+                    <div class="b2">
+                        India ink on paper<br>
+                        18"x24"
+                    </div>
+                    <div class="b3">2018</div>
+                </div>
+            </section>
+            <section>
+                <img src="work/dollop.jpeg" alt="">
+                <!-- <img src="work/drill.jpg" alt=""> -->
+                <div class="blurb">
+                    <div class="b1">Dollop</div>
+                    <div class="b2">Acrylic on wood</div>
+                    <div class="b3">2017</div>
+                </div>
+            </section>
+        </main>
+        <script>
+        var loadPage = function(dest){
+            $.get("/index/10_17/"+dest+".html", function(template){
+                showDetail()
+                $("#full").html("").append($.templates(template).render()).show()
+            })
+        }
+        </script>
     </body>
 </html>

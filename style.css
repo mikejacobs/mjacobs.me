@@ -1,0 +1,55 @@
+body{
+    font-size: 26px;
+    font-family: "Helvetica";
+}
+nav, main {
+    max-width: 600px;
+    margin: 40px auto;
+}
+nav {
+    font-size: 62px;
+    font-weight: bold;
+    line-height: 42px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: #eeeeee 0px 1px 0px, #cccccc 0px 2px 0px, #aaaaaa 0px 3px 0px, #999999 0px 4px 0px, #888888 0px 5px 0px, #959595 0px 0px 5px;
+}
+nav span {
+    /* text-decoration: line-through */
+    font-size: 124px;
+    line-height: 77px;
+}
+nav a {
+    text-decoration: none !important;
+    color:white;
+}
+nav a:hover {
+    color:aquamarine;
+    /* #7FFFDB	#72E5C5	#65CBAF	#58B199	#4B9783	#3E7D6D	#316357	#244941	#172F2B	#0A1515	#000000 */
+    text-shadow: #72E5C5 0px 1px 0px, #65CBAF 0px 2px 0px, #58B199 0px 3px 0px, #4B9783 0px 4px 0px, #3E7D6D 0px 5px 0px, #316357 0px 0px 5px;
+}
+
+main img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+section{
+    margin-bottom: 100px;
+}
+.blurb{
+    display:flex;
+}
+.b1{
+    font-weight: bold;
+    padding-right:20px;
+}
+.b2,{
+    text-align: center;
+    padding-right:20px;
+}
+.b3{
+    text-align: right;
+}
+.b1,.b2,.b3 {
+    width: 33.333%;
+}
