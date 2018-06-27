@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mike Jacobs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="fonts/swedensans.css">
+	<style type="text/css">
+		body{
+			font-family: "sweden_sansregular", "Helvetica Neue", sans-serif;
+		    background-color: #fff;
+		    margin: 0px;
+		    padding: 0px;
+		    height: 100%;
+		}
+		.bold{
+			font-family: "sweden_sansbold";
+		}
+		a{
+		    color: black;
+		    text-decoration: none;
+		    /*line-height: 20px;*/
+		    /*margin-bottom:4px;*/
+		    border-bottom: 8px solid rgba(127, 255, 212, .5);
+	        display: inline-block;
+    		line-height: 0px;
+		}
+		a:hover{
+		    border-bottom: 8px solid rgba(127, 255, 212, 1);
+		}
+		html{
+		    height: 100%;   
+		}
+
+		/* layout */
+		body {
+		    height: 100%;   
+		    margin: 0px;
+		}
+
+		article {
+			overflow:hidden;
+		}
+
+		aside {
+			background:#D7AF74;
+			background:#E1B644;
+		}
+		.scroller{
+			height:100%;
+			overflow-y:scroll;
+			margin-right:-15px;
+		}
+		section.left, section.right{
+			position:fixed;
+			width: 50%;
+			height:100%;
+			
+		}
+		section.left{
+			left:0%;
+			overflow:hidden;
+		}
+		section.right{
+			left:50%;
+			background:aquamarine;
+		}
+		.content{
+			border-top: 10px solid burlywood;
+		}
+		#full{
+			position: absolute;
+			background:#fff;
+			left:0px;
+			top:0px;
+			width:100%;
+			z-index: 20;
+			box-sizing: border-box;
+			padding: 20px;
+			display:none;
+			overflow-y:auto;
+		}
+		#full img{
+			max-width: 100%;
+		}
+		#full h1{
+			font-size:56px;
+		}
+		#full p img{
+			margin-bottom: 60px;
+		}
+		#block button{
+		    display: none;
+		    width: 60%;
+		    float:left;
+		    line-height: 92px;
+		    font-size: 68px;
+		    background: white;
+		    border: none;
+		    border-left:solid 10px #FFDFDD;
+		    cursor: pointer;
+		    outline:none;
+		    top: -10px;
+			position: absolute;
+		  }
+		  #block button:hover{
+		  	background: white;
+		  	color: burlywood;
+		  }
+/*		#main {
+		    flex-shrink: 0;
+			width:50%;
+			padding:100px;
+			box-sizing: border-box;
+			justify-content: center;
+		}*/
+
+		@media screen and (min-width: 800px){
+		  article {
+		   /*-webkit-flex-direction: row;*/
+		    /*flex-direction: row;*/
+		    /*height:100%;*/
+		  }
+/*		  article > * {
+		    -webkit-flex: 1;
+		    flex: 1;
+		  }*/
+		  #main {
+		  	position:fixed;
+		  	width:45%;
+		  /*-webkit-order: 1;*/
+		   /*order: 1;*/
+		  }
+		  aside{
+		  	left:50%;
+		  }
+		  article > #main {
+		    /*-webkit-flex: 3;*/
+		    /*flex: 3;*/
+		    padding:60px;
+		    padding-right:0px;
+		    padding-bottom:0px;
+		    box-sizing: border-box;
+		  }
+		  #block{
+		  	position:absolute;
+		  	top:50px;
+		  	bottom:50px;
+		  	width:25%;
+		  	left:-15%;
+		  	background:#FFDFDD;
+		  }
+		}
+		@media screen and (max-width: 800px){
+			#main{
+				padding:20px;
+			}
+			section.left, section.right{
+				width:100%;
+				left:0%;
+			}
+			#nameanim{
+				display:none !important;
+			}
+			section.right, section.left{
+				display:none;
+			}
+			section.right.on, section.left.on{
+				display: block;
+			}
+			.content{
+				width:355px;
+				margin:0px auto;
+			}
+			#block{
+				position:absolute;
+				top:0px;
+				right:0px;
+				width:50px;
+				height:50px;
+				background:#FFDFDD;
+			}
+			#block button{
+				top:0px;
+				width:50px;
+				height:50px;
+			    line-height: 29px;
+			    font-size: 48px;
+			    z-index:22;
+			    border-bottom: solid 10px #FFDFDD;
+			}
+		}
+
+		/* content */
+
+		#main{
+			font-size: 18px;
+
+		}
+		#name{
+			font-size:36px;
+		}
+		ul {
+		    display:block;
+		    list-style: none;
+		}
+
+
+		.content {
+			padding-right:80px;
+		}
+
+		.content ul{
+			display: block;
+			/*margin-left:30px;*/
+			padding:0px;
+			margin-top:20px;
+		}
+		.content li{
+			margin-left: 0px;
+			margin-left: 30px;
+			margin-bottom:40px;
+			padding-right:30px;
+			display:block;
+			/*color:#ccc;*/
+			font-size: 16px;
+		}
+		.content li a{
+			color: black;
+			font-size:20px;
+			display: inline-block;
+			/*margin-bottom:4px;*/
+
+		}
+		.content li.beginning{
+			font-size:26px;
+			color: black;
+			margin-left: 0px;
+		}
+		.content ul.tight li a{
+			font-size:16px;
+		}
+		.content ul.tight li{
+			margin-bottom:10px;
+		}
+		.content ul.tight.left{
+			float:left;
+		}
+		.content ul.tight.right{
+			float:right;
+		}
+		#links{
+			height: 100px;
+    		margin-top: 50px;
+		}
+	</style>
+	<style type="text/css">
+	/* name */
+	#nameanim{
+        /*margin-top: 80px;*/
+        position:relative;
+    }
+    #nameanim h1{
+        font-size: 60px;
+        font-weight:100;
+        font-family: "helvetica neue";
+        margin:0px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    #nameanim .mid{
+        position:absolute;
+        top:0px;
+        width: 100%;
+        height: 60px;
+        overflow: hidden;
+        transition: all 5s ease-in;
+        opacity: : .2;
+
+    }
+    #nameanim .mid.on{
+        height: 60px;
+        transition: all 1s ease-in;
+
+    }
+    #nameanim .mid span{
+        top: 0px;
+        height: 60px;
+        position:relative;
+        /*background: white;*/
+        transition: all 5s ease-in;
+        line-height:30px;
+    }
+    #nameanim .mid.on span{
+        top: -85px;
+        height:20px;
+    }
+		
+	</style>
+</head>
+<body>
+	<article>
+	    <section id="main" class="left on">
+		    <div class="content scroller">
+		    	<h1 id="name">Hi, I'm Mike Jacobs.</h1>
+		    	<ul>
+			    	<li class="beginning bold" style="color:burlywood;">After a long stint at Uber, I'm now exploring new opportunities in mission-driven technology work with the goal of using my skills to create a more equitable future.</li>
+			    	<li>My experience has given me a kaleidoscope of skills within software development. People have referred to the work I do as: user experience design, information design, design prototyping, design engineering, design leadership, product management, creative coding, and sound design.</li>
+				</ul>
+				<ul>
+					<li class="beginning">
+						<li class="beginning bold">Previously:</li>
+						<li><a class="bold" href="#uber">UX Designer/Engineer at Uber</a><br>Contributed design and code to internal tools, uberPOOL, the rider and driver apps, and had a great time designing sounds for self-driving cars.</li>
+						<li><a class="bold" href="#hellochair">Co-founder at Hello Chair Inc.</a><br>Made Appsaurus, an iOS app that used machine learning and Netflix-like recommendations to make it easier to find good iOS apps.</li>
+					</li>
+				</ul>
+				<ul class="tight">
+					<li class="beginning bold">Art:</li>
+					<li>I make <a href="#art-graphics">graphic art</a> and <a href="#art-video">videos</a>&mdash;often using code&mdash;and interactive art in the form of <a href="#art-software">software and games</a>. I recently acquired a plotter to transition to making more <a href="#art-plotter">art in the real world.</a></li>
+
+				</ul>
+				<ul class="tight">	
+					<li class="beginning bold">Music:</li>
+					<li>These days, I mostly compose <a href="#music-solo">solo at home</a>, and sometimes <a href="#music-code">using code</a>. In the past, I made multiple <a href="#music-band">albums with friends</a>, and every so often I <a href="#music-live">perform live with friends</a></<li>
+				</ul>
+			    <div id="links">
+			    	<a class="social" href="https://twitter.com/mjacobs">Twitter</a>
+			    	&nbsp;&middot;&nbsp;
+					<a class="social" target="_blank" alt="Instagram" href="http://instagram.com/mjacobs">Instagram</a>
+					&nbsp;&middot;&nbsp;
+					<a class="social" href="https://linkedin.com/in/michael-n-jacobs">LinkedIn</a>
+					&nbsp;&middot;&nbsp;
+					<a class="CV" href="resume/Mike-Jacobs_Resume_8-22-17.pdf">Resume</a>
+					<br><small style="margin-top:10px;display:inline-block;">&#9994; 2017 Jacmb &#10024;</small>
+			    </div>
+		    </div>
+	    </section>
+		<section class="right">
+				<div id="full" class="scroller"></div>
+		    	<div id="nameanim"></div>
+		    	<div id="block">
+		    		<button>&times;</button>
+		    	</div>
+		</section>
+	</article>
+<script type="text/javascript" src="/jquery.js"></script>
+<script type="text/javascript" src="/combined_index/jsrender.js"></script>
+<script src='https://w.soundcloud.com/player/api.js'></script>
+<script type="text/javascript">
+     // janky code forever
+    var isOn = true;
+    var text = "MIKE JACOBS"
+    var numMids = 100
+
+    window.onload = function(){
+        var container = document.querySelector("#nameanim")
+        var original = document.createElement('h1')
+        original.className = "mid"
+        original.innerHTML = "<span>" + text + "</span>"
+
+        var body = document.body,
+        html = document.documentElement;
+
+        var height = Math.max( body.scrollHeight, body.offsetHeight, 
+                       html.clientHeight, html.scrollHeight, html.offsetHeight );
+        var h = (height-60) / numMids
+        console.log(h)
+		// var h = 10;     
+        var mids = [];
+
+        // var top = original.cloneNode(true)
+        // top.className = "top"
+        // container.appendChild(top)
+
+        while(numMids--){
+            var m = original.cloneNode(true)
+            mids.push(m)
+            container.appendChild(m)
+        }
+        mids.forEach(function(el, i) {
+            var r = (i / 10) + Math.abs(Math.sin(i/h))
+            el.className = "mid on"
+            el.style["margin-top"] = i * h + "px"
+            el.style["transition"] = "all "+ r +"s ease-in-out"
+            // el.style["opacity"] = (mids.length - i) / mids.length
+            el.childNodes[0].style["transition"] = "all "+ r +"s ease-in-out"
+            // el.style["transition"] = "all "+ r +"s cubic-bezier(0,1.0,.66,-1.33)"
+            // el.childNodes[0].style["transition"] = "all "+ r +"s cubic-bezier(0,1.0,.66,-1.33)"
+        });
+
+        var go = function(){
+            mids.forEach(function(el, i) {
+                if(!isOn){
+                    el.className = "mid on"
+                    el.style["margin-top"] = i * h * Math.abs(Math.sin(i/h)) + "px"
+                }else{
+                    el.style["margin-top"] = i * h+ "px"
+                    el.className = "mid"
+                }
+            });
+            isOn = !isOn
+        }
+
+        document.querySelector("#nameanim").onmouseenter = go
+        document.querySelector("#nameanim").onmouseleave = go
+        setTimeout(go, 500)
+    }
+</script>
+<script type="text/javascript">
+$(function(){
+
+	// router
+	var loadPage = function(dest){
+		$.get("/index/10_17/"+dest+".html", function(template){
+			showDetail()
+			$("#full").html("").append($.templates(template).render()).show()
+		})
+	}
+
+	nameAnimation($("#nameanim").get(0), 305, $("section.right").height())
+
+	// url hash nav hackiness
+	var hash = window.location.hash.split("#")[1]
+	if(hash) loadPage(hash)
+
+	// nav
+	var showDetail = function(){
+		$("section.right").addClass("on")
+		$("section.left").removeClass("on")
+		$("#nameanim").hide()
+		$("#block button").show()
+	}
+	$("#block button").click(function(){
+		$("section.right").removeClass("on")
+		$("section.left").addClass("on")
+		$("#full").hide().html("")
+		$("#nameanim").show()
+		$("#block button").hide()
+		window.location.hash = ""
+	})
+	$("#main a").click(function(e){
+		var dest = $(e.target).attr("href").split("#")[1]
+		loadPage(dest)
+	})
+
+})
+</script>
+</body>
+</html>

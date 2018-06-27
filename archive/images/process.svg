@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="900px" viewBox="0 0 1440 900" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #FFDFDD;">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>4 copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Story-Portfolio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="4-copy">
+            <text id="Design-Process" font-family="Geomanist-Medium, Geomanist" font-size="34" font-weight="400" fill="#282828">
+                <tspan x="40" y="123">Design Process</tspan>
+            </text>
+            <path d="M40,59 L1397,59" id="Line-Copy" stroke="#282828" stroke-width="15"></path>
+            <g id="Group-11" transform="translate(40.000000, 190.000000)">
+                <g id="Group-10" transform="translate(985.000000, 323.000000)">
+                    <g id="Group-8">
+                        <g id="Group-6" transform="translate(241.039595, 239.580643) rotate(17.000000) translate(-241.039595, -239.580643) translate(48.539595, 48.080643)">
+                            <polygon id="Star-Copy" fill="#DEB887" points="192.153908 281.367761 162.440717 281.074968 138.23014 263.846867 114.363762 246.145016 104.903418 217.97657 96 189.627167 104.903418 161.277764 114.363762 133.109318 138.23014 115.407467 162.440717 98.1793661 192.153908 97.886573 221.8671 98.1793661 246.077677 115.407467 269.944054 133.109318 279.404398 161.277764 288.307817 189.627167 279.404398 217.97657 269.944054 246.145016 246.077677 263.846867 221.8671 281.074968"></polygon>
+                            <g id="Group-5" transform="translate(-0.000000, -0.000000)">
+                                <polygon id="Star" fill="#FFDFDD" points="192.584743 253.646456 133.25348 374.564993 156.308339 241.85634 37.2534805 304.797991 133.888288 210.989417 0.584743409 191.91261 133.888288 172.835802 37.2534805 79.0272284 156.308339 141.968879 133.25348 9.26022603 192.584743 130.178763 251.916006 9.26022603 228.861148 141.968879 347.916006 79.0272284 251.281199 172.835802 384.584743 191.91261 251.281199 210.989417 347.916006 304.797991 228.861148 241.85634 251.916006 374.564993"></polygon>
+                                <polygon id="Star-Copy-2" fill="#FFFFFF" points="193.432492 243.820319 162.184784 286.949304 162.150033 233.613593 111.62493 250.062045 142.816409 206.892037 92.3127837 190.377207 142.816409 173.862378 111.62493 130.692369 162.150033 147.140822 162.184784 93.8051105 193.432492 136.934096 224.680201 93.8051105 224.714952 147.140822 275.240055 130.692369 244.048575 173.862378 294.552201 190.377207 244.048575 206.892037 275.240055 250.062045 224.714952 233.613593 224.680201 286.949304"></polygon>
+                            </g>
+                        </g>
+                        <g id="Group-7" transform="translate(148.000000, 222.000000)" font-size="26" font-family="Geomanist-Medium, Geomanist" fill="#282828" font-weight="400">
+                            <text id="Solution">
+                                <tspan x="45.53" y="25">Solution</tspan>
+                            </text>
+                        </g>
+                    </g>
+                    <g id="Group-4-Copy" transform="translate(128.000000, 240.000000) rotate(-90.000000) translate(-128.000000, -240.000000) translate(113.000000, 197.000000)" stroke="#DEB887" stroke-width="11">
+                        <g id="Group-9" transform="translate(12.000000, 0.000000)">
+                            <path d="M1.5,0.393409077 L1.5,75.5" id="Line"></path>
+                        </g>
+                    </g>
+                </g>
+                <g id="Group-3" transform="translate(270.000000, 0.000000)">
+                    <g id="Group-2" transform="translate(82.000000, 40.000000)">
+                        <g id="Group">
+                            <path d="M121.256183,232.478023 C182.899122,231.276132 232.5,180.930519 232.5,119 C232.5,56.3156809 181.684319,5.5 119,5.5 C57.0694809,5.5 6.72386762,55.100878 5.52197744,116.743817 L121.256197,232.478022 L121.256183,232.478023 Z" id="Oval" stroke="#DEB887" stroke-width="11"></path>
+                            <rect id="Rectangle-12" fill="#FFDFDD" x="148" y="26" width="146" height="63"></rect>
+                        </g>
+                        <text id="Unstructured-researc" font-family="Geomanist-Book, Geomanist" font-size="24" font-weight="300" fill="#282828">
+                            <tspan x="157" y="51">Unstructured </tspan>
+                            <tspan x="157" y="80">research findings</tspan>
+                        </text>
+                    </g>
+                    <rect id="Rectangle-11" fill="#FFFFFF" x="0" y="0" width="200" height="160"></rect>
+                    <text id="Explore-the-problem" font-family="Geomanist-Medium, Geomanist" font-size="26" font-weight="400" fill="#282828">
+                        <tspan x="20" y="43">Explore the </tspan>
+                        <tspan x="20" y="75">problem </tspan>
+                        <tspan x="20" y="107">space</tspan>
+                    </text>
+                </g>
+                <g id="Group-3-Copy" transform="translate(470.000000, 160.000000)">
+                    <g id="Group-2" transform="translate(82.000000, 40.000000)">
+                        <g id="Group">
+                            <path d="M121.256183,232.478023 C182.899122,231.276132 232.5,180.930519 232.5,119 C232.5,56.3156809 181.684319,5.5 119,5.5 C57.0694809,5.5 6.72386762,55.100878 5.52197744,116.743817 L121.256197,232.478022 L121.256183,232.478023 Z" id="Oval" stroke="#DEB887" stroke-width="11"></path>
+                            <rect id="Rectangle-12" fill="#FFDFDD" x="148" y="26" width="146" height="63"></rect>
+                        </g>
+                        <text id="Design-synthesis-and" font-family="Geomanist-Book, Geomanist" font-size="24" font-weight="300" fill="#282828">
+                            <tspan x="157" y="51">Design synthesis </tspan>
+                            <tspan x="157" y="80">and strategy</tspan>
+                        </text>
+                    </g>
+                    <rect id="Rectangle-11" fill="#FFFFFF" x="0" y="0" width="200" height="160"></rect>
+                    <text id="Define-the-problem" font-family="Geomanist-Medium, Geomanist" font-size="26" font-weight="400" fill="#282828">
+                        <tspan x="20" y="43">Define the </tspan>
+                        <tspan x="20" y="75">problem</tspan>
+                    </text>
+                </g>
+                <g id="Group" transform="translate(752.000000, 360.000000)">
+                    <path d="M119,232.5 C181.684319,232.5 232.5,181.684319 232.5,119 C232.5,56.3156809 181.684319,5.5 119,5.5 C56.3156809,5.5 5.5,56.3156809 5.5,119 C5.5,181.684319 56.3156809,232.5 119,232.5 Z" id="Oval" stroke="#DEB887" stroke-width="11"></path>
+                    <rect id="Rectangle-12" fill="#FFDFDD" x="148" y="26" width="146" height="63"></rect>
+                </g>
+                <text id="Testable-prototypes" font-family="Geomanist-Book, Geomanist" font-size="24" font-weight="300" fill="#282828">
+                    <tspan x="916" y="411">Testable </tspan>
+                    <tspan x="916" y="440">prototypes</tspan>
+                </text>
+                <rect id="Rectangle-11" fill="#FFFFFF" x="670" y="320" width="200" height="160"></rect>
+                <text id="Make-potential-solut" font-family="Geomanist-Medium, Geomanist" font-size="26" font-weight="400" fill="#282828">
+                    <tspan x="690" y="363">Make </tspan>
+                    <tspan x="690" y="395">potential </tspan>
+                    <tspan x="690" y="427">solutions</tspan>
+                </text>
+                <rect id="Rectangle-12-Copy" fill="#FFDFDD" x="689" y="528" width="146" height="38"></rect>
+                <text id="Iterate" font-family="Geomanist-Book, Geomanist" font-size="24" font-weight="300" fill="#282828">
+                    <tspan x="748" y="555">Iterate</tspan>
+                </text>
+                <rect id="Rectangle-11" fill="#FFFFFF" x="870" y="480" width="200" height="160"></rect>
+                <text id="Validate-the-selecte" font-family="Geomanist-Medium, Geomanist" font-size="26" font-weight="400" fill="#282828">
+                    <tspan x="890" y="523">Validate the </tspan>
+                    <tspan x="890" y="555">selected </tspan>
+                    <tspan x="890" y="587">solution</tspan>
+                </text>
+                <text id="Stakeholder-+-user-g" font-family="Geomanist-Book, Geomanist" font-size="24" font-weight="300" fill="#282828">
+                    <tspan x="0" y="25">Stakeholder + user </tspan>
+                    <tspan x="0" y="54">goals and needs, </tspan>
+                    <tspan x="0" y="83">analytics</tspan>
+                </text>
+                <polygon id="Triangle-2" fill="#DEB887" transform="translate(584.000000, 162.000000) scale(1, -1) translate(-584.000000, -162.000000) " points="584 151 599 173 569 173"></polygon>
+                <g id="Group-4" transform="translate(254.000000, 33.000000) rotate(-90.000000) translate(-254.000000, -33.000000) translate(239.000000, 5.000000)">
+                    <polygon id="Triangle-2-Copy-2" fill="#DEB887" transform="translate(15.000000, 45.000000) scale(1, -1) translate(-15.000000, -45.000000) " points="15 34 30 56 0 56"></polygon>
+                    <path d="M15.5,0.5 L15.5,45.5" id="Line" stroke="#DEB887" stroke-width="11"></path>
+                </g>
+                <polygon id="Triangle-2-Copy" fill="#DEB887" transform="translate(783.000000, 322.000000) scale(1, -1) translate(-783.000000, -322.000000) " points="783 311 798 333 768 333"></polygon>
+                <polygon id="Triangle-2-Copy-3" fill="#DEB887" transform="translate(983.000000, 481.000000) scale(1, -1) translate(-983.000000, -481.000000) " points="983 470 998 492 968 492"></polygon>
+                <polygon id="Triangle-2-Copy-4" fill="#DEB887" points="758 468 743 490 773 490"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

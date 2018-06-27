@@ -4,8 +4,8 @@
             "id": 5,
             "title": "Drill Brush 2",
             "images": [
-                "http://mjacobs.me/images/art/drillbrush2.jpg",
-                "http://mjacobs.me/images/art/drillbrush2-process.jpg"
+                "drillbrush2.jpg",
+                "drillbrush2-process.jpg"
             ],
             "price": 600,
             "sold": false,
@@ -18,8 +18,8 @@
             "id": 4,
             "title": "Planet",
             "images": [
-                "http://mjacobs.me/images/art/planet.jpg",
-                "http://mjacobs.me/images/art/planet-insitu.jpg"
+                "planet.jpg",
+                "planet-insitu.jpg"
             ],
             "price": 600,
             "sold": false,
@@ -32,7 +32,7 @@
             "id": 0,
             "title": "Untitled",
             "images": [
-                "http://mjacobs.me/images/art/scratch.jpg"
+                "scratch.jpg"
             ],
             "price": 600,
             "sold": false,
@@ -45,7 +45,7 @@
             "id": 1,
             "title": "Beyond Measure",
             "images": [
-                "http://mjacobs.me/images/art/pink-plot.jpg"
+                "pink-plot.jpg"
             ],
             "price": 600,
             "sold": false,
@@ -58,9 +58,8 @@
             "id": 2,
             "title": "Drill Does Its Best",
             "images": [
-                "http://mjacobs.me/images/art/drill.jpg"
-                "http://mjacobs.me/images/art/drill.gif"
-                
+                "drill.jpg",
+                "drill.gif"
             ],
             "price": 600,
             "sold": false,
@@ -73,7 +72,7 @@
             "id": 3,
             "title": "Dollop",
             "images": [
-                "http://mjacobs.me/images/art/dollop.jpg"
+                "dollop.jpg"
             ],
             "price": 300,
             "sold": true,

@@ -1,0 +1,21 @@
+<style>
+		img{
+			display:block;
+			margin:0px auto;
+			max-width: 100%;
+		}
+</style>
+<h1>Creative Coding: Graphics</h1>
+<p>Explorations with shaders, generative art, HTML canvas rendering, JPG glitching, and Sketch scripting.</p>
+<div id="circles"></div>
+<body>
+<script type="text/javascript">
+	var numCircles = 15
+	var count = 0
+	var output = ""
+	while(count++ < numCircles){
+		output += "<img src='/circles/" + count + ".png'>"
+		output += "<img src='/circles/" + count + "b.png'>"
+	}
+	$("#circles").append($(output))
+</script>

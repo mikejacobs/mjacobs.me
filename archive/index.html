@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mike Jacobs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="/index/10_17/fonts/swedensans.css">
+	<link rel="stylesheet" type="text/css" href="/index/10_17/css.css">
+</head>
+<body>
+	<article>
+	    <section id="main" class="left on">
+		    <div class="content scroller">
+		    	<h1 id="name">Hi, I'm Mike Jacobs.</h1>
+		    	<ul>
+			    	<li class="beginning bold" style="color:burlywood;">After a long stint at Uber, I'm now exploring new opportunities in mission-driven technology work with the goal of using my skills to create a more equitable future.</li>
+			    	<li>My experience has given me a kaleidoscope of skills within software development. People have referred to the work I do as: user experience design, information design, design prototyping, design engineering, design leadership, product management, creative coding, and sound design.</li>
+				</ul>
+				<ul>
+					<li class="beginning">
+						<li class="beginning bold">Previously:</li>
+						<li><a class="bold" href="#uber">UX Designer/Engineer at Uber</a><br>Contributed design and code to internal tools, uberPOOL, the rider and driver apps, and had a great time designing sounds for self-driving cars.</li>
+						<li><a class="bold" href="#hellochair">Co-founder at Hello Chair Inc.</a><br>Made Appsaurus, an iOS app that used machine learning and Netflix-like recommendations to make it easier to find good iOS apps.</li>
+					</li>
+				</ul>
+				<ul class="tight">
+					<li class="beginning bold">Art:</li>
+					<li>I make <a href="#art-graphics">graphic art</a> and <a href="#art-video">videos</a>&mdash;often using code&mdash;and interactive art in the form of <a href="#art-software">software and games</a>. I recently acquired a plotter to transition to making more <a href="#art-plotter">art in the real world.</a></li>
+
+				</ul>
+				<ul class="tight">	
+					<li class="beginning bold">Music:</li>
+					<li>These days, I mostly compose <a href="#music-solo">solo at home</a>, and sometimes <a href="#music-code">using code</a>. In the past, I made multiple <a href="#music-band">albums with friends</a>, and every so often I <a href="#music-live">perform live with friends</a>.</<li>
+				</ul>
+			    <div id="links">
+			    	<a class="social" href="https://twitter.com/mjacobs">Twitter</a>
+			    	&nbsp;&middot;&nbsp;
+					<a class="social" target="_blank" alt="Instagram" href="http://instagram.com/mjacobs">Instagram</a>
+					&nbsp;&middot;&nbsp;
+					<a class="social" href="https://linkedin.com/in/michael-n-jacobs">LinkedIn</a>
+					&nbsp;&middot;&nbsp;
+					<a class="CV" href="resume/">Resume</a>
+					<div>Full portfolio available upon <a href="mailto:mike@mjacobs.me?subject=I'd like to see your portfolio">request</a>.</div>
+					<br><small style="margin-top:10px;display:inline-block;">&#9994; 2017 Jacmb &#10024;</small>
+			    </div>
+		    </div>
+	    </section>
+		<section class="right">
+				<div id="full" class="scroller"></div>
+		    	<div id="nameanim"></div>
+		    	<div id="block">
+		    		<button>&times;</button>
+		    	</div>
+		</section>
+	</article>
+<script type="text/javascript" src="/jquery.js"></script>
+<script type="text/javascript" src="/combined_index/jsrender.js"></script>
+<script type="text/javascript" src="/index/10_17/nameAnimation.js"></script>
+<script src='https://w.soundcloud.com/player/api.js'></script>
+<script type="text/javascript">
+$(function(){
+
+	// router
+	var loadPage = function(dest){
+		$.get("/index/10_17/"+dest+".html", function(template){
+			showDetail()
+			$("#full").html("").append($.templates(template).render()).show()
+		})
+	}
+	// if not mobile, show name animation
+	// if ($("#nameanim").is(':visible')) nameAnimation("MIKE JACOBS", $("#nameanim").get(0), 305, $("section.right").height())
+
+	// url hash nav hackiness
+	var hash = window.location.hash.split("#")[1]
+	if(hash) loadPage(hash)
+
+	// nav
+	var lastScroll = 0
+	var showDetail = function(){
+		lastScroll = window.scrollY || window.scollTop || document.getElementsByTagName("html")[0].scrollTop;
+		console.log(window.scrollY, window.scollTop, document.getElementsByTagName("html")[0].scrollTop)
+		$("section.right").addClass("on")
+		$("section.left").removeClass("on")
+		$("#nameanim").hide()
+		$("#block button").show()
+		window.scrollTo(0, 0);
+	}
+
+	$("#block button").click(function(){
+		$("section.right").removeClass("on")
+		$("section.left").addClass("on")
+		$("#full").hide().html("")
+		$("#nameanim").show()
+		$("#block button").hide()
+		remove_hash_from_url()
+		window.scrollTo(0, lastScroll);
+	})
+
+	$("#main a").click(function(e){
+		var dest = $(e.target).attr("href").split("#")[1]
+		loadPage(dest)
+	})
+
+	function remove_hash_from_url(){
+	    var uri = window.location.toString();
+	    if (uri.indexOf("#") > 0) {
+	        var clean_uri = uri.substring(0, uri.indexOf("#"));
+	        window.history.replaceState({}, document.title, clean_uri);
+	    }
+	}
+
+})
+</script>
+</body>
+</html>	

@@ -5,11 +5,14 @@ import dat from '../data.json'
 
 import './grid.css'
 
+var imgpath = "http://mjacobs.me/images/art/"
+var thumbpath = imgpath + "thumbs/"
+
 export default withSiteData(() => (
   <div>
     <ul>
       {dat[0]["art"].map((post, index) => (
-          <li key={index} style={{backgroundImage: "url(" + post.images[0].thumb + ")" }} >
+          <li key={index} style={{backgroundImage: "url(" + thumbpath + post.images[0] + ")" }} >
             {/* <img src={ post.images[0]} alt="" /> */}
             <div className="blurb">
                 <div className="b1">

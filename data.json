@@ -1,0 +1,53 @@
+[{
+    "art": [
+        {
+            "title": "Untitled",
+            "images": [
+                "scratch_fix.png"
+            ],
+            "price": 600,
+            "sold": false,
+            "dimensions": "36\"x48\"",
+            "materials": "Acrylic, tempura, and ink on canvas",
+            "year": 2018,
+            "description": ""
+        },
+        {
+            "title": "Beyond Measure",
+            "images": [
+                "pink-plot.png"
+            ],
+            "price": 600,
+            "sold": false,
+            "dimensions": "36\"x48\"",
+            "materials": "Tempure and ink on paper",
+            "year": 2018,
+            "description": ""
+        },
+        {
+            "title": "Drill Does Its Best",
+            "images": [
+                "drill.png",
+                "drill.gif"
+            ],
+            "price": 600,
+            "sold": false,
+            "dimensions": "18\"x24\"",
+            "materials": "India ink on paper",
+            "year": 2018,
+            "description": ""
+        },
+        {
+            "title": "Dollop",
+            "images": [
+                "dollop.jpeg"
+            ],
+            "price": 300,
+            "sold": true,
+            "dimensions": "18\"x24\"",
+            "materials": "Acrylic on wood",
+            "year": 2017,
+            "description": ""
+        }
+    ]
+}]
