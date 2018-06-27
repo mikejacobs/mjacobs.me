@@ -1,0 +1,15 @@
+li { 
+  list-style-type: none;
+    width: 60px;
+    height: 400px;
+    margin: 0px 2px 20px 0px;
+    /* background-size: cover; */
+    background-position: center center;
+    float:left;
+}
+.blurb{
+    display:none !important;
+}
+li img{
+  width:100%;
+}
