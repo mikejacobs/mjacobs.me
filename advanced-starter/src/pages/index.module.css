@@ -1,0 +1,22 @@
+body {
+  padding: 10px;
+  margin: 0px;
+  font-family: "Menlo", "Helvetica", "Arial", sans-serif;
+}
+.indexContainer {
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+h1.post {
+  font-size: 20px;
+}
+.indexPost {
+  width: 20%;
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
+}
+img {
+  width: 100%;
+}

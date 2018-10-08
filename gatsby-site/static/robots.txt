@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: */imprint/
-
-sitemap: https://portfolio-emma.netlify.com/sitemap.xml
+Disallow:
