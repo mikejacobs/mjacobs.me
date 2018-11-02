@@ -5,8 +5,10 @@ import Layout from "../layout";
 import PostListing from "../components/PostListing/PostListing";
 // import SEO from "../components/SEO/SEO";
 import config from "../../data/SiteConfig";
+import Name from "../components/Name";
 
 import styles from "./index.module.css";
+import { Link } from "@reach/router";
 
 class Index extends React.Component {
   render() {
@@ -16,7 +18,27 @@ class Index extends React.Component {
         <div className={styles.indexContainer}>
           <Helmet title={config.siteTitle} />
           {/* <SEO /> */}
-          <div className={styles.indexPost}>MICHAEL JACOBS</div>
+          <div className={styles.indexPost}>
+            <div className={styles.name}>
+              MICHAEL JACOBS
+              {/* <br />
+              <a className={styles.dot} href="dot">
+                &middot;
+              </a> */}
+            </div>
+            <p>Playful disrespect</p>
+            <p>
+              <small>
+                Let's break out of the rigidly defined relationships with our
+                tools and technologies, repurpose them to do things for which
+                they were not designed, and find beauty in their limitations and
+                failures.
+                <br />
+                <br />
+                <Link to="about">More about me...</Link>
+              </small>
+            </p>
+          </div>
           <PostListing postEdges={postEdges} />
         </div>
       </Layout>
@@ -43,7 +65,7 @@ export const pageQuery = graphql`
           timeToRead
           frontmatter {
             title
-            tags
+            description
             featuredImage {
               publicURL
             }

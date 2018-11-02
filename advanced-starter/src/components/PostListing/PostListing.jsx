@@ -9,7 +9,7 @@ class PostListing extends React.Component {
     this.props.postEdges.forEach(postEdge => {
       postList.push({
         path: postEdge.node.fields.slug,
-        tags: postEdge.node.frontmatter.tags,
+        description: postEdge.node.frontmatter.description,
         title: postEdge.node.frontmatter.title,
         featuredImage: postEdge.node.frontmatter.featuredImage.publicURL,
         date: postEdge.node.fields.date,
@@ -23,10 +23,14 @@ class PostListing extends React.Component {
     const postList = this.getPostList();
     return postList.map(post => (
       <div className={styles.indexPost} key={post.title}>
-        <Link to={post.path} key={post.title}>
+        <Link className={styles.indexPostLink} to={post.path} key={post.title}>
           {/* <h1 className={styles.post}>{post.title}</h1> */}
           <img src={post.featuredImage} />
+          <span className={styles.projectTitle}>{post.title}</span>
         </Link>
+        <div className={styles.tags}>
+          <span className={styles.tag}>{post.description}</span>
+        </div>
       </div>
     ));
   }

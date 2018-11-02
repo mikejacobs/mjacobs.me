@@ -1,12 +1,22 @@
 ---
 title: "Pendrillum"
-featuredImage: "./plotter.png"
+featuredImage: "./drill.gif"
 category: "tech"
-date: "10/01/2018"
+date: "11/01/2017"
+description: "This is not a drill"
 tags:
   - programming
 ---
 
-Plotter Art
+<p>
+  Pendrillum is a homemade art improvement machine.
+</p>
+<p>
+  Drills are well established multi-purpose tools.
+  
+  What does it look like to take a drill outside of the accepted spectrum of use, and even beyond what are considered
+  to be <a href="https://www.youtube.com/watch?v=6och7-0iI00">unusual hacks</a>?
 
-<!-- ![](./img.png) -->
+</p>
+<p>fish out of water</p>
+<p><img src="drillpaint.gif"></p>

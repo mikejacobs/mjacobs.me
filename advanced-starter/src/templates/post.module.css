@@ -1,0 +1,18 @@
+.post {
+  max-width: 900px;
+  margin: 0px auto;
+}
+
+.postTitle {
+  font-size: 22px;
+}
+
+.postMeta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.post-tag-container {
+  margin-top: 60px;
+}

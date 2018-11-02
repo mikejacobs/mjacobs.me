@@ -1,0 +1,53 @@
+.animtext {
+  margin-top: 0px;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  /*background: black;*/
+  transition-duration: 5s;
+  transition-property: margin-top;
+  transition-timing-function: ease-in-out;
+  /* margin-top: 4px; */
+  /*opacity: .2;*/
+  z-index: 1;
+  font-size: 62px;
+  font-family: "Franklin Gothic", "Helvetica Neue", "Arial Narrow", sans-serif;
+  font-weight: 100;
+}
+.animtext span {
+  top: -65px;
+  height: 0px;
+  position: relative;
+  /*background: white;*/
+  transition: all 5s ease-in-out;
+  line-height: 20px;
+}
+/* .animtext.on {
+  height: 30px;
+  transition: all 1s ease-in-out;
+} */
+/* .animtext.on span {
+  top: -85px;
+  height: 20px;
+} */
+
+@keyframes spanim {
+  to {
+    top: 0px;
+    height: 10px;
+  }
+
+  from {
+    top: -65px;
+    height: 0px;
+  }
+}
+
+.animtext span {
+  animation-duration: 10s;
+  animation-name: spanim;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  /* animation-timing-function: cubic-bezier(0.5, 0.1, 0.25, 3); */
+}

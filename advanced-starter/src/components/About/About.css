@@ -1,7 +1,10 @@
 .about {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    min-height: 300px;
+  max-width: 500px;
+}
+.nameAnim {
+  position: absolute;
+  left: 700px;
+  top: 0px;
+  width: 500px;
+  height: 800px;
 }
