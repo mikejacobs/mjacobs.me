@@ -20,19 +20,15 @@ class Index extends React.Component {
           {/* <SEO /> */}
           <div className={styles.indexPost}>
             <div className={styles.name}>
-              MICHAEL JACOBS
+              Hi! I'm Michael Jacobs.
               {/* <br />
               <a className={styles.dot} href="dot">
                 &middot;
               </a> */}
             </div>
-            <p>Playful disrespect</p>
             <p>
               <small>
-                Let's break out of the rigidly defined relationships with our
-                tools and technologies, repurpose them to do things for which
-                they were not designed, and find beauty in their limitations and
-                failures.
+                I make art, music, and software.
                 <br />
                 <br />
                 <Link to="about">More about me...</Link>

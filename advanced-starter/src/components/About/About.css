@@ -1,5 +1,6 @@
 .about {
-  max-width: 500px;
+  max-width: 900px;
+  margin: 0px auto;
 }
 .nameAnim {
   position: absolute;
@@ -7,4 +8,43 @@
   top: 0px;
   width: 500px;
   height: 800px;
+  z-index: -1;
+  opacity: 0.15;
+}
+
+.me {
+  float: left;
+  position: relative;
+  margin-right: 40px;
+  width: 300px;
+}
+.pop {
+  font-style: oblique;
+  color: salmon;
+}
+.sidenote {
+  background: lightcyan;
+  float: right;
+  width: 250px;
+  /* opacity: 0.8; */
+  padding: 10px;
+}
+
+ul {
+  background: seashell;
+  padding: 20px;
+}
+ul li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px dotted black;
+  margin-bottom: 8px;
+}
+
+ul li .left {
+  font-weight: bold;
+  flex: 1;
+}
+ul li .right {
 }

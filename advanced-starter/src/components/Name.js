@@ -33,7 +33,7 @@ class Name extends React.Component {
   }
   render() {
     let arr = new Array(this.props.num).fill(this.props.num);
-    let text = "TECHNOLOGY";
+    let text = "HELLO, HEY, OH HI, HOW'S, IT GOING?";
     return arr.map((e, i) => (
       <h1
         className="animtext"

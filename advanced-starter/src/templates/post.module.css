@@ -16,3 +16,8 @@
 .post-tag-container {
   margin-top: 60px;
 }
+
+.gatsby-resp-image-wrapper,
+.gatsby-resp-image-image {
+  max-width: 100% !important;
+}
