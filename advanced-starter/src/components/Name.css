@@ -1,25 +1,32 @@
 .animtext {
-  margin-top: 0px;
+  /* margin-top: 0px; */
+  /* margin-top: -20px; */
+  text-align: center;
   position: absolute;
   width: 100%;
   overflow: hidden;
   /*background: black;*/
   transition-duration: 5s;
   transition-property: margin-top;
-  transition-timing-function: cubic-bezier(1, -0.6, 0, 1.65);
+  /* transition-timing-function: cubic-bezier(1, -0.6, 0, 1.65); */
+  transition-timing-function: ease-in-out;
   /* margin-top: 4px; */
   /*opacity: .2;*/
   z-index: 1;
   font-size: 32px;
-  font-family: "Franklin Gothic", "Helvetica Neue", "Arial Narrow", sans-serif;
+  font-family: "Helvetica Neue", "Arial Narrow", sans-serif;
   font-weight: 100;
+  vertical-align: middle;
+  top: 50%;
 }
 .animtext span {
-  top: 0px;
+  /* top: 0px; */
   height: 0px;
   position: relative;
   /*background: white;*/
-  transition: all 5s cubic-bezier(1, -0.6, 0, 1.65);
+  /* transition: all 5s cubic-bezier(1, -0.6, 0, 1.65); */
+  transition: all 5s ease-in-out;
+
   line-height: 20px;
 }
 /* .animtext.on {
@@ -44,11 +51,23 @@
 }
 
 .animtext span {
-  animation-duration: 10s;
+  animation-duration: 5s;
   animation-name: spanim;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-fill-mode: forwards;
+  /* animation-timing-function: cubic-bezier(1, -0.6, 0, 1.65, 3); */
   animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
-  /* cubic-bezier(1.000, -0.600, 0.000, 1.650); */
+  /* animation-timing-function: ease-in-out; */
+}
+
+.animtext.backwards span {
+  animation-duration: 5s;
+  animation-name: spanim;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: backwards;
+  /* animation-timing-function: cubic-bezier(1, -0.6, 0, 1.65, 3); */
+  animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
+  /* animation-timing-function: ease-in-out; */
 }

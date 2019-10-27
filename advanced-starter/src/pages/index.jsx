@@ -20,8 +20,8 @@ class Index extends React.Component {
           {/* <SEO /> */}
           <div className={styles.indexPost}>
             <div className={styles.name}>
-              <div className="nameAnim">
-                <Name num={50} height={300} />
+              <div className={styles.nameAnim}>
+                <Name num={100} height={250} />
               </div>
               {/* Michael */}
               {/* <br /> */}

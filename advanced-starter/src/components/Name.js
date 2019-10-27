@@ -41,25 +41,34 @@ class Name extends React.Component {
     let delayVal = 1000 * Math.random();
     let arr = new Array(this.props.num).fill(this.props.num);
     let text = "MICHAEL JACOBS";
-    return arr.map((e, i) => (
-      <h1
-        className="animtext"
-        style={{
-          transitionDuration: i * Math.sin(i / delayVal) + "s",
-          marginTop: i * (this.props.height / this.props.num)
-        }}
-      >
-        <span
+    let yoffset = -40;
+    return arr.map((e, i) => {
+      var martop =
+        i % 2 == 0
+          ? yoffset - (i + 1) * (this.props.height / this.props.num)
+          : yoffset + i * (this.props.height / this.props.num);
+      console.log("martop", i, martop - yoffset);
+      return (
+        <h1
+          className={`animtext ${i % 2 == 0 ? "backwards" : ""}`}
           style={{
-            animationDelay:
-              (i * Math.sin((i / delayVal) * this.props.num)) / (2 * i + 1) +
-              "s"
+            transitionDuration: 0.05 * i + "s",
+            marginTop: martop
           }}
         >
-          {text}
-        </span>
-      </h1>
-    ));
+          <span
+            style={{
+              animationDelay: 0.05 * i + "s"
+              // animationDelay:
+              //   (i * Math.sin((i / delayVal) * this.props.num)) / (2 * i + 1) +
+              //   "s"
+            }}
+          >
+            {text}
+          </span>
+        </h1>
+      );
+    });
   }
 }
 export default Name;
