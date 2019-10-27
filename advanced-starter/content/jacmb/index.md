@@ -3,7 +3,7 @@ title: "Jacmb"
 featuredImage: "./maki.jpg"
 category: "tech"
 date: "10/01/2007"
-description: "Solo music experiments"
+description: "Solo music"
 tags:
   - programming
 ---

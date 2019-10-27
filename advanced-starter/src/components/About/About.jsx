@@ -1,39 +1,31 @@
 import React, { Component } from "react";
 import "./About.css";
+import styles from "../../pages/index.module.css";
+
 import { Link } from "@reach/router";
-import Name from "../Name";
 
 class About extends Component {
   render() {
     return (
-      <div className="about">
-        <Link to="/">&larr;&nbsp;Back to work</Link>
-        <div className="me">
-          {/* <Name num={100} height={500} /> */}
-          <img src="me.jpg" alt="" />
+      <div className={["about", styles.indexContainer].join(" ")}>
+        <div className={styles.indexPost}>
+          <Link to="/">&larr;&nbsp;Back to work</Link>
         </div>
-        <h1>Hi, I'm Michael Jacobs!</h1>
-        {/* <p>
-          I make art, music, and software in beautiful downtown Oakland,
-          California.
-        </p> */}
-        <ul>
-          <li>
-            <div className="left">Home:</div>
-            <div className="right">Downtown Oakland, CA</div>
-          </li>
-          <li>
-            <div className="left">Guiding principle:</div>
-            <div className="right">Playful disrespect</div>
-          </li>
-          <li>
-            <div className="left">Mediums:</div>
-            <div className="right">Paint, ink, sound, code, video</div>
-          </li>
-        </ul>
-        <p>
-          My creative work is a messy response to the development and use of
-          technology. I like to appreciatively explore how tech extends our
+        <div className={styles.indexPost}>
+          <p>
+            <h1 className="name">About Michael Jacobs</h1>
+          </p>
+        </div>
+        <div className="me" className={styles.indexPost}>
+          {/* <Name num={100} height={500} /> */}
+          <img src="/me.jpg" alt="" />
+        </div>
+        <p className={styles.indexPost}>
+          I make art, music, and software in beautiful Savannah, Georgia.
+        </p>
+        <p className={styles.indexPost}>
+          These things are my messy ways to respond to the development and use
+          of technology. I like to appreciatively explore how tech extends our
           capabilites through automation, precision, and speed, but, I'm also
           frustrated with having to conform to its rigidness and narrowness.
         </p>
@@ -59,7 +51,7 @@ class About extends Component {
           technology by redefining the parameters under which it works, but then
           I give up some control in allowing the technology to create the art.
         </p> */}
-        <p>
+        <p className={styles.indexPost}>
           My art process utilizes experimentation, sabbotage, misuse, generative
           systems, and shoddily constructed custom software and hardware as a
           way to arrive at unexpected outcomes, which I then curate, or use as
@@ -74,15 +66,11 @@ class About extends Component {
             src="http://americanhistory.si.edu/sites/default/files/blog_files/a/6a00e553a80e1088340192aa6ef4c4970d-500wi.jpg"
           />
         </p> */}
-        <p>
+        <p className={styles.indexPost}>
           Outside of creative pursuits, I design and code software as part of an
           effort to create an equitable and humane alternative to incarceration
           with <a href="http://joinpromise.com">Promise</a>.
         </p>
-
-        {/* <div className="nameAnim">
-          <Name num={60} height={window.innerHeight} />
-        </div> */}
       </div>
     );
   }

@@ -20,20 +20,22 @@ class Index extends React.Component {
           {/* <SEO /> */}
           <div className={styles.indexPost}>
             <div className={styles.name}>
-              Hi! I'm Michael Jacobs.
+              <div className="nameAnim">
+                <Name num={50} height={300} />
+              </div>
+              {/* Michael */}
+              {/* <br /> */}
+              {/* Jacobs */}
               {/* <br />
               <a className={styles.dot} href="dot">
                 &middot;
               </a> */}
             </div>
-            <p>
-              <small>
-                I make art, music, and software.
-                <br />
-                <br />
-                <Link to="about">More about me...</Link>
-              </small>
-            </p>
+            {/* <p>
+              <div>
+                <Link to="about">About</Link>
+              </div>
+            </p> */}
           </div>
           <PostListing postEdges={postEdges} />
         </div>

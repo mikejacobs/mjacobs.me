@@ -23,28 +23,37 @@ class Name extends React.Component {
     // var go = function() {
     //   mids.forEach(end);
     // };
+    // var delayVal = 20;
+    // setInterval(() => {
+    //   console.log("update1");
+    //   this.forceUpdate();
+    // }, 10000);
   }
   componentWillUnmount() {
     // const parent = ReactDOM.findDOMNode(this);
     // $(parent).slider("destroy");
   }
   shouldComponentUpdate() {
+    console.log("update2");
     // return false;
   }
   render() {
+    let delayVal = 1000 * Math.random();
     let arr = new Array(this.props.num).fill(this.props.num);
-    let text = "HELLO, HEY, OH HI, HOW'S, IT GOING?";
+    let text = "MICHAEL JACOBS";
     return arr.map((e, i) => (
       <h1
         className="animtext"
         style={{
+          transitionDuration: i * Math.sin(i / delayVal) + "s",
           marginTop: i * (this.props.height / this.props.num)
         }}
       >
         <span
           style={{
             animationDelay:
-              (i * Math.sin(i / this.props.num)) / (2 * i + 1) + "s"
+              (i * Math.sin((i / delayVal) * this.props.num)) / (2 * i + 1) +
+              "s"
           }}
         >
           {text}

@@ -6,20 +6,20 @@
   /*background: black;*/
   transition-duration: 5s;
   transition-property: margin-top;
-  transition-timing-function: ease-in-out;
+  transition-timing-function: cubic-bezier(1, -0.6, 0, 1.65);
   /* margin-top: 4px; */
   /*opacity: .2;*/
   z-index: 1;
-  font-size: 62px;
+  font-size: 32px;
   font-family: "Franklin Gothic", "Helvetica Neue", "Arial Narrow", sans-serif;
-  font-weight: 500;
+  font-weight: 100;
 }
 .animtext span {
-  top: -65px;
+  top: 0px;
   height: 0px;
   position: relative;
   /*background: white;*/
-  transition: all 5s ease-in-out;
+  transition: all 5s cubic-bezier(1, -0.6, 0, 1.65);
   line-height: 20px;
 }
 /* .animtext.on {
@@ -33,12 +33,12 @@
 
 @keyframes spanim {
   to {
-    top: 0px;
+    top: 10px;
     height: 10px;
   }
 
   from {
-    top: -65px;
+    top: 0px;
     height: 0px;
   }
 }
@@ -49,5 +49,6 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-fill-mode: forwards;
-  /* animation-timing-function: cubic-bezier(0.5, 0.1, 0.25, 3); */
+  animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
+  /* cubic-bezier(1.000, -0.600, 0.000, 1.650); */
 }

@@ -2,7 +2,7 @@
   max-width: 900px;
   margin: 0px auto;
 }
-.nameAnim {
+/* .nameAnim {
   position: absolute;
   left: 700px;
   top: 0px;
@@ -10,7 +10,19 @@
   height: 800px;
   z-index: -1;
   opacity: 0.15;
+} */
+.name {
+  margin-top: 0px;
 }
+
+/* .about p,
+.about div {
+  width: 20%;
+  box-sizing: border-box;
+  padding: 10px;
+  float: left;
+  margin-bottom: 20px;
+} */
 
 .me {
   float: left;

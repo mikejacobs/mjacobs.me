@@ -12,7 +12,7 @@ tags:
 
 Released May 20, 2006
 
-Mike Jacobs: drums, percussion, trumpet, keyboards, programming, vocals, washing machine, field recording, ipod malfunction, bass guitar.
+Mike Jacobs: production, drums, percussion, trumpet, keyboards, programming, vocals, washing machine, field recording, ipod malfunction, bass guitar.
 
 Carter Maness: vocals, poetics, guitar, noise, theory, ukulele, bass guitar, saxophone, wurlitzer.
 
