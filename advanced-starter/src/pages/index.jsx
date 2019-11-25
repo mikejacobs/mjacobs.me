@@ -21,7 +21,7 @@ class Index extends React.Component {
           <div className={styles.indexPost}>
             <div className={styles.name}>
               <div className={styles.nameAnim}>
-                <Name num={100} height={250} />
+                <Name num={80} height={250} />
               </div>
               {/* Michael */}
               {/* <br /> */}
@@ -37,6 +37,38 @@ class Index extends React.Component {
               </div>
             </p> */}
           </div>
+          <div className={styles.indexPost}>
+            Utilizing experimentation, sabbotage, misuse, generative systems,
+            and shoddily constructed custom software and hardware as ways to
+            arrive at unexpected outcomes in art and music. Based in beautiful
+            Savannah, Georgia.
+            <br />
+            <br />
+            <small>Contact: hi@[this domain]</small>
+          </div>
+          {/* <div className={styles.indexPost}>
+            <div className={styles.name}>
+              <div className={styles.nameAnim}>
+                <a href="http://instagram.com/mjacobs">
+
+                  <script src="https://cdn.lightwidget.com/widgets/lightwidget.js" />
+                  <iframe
+                    src="//lightwidget.com/widgets/a9a828bcdbe155a394fc732844902203.html"
+                    scrolling="no"
+                    allowtransparency="true"
+                    className="lightwidget-widget"
+                    style={{
+                      width: "100%",
+                      border: 0
+                      // overflow: "hidden",
+                      // height: "100%"
+                    }}
+                  />
+                  <span className={styles.projectTitle}>Instagram</span>
+                </a>
+              </div>
+            </div>
+          </div> */}
           <PostListing postEdges={postEdges} />
         </div>
       </Layout>
