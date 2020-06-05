@@ -37,14 +37,15 @@ class Index extends React.Component {
               </div>
             </p> */}
           </div>
-          <div className={styles.indexPost}>
-            Utilizing experimentation, sabbotage, misuse, generative systems,
-            and shoddily constructed custom software and hardware as ways to
-            arrive at unexpected outcomes in art and music. Based in beautiful
-            Savannah, Georgia.
+          <div className={styles.indexPost} style={{ fontSize: 20 }}>
+            Playful misuse, amateur mistakes, lazy shortcuts, generative
+            systems, noise, janky hardware, and shoddily constructed custom
+            software.
             <br />
             <br />
-            <small>Contact: hi@[this domain]</small>
+            <small>
+              <a href="http://instagram.com/mjacobs">@mjacobs</a>
+            </small>
           </div>
           {/* <div className={styles.indexPost}>
             <div className={styles.name}>

@@ -17,6 +17,11 @@ tags:
 <br>
 
 <p><img src="plotter.jpg"></p>
+<p><img src="solder.jpg"></p>
+<p><img src="wave.jpg"></p>
+<p><img src="hots.jpg"></p>
+<p><img src="hi.jpg"></p>
+<p><img src="cloth.jpg"></p>
 <p><img src="fingermachine.gif"></p>
 <p><img src="helpmachine.gif"></p>
 <p><img src="38.jpg"></p>
