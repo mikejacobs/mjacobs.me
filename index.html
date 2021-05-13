@@ -8,231 +8,135 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <style type="text/css">
-      @font-face {
-        font-family: "SpaceMono";
-        src: url("./Space_Mono/SpaceMono-Regular.ttf") format("truetype");
-      }
-      @font-face {
-        font-family: "SpaceMonoBold";
-        src: url("./Space_Mono/SpaceMono-Bold.ttf") format("truetype");
-      }
-      body {
-        font-family: "SpaceMono", "Helvetica Neue";
-        /*font-family: "Georgia";*/
-        padding: 0px;
-        margin: 0px;
-      }
-      #container {
-        margin: 0px auto;
-        position: relative;
-        padding: 40px;
-        max-width: 600px;
-      }
-      h1 {
-        font-size: 30px;
-        font-weight: 100;
-        /*font-style: oblique;*/
-        letter-spacing: 1.2px;
-        margin: 0px;
-        text-transform: uppercase;
+      .animtext {
         text-align: center;
-        color: black;
-      }
-      h1:last-child {
-        /*color:white;*/
-        /*text-shadow: 0px 1px 0px black;*/
-      }
-      .top {
-        height: 30px;
-        overflow: hidden;
-        z-index: 20;
-        width: 100%;
         position: absolute;
-      }
-      .bot {
-        height: 58px;
-        overflow: hidden;
-      }
-      .bot span {
-        top: -40px;
-        position: relative;
-      }
-      .mid {
-        position: absolute;
-        top: 4px;
         width: 100%;
-        height: 30px;
         overflow: hidden;
-        /*background: black;*/
-        transition: all 5s ease-in-out;
-        margin-top: 4px;
-        /*opacity: .2;*/
+        -webkit-transition-duration: 5s;
+        transition-duration: 5s;
+        -webkit-transition-property: margin-top;
+        transition-property: margin-top;
+        -webkit-transition-timing-function: ease-in-out;
+        transition-timing-function: ease-in-out;
         z-index: 1;
+        font-size: 32px;
+        font-family: Helvetica Neue, Arial Narrow, sans-serif;
+        font-weight: 100;
+        vertical-align: middle;
+        top: 50%;
       }
-      .mid.on {
-        height: 30px;
-        transition: all 1s ease-in-out;
-      }
-      .mid span {
-        top: 0px;
-        height: 10px;
+      .animtext span {
+        height: 0;
         position: relative;
-        /*background: white;*/
+        -webkit-transition: all 5s ease-in-out;
         transition: all 5s ease-in-out;
         line-height: 20px;
       }
-      .mid.on span {
-        top: -85px;
-        height: 20px;
+      @-webkit-keyframes spanim {
+        to {
+          top: 10px;
+          height: 10px;
+        }
+        0% {
+          top: 0;
+          height: 0;
+        }
       }
-      hr {
-        border: 1px solid lightgray;
-        margin: 40px auto;
+      @keyframes spanim {
+        to {
+          top: 10px;
+          height: 10px;
+        }
+        0% {
+          top: 0;
+          height: 0;
+        }
       }
-      #left,
-      #right {
-        /* width: 50%; */
-        position: relative;
+      .animtext span {
+        -webkit-animation-duration: 5s;
+        animation-duration: 5s;
+        -webkit-animation-name: spanim;
+        animation-name: spanim;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+        -webkit-animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
+        animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
       }
-      #left {
-        float: left;
+      .animtext.backwards span {
+        -webkit-animation-duration: 5s;
+        animation-duration: 5s;
+        -webkit-animation-name: spanim;
+        animation-name: spanim;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+        -webkit-animation-fill-mode: backwards;
+        animation-fill-mode: backwards;
+        -webkit-animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
+        animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
       }
-      #right {
-        float: right;
-      }
-      .jobs {
-        margin-left: 20px;
-      }
-      strong {
-        font-family: "SpaceMonoBold", "Helvetica Neue";
-        font-weight: normal;
-        font-size: 22px;
-      }
-
-		.clarifier{
-			cursor: help;
-      position: relative;
-		}
-		.clarifier .alt{
-			display:none;
-			font-size:14px;
-			color: blue;
-			/*padding: 10px;*/
-		}
-		.clarifier .primary{
-			border-bottom: 1px dotted #aaa;
-		}
-		.clarifier:hover .primary{
-			border-bottom: 2px solid blue;
-		}
-		.clarifier:hover .alt{
-      position: absolute;
-      /* left: 480px; */
-      width: 200px;
-      border-bottom: none;
-      display: inline;
-      background: blue;
-      color: white;
-      padding: 10px;
-      top: 30px;
-      z-index: 1000;
-		}
-    .obfuscate{
-			display: none;
-		}
-    @media only screen and (max-width: 500px) {
-			body{
-				padding:20px;
-			}
-      #container {
-        padding: 10px;
-      }
-			header, footer, section{
-				padding: 0px;
-			}
-			h1{
-				margin:	0px auto 0px auto;
-			}
-		    .clarifier .primary, .clarifier:hover .primary{
-				cursor: default;
-				border-bottom: none;
-			}
-			.clarifier .alt{
-				display:none;
-			}
-			.clarifier:hover .primary{
-				background: transparent;
-				color: black;
-			}
-			.clarifier:hover .alt{
-				border-bottom: none;
-				display:none;
-        
-			}
-		}
+      /* h1 {
+              font-size: 30px;
+              font-weight: 100;
+              letter-spacing: 1.2px;
+              margin: 0px;
+              text-transform: uppercase;
+              text-align: center;
+              color: black;
+            }
+            .top {
+              height: 30px;
+              overflow: hidden;
+              z-index: 20;
+              width: 100%;
+              position: absolute;
+            }
+            .bot {
+              height: 58px;
+              overflow: hidden;
+            }
+            .bot span {
+              top: -40px;
+              position: relative;
+            }
+            .mid {
+              position: absolute;
+              top: 4px;
+              width: 100%;
+              height: 30px;
+              overflow: hidden;
+              transition: all 5s ease-in-out;
+              margin-top: 4px;
+              z-index: 1;
+            }
+            .mid.on {
+              height: 30px;
+              transition: all 1s ease-in-out;
+            }
+            .mid span {
+              top: 0px;
+              height: 10px;
+              position: relative;
+              transition: all 5s ease-in-out;
+              line-height: 20px;
+            }
+            .mid.on span {
+              top: -85px;
+              height: 20px;
+            } */
     </style>
   </head>
   <body>
-    <div id="container">
-      <!-- <div id="left"></div> -->
-      <div id="right">
-        <p class="bigger"><strong>Hi! I'm Michael Jacobs</strong>, a software designer, programmer, musician, and artist. </p>
-        <p>
-          I spent the last year and a half at <a href="https://joinpromise.com">Promise</a> creating software that aided people in getting out of the criminal justice system. 
-        </p>
-        <p>
-          Before that, at Uber, I worked on many operations and developer tools, as well as the rider and driver apps.
-        </p>
-        <!-- <p>
-          Before that I co-founded Hello Chair Inc, where we developed Appsaurus to use Netflix-like recommendations to make it easier to find good iOS apps. 
-        </p> -->
-        <p>
-          
-          My experience has given me a kaleidoscope of skills within software development. People have referred to the work I do as: <span class="clarifier"><span class="alt">Discovering what people need from technology, then designing ways that software can meet those needs.</span><span class="primary">user experience design</span></span>, <span class="clarifier"> <span class="alt">Making data more understandable through charts, maps, dashboards, and other visualizations.</span><span class="primary">information design</span></span>, <span class="clarifier"> <span class="alt">Writing code quickly in service of testing out ideas before investing more time and energy.</span><span class="primary">design prototyping</span></span>, <span class="clarifier"> <span class="alt">Writing code deliberately for use in a finished product, often focusing on upholding quality of design.</span><span class="primary">design engineering</span></span>, <span class="clarifier"> <span class="alt">Cultivating design thinking in designers and non-designers alike. Acting as a bridge between design and other disciplines.</span><span class="primary">design leadership</span></span>, <span class="clarifier"> <span class="alt">Leading a software development team: defining a vision, breaking down big tasks into smaller ones, setting goals, solving the inevitable problems that arise, and ensuring a high level of quality in a reasonable amount of time.</span><span class="primary">product management</span></span>, <span class="clarifier"> <span class="alt">Writing code to make art.</span><span class="primary">creative coding</span></span>, and <span class="clarifier"><span class="alt">Creating sounds to give software another way to communicate with users.</span><span class="primary">sound design</span></span>.
-        </p>
-        <p>I am now exploring new opportunities in mission-driven work with the goal of using my skills to create a more equitable future.</p>
-        <p>Let's work together: <span class="empty">mike</span>@<span class="obfuscate">@@</span>mjacobs.<span class="obfuscate">...</span>me</p>
-          <!-- I design and code software to help people do things like:  -->
-          <!-- <ul>
-          <li>Get out of the criminal justice system</li>
-          <li>Make music</li>
-          <li>Get a ride on-demand</li>
-          <li>Drive people to make money</li>
-          <li>Communicate with their customers</li>
-          <li>Make decisions about a global marketplace</li>
-          <li>Identify outtages in highly complex software architecture</li>
-          <li>Find better apps</li>
-        </ul> -->
-        </p>
-        <ul>
-          <li>
-            <a href="http://mjacobs.me/Michael_Jacobs_resume.pdf">Resume</a>
-          </li>
-          <li>Design portfolio - available upon request</li>
-          <li><a href="http://jacmb.com">Art portfolio</a></li>
-        </ul>
-        <!-- <hr />
-        <p>
-          In the past, my efforts have gone toward all sorts technology
-          companies: tiny to enormous, mission-driven to profit-focused. Here
-          are a few:
-        </p>
-        <p>
-          <strong>Promise Networks</strong><br />
-          Lead Designer / Engineer<br />
-          Oakland, CA<br />
-          Jan 2018 - July 2019
-        </p>
-        <p class="jobs">
-          Promise aims to create an equitable and humane alternative to
-          incarceration by using updated technology to facilitate better human
-          connectivity, focused on providing support and care to people who are
-          involved with the criminal justice system. As Promise’s second
-          employee, I helped bring multiple web and mobile products from concept
-          to reality, doing much of the research and design, as well as majorly
-          contributing to front-end engineering and sales support efforts.
-        </p> -->
-      </div>
+    <div class="container">
+      <div id="left"></div>
+      <video src="fund.mov" loop autoplay></video>
+      <img src="drill.gif" alt="" />
     </div>
 
     <script type="text/javascript">
