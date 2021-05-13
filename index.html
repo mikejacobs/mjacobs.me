@@ -7,199 +7,81 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <style type="text/css">
-      .animtext {
-        text-align: center;
-        position: absolute;
-        width: 100%;
-        overflow: hidden;
-        -webkit-transition-duration: 5s;
-        transition-duration: 5s;
-        -webkit-transition-property: margin-top;
-        transition-property: margin-top;
-        -webkit-transition-timing-function: ease-in-out;
-        transition-timing-function: ease-in-out;
-        z-index: 1;
-        font-size: 32px;
-        font-family: Helvetica Neue, Arial Narrow, sans-serif;
-        font-weight: 100;
-        vertical-align: middle;
-        top: 50%;
-      }
-      .animtext span {
-        height: 0;
-        position: relative;
-        -webkit-transition: all 5s ease-in-out;
-        transition: all 5s ease-in-out;
-        line-height: 20px;
-      }
-      @-webkit-keyframes spanim {
-        to {
-          top: 10px;
-          height: 10px;
-        }
-        0% {
-          top: 0;
-          height: 0;
-        }
-      }
-      @keyframes spanim {
-        to {
-          top: 10px;
-          height: 10px;
-        }
-        0% {
-          top: 0;
-          height: 0;
-        }
-      }
-      .animtext span {
-        -webkit-animation-duration: 5s;
-        animation-duration: 5s;
-        -webkit-animation-name: spanim;
-        animation-name: spanim;
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-        -webkit-animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
-        animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
-      }
-      .animtext.backwards span {
-        -webkit-animation-duration: 5s;
-        animation-duration: 5s;
-        -webkit-animation-name: spanim;
-        animation-name: spanim;
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;
-        -webkit-animation-fill-mode: backwards;
-        animation-fill-mode: backwards;
-        -webkit-animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
-        animation-timing-function: cubic-bezier(0.5, -10.5, 0, 3);
-      }
-      /* h1 {
-              font-size: 30px;
-              font-weight: 100;
-              letter-spacing: 1.2px;
-              margin: 0px;
-              text-transform: uppercase;
-              text-align: center;
-              color: black;
-            }
-            .top {
-              height: 30px;
-              overflow: hidden;
-              z-index: 20;
-              width: 100%;
-              position: absolute;
-            }
-            .bot {
-              height: 58px;
-              overflow: hidden;
-            }
-            .bot span {
-              top: -40px;
-              position: relative;
-            }
-            .mid {
-              position: absolute;
-              top: 4px;
-              width: 100%;
-              height: 30px;
-              overflow: hidden;
-              transition: all 5s ease-in-out;
-              margin-top: 4px;
-              z-index: 1;
-            }
-            .mid.on {
-              height: 30px;
-              transition: all 1s ease-in-out;
-            }
-            .mid span {
-              top: 0px;
-              height: 10px;
-              position: relative;
-              transition: all 5s ease-in-out;
-              line-height: 20px;
-            }
-            .mid.on span {
-              top: -85px;
-              height: 20px;
-            } */
-    </style>
   </head>
+  <style>
+    video,
+    img {
+      max-width: 100%;
+    }
+  </style>
   <body>
     <div class="container">
-      <div id="left"></div>
-      <video src="fund.mov" loop autoplay></video>
-      <img src="drill.gif" alt="" />
+      <!-- <div class="animtext"></div> -->
+      <video src="images/fund.mov" loop autoplay></video>
+      <!-- <img src="drill.gif" alt="" /> -->
     </div>
 
     <script type="text/javascript">
-      // janky shit
-      var isOn = true;
-      var text = "MICHAEL JACOBS";
-      var numMids = 100;
+      // // janky shit
+      // var isOn = true;
+      // var text = "MICHAEL JACOBS";
+      // var numMids = 100;
 
-      window.onload = function() {
-        var container = document.querySelector("#left");
-        var original = document.createElement("h1");
-        original.className = "mid";
-        original.innerHTML = "<span>" + text + "</span>";
+      // window.onload = function() {
+      //   var container = document.querySelector(".animtext");
+      //   var original = document.createElement("h1");
+      //   original.className = "mid";
+      //   original.innerHTML = "<span>" + text + "</span>";
 
-        var body = document.body,
-          html = document.documentElement;
+      //   var body = document.body,
+      //     html = document.documentElement;
 
-        var height = Math.max(
-          body.scrollHeight,
-          body.offsetHeight,
-          html.clientHeight,
-          html.scrollHeight,
-          html.offsetHeight
-        );
-        var h = height / numMids / 2;
-        var mids = [];
+      //   var height = Math.max(
+      //     body.scrollHeight,
+      //     body.offsetHeight,
+      //     html.clientHeight,
+      //     html.scrollHeight,
+      //     html.offsetHeight
+      //   );
+      //   var h = height / numMids / 2;
+      //   var mids = [];
 
-        var top = original.cloneNode(true);
-        top.className = "top";
-        container.appendChild(top);
+      //   var top = original.cloneNode(true);
+      //   top.className = "top";
+      //   container.appendChild(top);
 
-        while (numMids--) {
-          var m = original.cloneNode(true);
-          mids.push(m);
-          container.appendChild(m);
-        }
-        mids.forEach(function(el, i) {
-          var r = i / 10 + Math.abs(Math.sin(i / h));
-          el.className = "mid on";
-          el.style["margin-top"] = i * h + "px";
-          el.style["transition"] = "all " + r + "s ease-in-out";
-          el.childNodes[0].style["transition"] =
-            "all " + r / 2 + "s ease-in-out";
-        });
+      //   while (numMids--) {
+      //     var m = original.cloneNode(true);
+      //     mids.push(m);
+      //     container.appendChild(m);
+      //   }
+      //   mids.forEach(function(el, i) {
+      //     var r = i / 10 + Math.abs(Math.sin(i / h));
+      //     el.className = "mid on";
+      //     el.style["margin-top"] = i * h + "px";
+      //     el.style["transition"] = "all " + r + "s ease-in-out";
+      //     el.childNodes[0].style["transition"] =
+      //       "all " + r / 2 + "s ease-in-out";
+      //   });
 
-        var go = function() {
-          mids.forEach(function(el, i) {
-            if (!isOn) {
-              el.className = "mid on";
-              // el.style["margin-top"] = i * 10 * Math.sin(i) + "px"
-              el.style["margin-top"] = i * h * Math.abs(Math.sin(i / h)) + "px";
-            } else {
-              el.style["margin-top"] = i * h + "px";
-              el.className = "mid";
-            }
-          });
-          isOn = !isOn;
-        };
+      //   var go = function() {
+      //     mids.forEach(function(el, i) {
+      //       if (!isOn) {
+      //         el.className = "mid on";
+      //         // el.style["margin-top"] = i * 10 * Math.sin(i) + "px"
+      //         el.style["margin-top"] = i * h * Math.abs(Math.sin(i / h)) + "px";
+      //       } else {
+      //         el.style["margin-top"] = i * h + "px";
+      //         el.className = "mid";
+      //       }
+      //     });
+      //     isOn = !isOn;
+      //   };
 
-        document.querySelector(".top").onmouseenter = go;
-        document.querySelector(".top").onmouseleave = go;
-        setTimeout(go, 2000);
-      };
+      //   document.querySelector(".top").onmouseenter = go;
+      //   document.querySelector(".top").onmouseleave = go;
+      //   setTimeout(go, 2000);
+      // };
     </script>
   </body>
 </html>
