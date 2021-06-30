@@ -239,13 +239,13 @@ export let deets = {
       <p>Pendrillum is a home(made art) improvement machine.</p>
       <p>
         Q: What does it look like to take a drill outside of the accepted spectrum of use, and even
-        beyond what are considered to be
+        beyond what are considered to be ${String.fromCharCode(160)}
         <a href="https://www.youtube.com/watch?v=6och7-0iI00">unusual hacks</a>?
       </p>
       <p>A: A fish out of water</p>
 
       <p>
-        <img src="${path}/drill.mp4" />
+        <video src="${path}/drill.mp4" controls></video>
         <img src="${path}/1.jpeg" />
         <img src="${path}/2.jpeg" />
         <img src="${path}/3.jpeg" />
