@@ -270,7 +270,7 @@ This project uses the <a href="https://github.com/algorithmic-music-exploration/
   of doing the slicing. It quickly finds "hits" in the song, and gives you a nice set of code tools for remixing.
 </p> -->
 `,
-customPlotter: html`
+monsterPlotter: html`
 
 <p>
   Large format plotter built mostly from big box store parts. 

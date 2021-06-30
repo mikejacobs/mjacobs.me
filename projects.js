@@ -36,7 +36,7 @@ const arts = [
     description: "Early '00s indie noise pop",
   },
   {
-    directory: "customPlotter",
+    directory: "monsterPlotter",
     title: "Monster Plotter",
     preview: "preview2.gif",
     tags: ["hardware", "art"],

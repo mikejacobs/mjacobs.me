@@ -395,7 +395,7 @@ export let deets = {
   hyperlasso: function ({ path }) {
     return html` Coming soon `;
   },
-  customPlotter: function ({ path }) {
+  monsterPlotter: function ({ path }) {
     return html`
       <p>Large format plotter built mostly from big box store parts.</p>
       <img src="${path}/IMG_3374.jpg" />
