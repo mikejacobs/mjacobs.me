@@ -399,7 +399,7 @@ export let deets = {
     return html`
       <p>Large format plotter built mostly from big box store parts.</p>
       <img src="${path}/IMG_3374.jpg" />
-      <img src="${path}/IMG_3368.jpg" />
+      <img src="${path}/IMG_3368-side.jpg" />
       <img src="${path}/IMG_3424.jpg" />
       <video src="${path}/straight.mp4" controls></video>
       <video src="${path}/top_down.mp4" controls></video>
