@@ -52,9 +52,11 @@ function ProjectDetail({ project, context }) {
 
     <div class="detail-head">
       <h2 class="intro">
-        <a href="?${context}">${String.fromCharCode(8592)} BACK</a>
-        <!-- ${String.fromCharCode(183) + " " + title} -->
+        <strong>
+        <a href="?${context}">${String.fromCharCode(8592)} MICHAEL JACOBS</a>
+        </strong>
       </h2>
+  <h3>${title}</h3>
     </div>
     <!-- <img class="preview" src="/${context}/${directory}/${preview}" /> -->
     <!-- <div class="description">${description}</div> -->
