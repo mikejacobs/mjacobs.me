@@ -9,6 +9,11 @@
   padding: 4px 8px 4px 0px;
   margin: -4px 0px -4px 0px;
 }
+.detail-head h3{
+  margin: 0px auto;
+max-width: 1000px;
+  
+}
 .detail-body {
   margin: 0px auto;
   max-width: 1000px;
