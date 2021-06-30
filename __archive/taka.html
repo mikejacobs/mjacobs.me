@@ -1,0 +1,129 @@
+    <!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+    body{
+        font-family: "Helvetica Neue";
+        padding:0px;
+        margin:0px;
+
+    }
+    #container{
+        margin-top: 80px;
+        position:relative;
+    }
+    h1{
+        font-size: 88px;
+        font-weight:100;
+        margin:0px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .top{
+        height: 58px;
+        overflow: hidden;
+    }
+    .bot{
+        height: 58px;
+        overflow: hidden;
+    }
+    .bot span{
+        top: -40px;
+        position:relative;
+    }
+    .mid{
+        position:absolute;
+        top:40px;
+        width: 100%;
+        height: 15px;
+        overflow: hidden;
+        /*background: black;*/
+        transition: all 5s ease-in-out;
+        margin-top: 4px;
+        opacity: : .2;
+
+    }
+    .mid.on{
+        height: 15px;
+        transition: all 1s ease-in-out;
+
+    }
+    .mid span{
+        top: 0px;
+        height: 10px;
+        position:relative;
+        /*background: white;*/
+        transition: all 5s ease-in-out;
+        line-height:20px;
+    }
+    .mid.on span{
+        top: -85px;
+        height:20px;
+    }
+    </style>
+</head>
+<body>
+
+<div id="container">
+</div>
+
+<script type="text/javascript">
+    // janky shit
+    var isOn = true;
+    var text = "TAKA TAKA"
+    var numMids = 200
+
+    window.onload = function(){
+        var container = document.querySelector("#container")
+        var original = document.createElement('h1')
+        original.className = "mid"
+        original.innerHTML = "<span>" + text + "</span>"
+
+        var mids = [];
+
+        // var top = original.cloneNode(true)
+        // top.className = "top"
+        // container.appendChild(top)
+
+        while(numMids--){
+            var m = original.cloneNode(true)
+            mids.push(m)
+            container.appendChild(m)
+        }
+
+        // var bot = original.cloneNode(true)
+        // bot.className = "bot"
+        // container.appendChild(bot)
+
+        mids.forEach(function(el, i) {
+            var r = i * Math.random() / 10
+            // var offset = i * Math.sin(i/6)
+            var offset = i * Math.sin(i) * 10
+            el.style["margin-top"] = offset * 2 + "px"
+            // el.style["transition"] = "all "+ r +"s ease-in-out"
+            // el.childNodes[0].style["transition"] = "all "+ r/2 +"s ease-in-out"
+            el.childNodes[0].style["top"] = -offset + "px"
+            el.className = "mid on"         
+        });
+
+        // var go = function(){
+        //     mids.forEach(function(el, i) {
+        //         if(!isOn){
+        //             el.className = "mid on"
+        //             el.style["margin-top"] =  Math.sin(i) + "px"
+        //         }else{
+        //             // el.style["margin-top"] = i * Math.random() / 10 + "px"
+        //             // el.className = "mid"
+        //         }
+        //     });
+        //     isOn = !isOn
+        // }
+
+        // go()
+        // setTimeout(go, 2000)
+    }
+</script>
+</body>
+</html>

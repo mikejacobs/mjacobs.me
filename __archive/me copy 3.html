@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        body {
+            font-family: "Menlo", "Helvetica Neue";
+            /*font-family: "Georgia";*/
+            padding: 0px;
+            margin: 0px;
+
+        }
+
+        #container {
+            margin-top: 80px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 30px;
+            font-weight: 100;
+            margin: 0px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .top {
+            height: 58px;
+            overflow: hidden;
+        }
+
+        .bot {
+            height: 58px;
+            overflow: hidden;
+        }
+
+        .bot span {
+            top: -40px;
+            position: relative;
+        }
+
+        .mid {
+            position: absolute;
+            top: 40px;
+            width: 100%;
+            height: 15px;
+            overflow: hidden;
+            /*background: black;*/
+            transition: all 5s ease-in-out;
+            margin-top: 4px;
+
+        }
+
+        .mid.on {
+            height: 15px;
+            transition: all 1s ease-in-out;
+
+        }
+
+        .mid span {
+            top: 0px;
+            height: 10px;
+            position: relative;
+            /*background: white;*/
+            transition: all 5s ease-in-out;
+            line-height: 20px;
+            /* font-weight: bold; */
+        }
+
+        .mid.on span {
+            top: -85px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+    </div>
+    <!-- <div class="content"> By trade, I'm a software designer and programmer. I take care in designing technology with
+        precise functionality for specific needs.
+
+        As an artist—creating imagery, sound, and interaction —I am compelled to break out of these rigid relationships
+        with our technologies, repurpose them to do things for which they were not designed, and find beauty in their
+        limitations and failures. Along with this playful disrespect, my process utilizes chance, generative systems,
+        and shoddily constructed custom software and hardware as a way to arrive at unexpected outcomes, which I then
+        curate, or use as collaborator to build into final pieces.
+
+        Documentation of my art practice has moved to my Instagram.</div> -->
+
+    <script type="text/javascript">
+        // janky shit
+        var isOn = true;
+        var text = "MICHAEL JACOBS"
+        var numMids = 30
+
+        window.onload = function () {
+            var container = document.querySelector("#container")
+            var original = document.createElement('h1')
+            original.className = "mid on"
+            original.innerHTML = "<span>" + text + "</span>"
+
+            var mids = [];
+
+            // var top = original.cloneNode(true)
+            // top.className = "top"
+            // container.appendChild(top)
+
+            while (numMids--) {
+                var m = original.cloneNode(true)
+                mids.push(m)
+                container.appendChild(m)
+            }
+
+            // var bot = original.cloneNode(true)
+            // bot.className = "bot"
+            // container.appendChild(bot)
+            var start = function (el, i) {
+                el.style["margin-top"] = i * 10 + "px"
+                el.childNodes[0].style["top"] = -i + "px"
+                // el.className = "mid on"
+            }
+            var end = function (el, i) {
+                // el.className = "mid on"
+                el.style["margin-top"] = i * i + "px"
+                el.childNodes[0].style["top"] = -i * i + "px"
+            }
+
+            mids.forEach(start);
+
+            var go = function () {
+                mids.forEach(end);
+            }
+
+
+            // go()
+            // setTimeout(go, 1000)
+        }
+    </script>
+</body>
+
+</html>
