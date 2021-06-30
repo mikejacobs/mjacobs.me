@@ -211,6 +211,14 @@ ul.nav li {
 }
 /* small screens */
 @media only screen and (max-width: 700px) {
+  body {
+    padding: 20px;
+  }
+  .intro .nav a{
+    padding: 4px 8px;
+    margin:  auto -8px;
+    display: block;
+  }
   .intro,
   .intro.stuck {
     float: none;
