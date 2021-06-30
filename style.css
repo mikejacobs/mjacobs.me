@@ -214,6 +214,9 @@ ul.nav li {
   body {
     padding: 20px;
   }
+  #anim{
+    top: 400px !important;
+  }
   .intro .nav a{
     padding: 4px 8px;
     margin:  auto -8px;
