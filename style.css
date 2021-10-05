@@ -45,7 +45,7 @@ a:hover {
   text-decoration: underline;
 }
 .intro .blurb a:hover {
-  color: #BEC93A;
+  color: #bec93a;
 }
 .intro .nav a {
   padding: 4px 8px;
@@ -55,10 +55,10 @@ a:hover {
   margin-left: -8px;
 }
 .intro .nav a:hover {
-  background-color: #BEC93A55;
+  background-color: #bec93a55;
 }
 .intro .nav a.active {
-  background-color: #BEC93A;
+  background-color: #bec93a;
   color: white;
 }
 
@@ -122,10 +122,10 @@ a:hover {
   margin-top: -120px;
 }
 .project-info {
-  background-color: white;
-  margin-top: -30px;
-  padding-top: 30px;
-  margin: -30px 20px 0px 20px;
+  /* background-color: white; */
+  /* margin-top: -30px; */
+  padding-top: 0px;
+  margin: 0px 20px 0px 20px;
 }
 
 .description {
@@ -214,12 +214,12 @@ ul.nav li {
   body {
     padding: 20px;
   }
-  #anim{
+  #anim {
     top: 400px !important;
   }
-  .intro .nav a{
+  .intro .nav a {
     padding: 4px 8px;
-    margin:  auto -8px;
+    margin: auto -8px;
     display: block;
   }
   .intro,
@@ -270,7 +270,7 @@ h1 {
   /* border: 10px solid #50e3c2; */
   /* border: 10px solid darkkhaki; */
   /* box-shadow: 0 0 0 5px white, 0 0 0 1rem rgba(218, 165, 32, 0.25); */
-  box-shadow: 0 0 0 5px white, 0 0 0 1rem #BEC93A;
+  box-shadow: 0 0 0 5px white, 0 0 0 8px #bec93a;
 }
 img.preview {
   z-index: 4;
@@ -279,7 +279,7 @@ img.preview,
 .burst {
   width: 100%;
   border-radius: 999px;
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
 
   /* clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%); */
 }

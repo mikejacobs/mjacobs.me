@@ -1,13 +1,22 @@
 const works = [
   {
+    directory: "drivers-coop",
+    title: "The Drivers Co-op",
+    externalLink: "https://drivers.coop",
+    preview: "preview.png",
+    tags: ["mobile", "design", "research"],
+    date: new Date("6/1/2021"),
+    hasDetail: true,
+    description: "Currently leading design at the 100% worker-owned rideshare cooperative",
+  },
+  {
     directory: "promise-web",
     title: "Promise Case Manager",
     preview: "preview.png",
     tags: ["web", "design", "research"],
     date: new Date("1/1/2018"),
     hasDetail: false,
-    description:
-      "Drop-in pre-trial support program for criminal justice systems",
+    description: "Drop-in pre-trial support program for criminal justice systems",
   },
   {
     directory: "promise-mobile",
@@ -82,8 +91,7 @@ const works = [
     tags: ["web", "design"],
     date: new Date("10/01/2013"),
     hasDetail: false,
-    description:
-      "Performance dashboard used by all operations employees and executives",
+    description: "Performance dashboard used by all operations employees and executives",
   },
   {
     directory: "uber-jaeger",

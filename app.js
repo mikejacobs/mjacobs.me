@@ -4,10 +4,14 @@ import { deets } from "./detail.js";
 import { AboutPage } from "./resume.js";
 
 function ProjectCard({ project, offset, context }) {
-  const { title, directory, preview, description, hasDetail } = project;
+  const { title, directory, preview, description, hasDetail, externalLink } = project;
+  const link = externalLink ? externalLink : `?${context}=${directory}`;
   return html`
-    <div class="project-card${hasDetail ? " hasDetail" : ""}" style="animation-duration: ${offset}00ms;transform: scale(1);opacity: 1;">
-      <a href="?${context}=${directory}">
+    <div
+      class="project-card${hasDetail ? " hasDetail" : ""}"
+      style="animation-duration: ${offset}00ms;transform: scale(1);opacity: 1;"
+    >
+      <a href=${link}>
         <div style="position:relative;">
           <img class="preview" src="/${context}/${directory}/${preview}" />
 
@@ -28,7 +32,10 @@ function ProjectCard({ project, offset, context }) {
 function ProjectCardInactive({ project, offset, context }) {
   const { title, directory, preview, description, hasDetail } = project;
   return html`
-    <div class="project-card${hasDetail ? " hasDetail" : ""}" style="animation-duration: ${offset}00ms;transform: scale(1);opacity: 1;">
+    <div
+      class="project-card${hasDetail ? " hasDetail" : ""}"
+      style="animation-duration: ${offset}00ms;transform: scale(1);opacity: 1;"
+    >
       <div style="position:relative;">
         <img class="preview" src="/${context}/${directory}/${preview}" />
 
@@ -53,10 +60,10 @@ function ProjectDetail({ project, context }) {
     <div class="detail-head">
       <h2 class="intro">
         <strong>
-        <a href="?${context}">${String.fromCharCode(8592)} MICHAEL JACOBS</a>
+          <a href="?${context}">${String.fromCharCode(8592)} MICHAEL JACOBS</a>
         </strong>
       </h2>
-  <h3>${title}</h3>
+      <h3>${title}</h3>
     </div>
     <!-- <img class="preview" src="/${context}/${directory}/${preview}" /> -->
     <!-- <div class="description">${description}</div> -->
@@ -78,7 +85,14 @@ function ProjectGrid({ content, context }) {
         // .sort((a, b) =>
         // a.hasDetail === b.hasDetail ? 0 : a.hasDetail ? -1 : 1
         // )
-        .map((project, i) => html`<${project.hasDetail ? ProjectCard : ProjectCardInactive} project="${project}" offset=${i} context=${context} />`)}
+        .map(
+          (project, i) =>
+            html`<${project.hasDetail ? ProjectCard : ProjectCardInactive}
+              project="${project}"
+              offset=${i}
+              context=${context}
+            />`
+        )}
     </div>
   `;
 }
@@ -233,7 +247,10 @@ function ContactPage(_) {
       ${arr.map((e, i) => {
         var martop = i % 2 == 0 ? yoffset - (i + 1) * (height / num) : yoffset + i * (height / num);
         return html`
-          <h1 class=${`animtext ${i % 2 == 0 ? "backwards" : ""}`} style="transition-duration: ${0.05 * i}s; margin-top: ${martop}">
+          <h1
+            class=${`animtext ${i % 2 == 0 ? "backwards" : ""}`}
+            style="transition-duration: ${0.05 * i}s; margin-top: ${martop}"
+          >
             <span style="animation-delay: ${0.05 * i}s"> ${text} </span>
           </h1>
         `;
@@ -324,8 +341,11 @@ function Route({ context, detail, data }) {
         ? html` <${Nav}
               context=${context}
               blurb=${context == "art"
-                ? html`Playful misuse, amateur mistakes, lazy shortcuts, glitchy games, noise, feedback, janky hardware, and shoddy software.`
-                : html`Product designer / engineer with an interest in building a more equitable future. For a full portfolio, with documented work examples, please${unicode.space}<a href="?contact">get in touch</a>.
+                ? html`Playful misuse, amateur mistakes, lazy shortcuts, glitchy games, noise,
+                  feedback, janky hardware, and shoddy software.`
+                : html`Product designer / engineer with an interest in building a more equitable
+                    future. For a full portfolio, with documented work examples,
+                    please${unicode.space}<a href="?contact">get in touch</a>.
                     <!-- <button class="more">More</button> --> `}
             />
             <${ProjectGrid} content=${data} context=${context} />`
