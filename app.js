@@ -1,7 +1,7 @@
 // htm + preact -- no build!
 import { html, render } from "https://unpkg.com/htm/preact/index.mjs?module";
 import { deets } from "./detail.js";
-import { AboutPage } from "./resume.js";
+import { AboutPage } from "./about.js";
 
 function ProjectCard({ project, offset, context }) {
   const { title, directory, preview, description, hasDetail, externalLink } = project;
@@ -103,10 +103,10 @@ function Nav({ context, blurb }) {
   return html`
     <div class="intro${position}">
       <div class="nav">
-        <a href="?work"><strong>Michael${nbsp}Jacobs</strong></a>
-        <a href="?work" class=${context == "work" && "active"}>Work</a>
+        <a href="/"><strong>Michael${nbsp}Jacobs</strong></a>
+        <!-- <a href="?work" class=${context == "work" && "active"}>Work</a> -->
         <a href="?art" class=${context == "art" && "active"}>Art</a>
-        <a href="?resume" class=${context == "resume" && "active"}>Résumé</a>
+        <!-- <a href="?about" class=${context == "about" && "active"}>About</a> -->
         <!-- <a href="?resume" class=${context == "resume" && "active"}
           >Course${nbsp}of${nbsp}Life</a
         > -->
@@ -350,7 +350,7 @@ function Route({ context, detail, data }) {
             />
             <${ProjectGrid} content=${data} context=${context} />`
         : html`<${ProjectDetail} project="${detail}" context=${context} />`;
-    case "resume":
+    case "about":
       return html`<${Nav} context=${context} /><${AboutPage} />`;
     case "contact":
       return html`<${Nav} context=${context} /> <${ContactPage} />`;
@@ -363,10 +363,10 @@ function Route({ context, detail, data }) {
 
 function App(_) {
   // simple routing using URL search query
-  var search = "work";
-  var selectedContext = "work";
+  var search = "art";
+  var selectedContext = "art";
   var selectedProject;
-  var data = works;
+  var data = arts;
 
   console.log("search", window.location.search.indexOf("?"));
   if (window.location.search.indexOf("?") >= 0) {
@@ -377,7 +377,7 @@ function App(_) {
       art: arts,
       work: works,
       contact: undefined,
-      resume: undefined,
+      about: undefined,
     };
     data = contexts[selectedContext] || undefined;
     console.log("data", data);
