@@ -13,7 +13,10 @@ function ProjectCard({ project, offset, context }) {
     >
       <a href=${link}>
         <div style="position:relative;">
-          <img class="preview" src="/${context}/${directory}/${preview}" />
+          <img
+            class="preview"
+            src="/${context == "music" ? "art" : context}/${directory}/${preview}"
+          />
 
           <div class="burst"></div>
         </div>
@@ -99,13 +102,14 @@ function ProjectGrid({ content, context }) {
 
 function Nav({ context, blurb }) {
   const nbsp = String.fromCharCode(160);
-  let position = context == "work" || context == "art" ? " stuck" : "";
+  let position = context == "work" || context == "art" || context == "music" ? " stuck" : "";
   return html`
     <div class="intro${position}">
       <div class="nav">
         <a href="/"><strong>Michael${nbsp}Jacobs</strong></a>
         <!-- <a href="?work" class=${context == "work" && "active"}>Work</a> -->
         <a href="?art" class=${context == "art" && "active"}>Art</a>
+        <a href="?music" class=${context == "music" && "active"}>Music</a>
         <!-- <a href="?about" class=${context == "about" && "active"}>About</a> -->
         <!-- <a href="?resume" class=${context == "resume" && "active"}
           >Course${nbsp}of${nbsp}Life</a
@@ -336,11 +340,14 @@ function Route({ context, detail, data }) {
     case "art":
       // sort the art by date, keep the order for work
       data.sort((a, b) => b.date - a.date);
+    case "music":
+    // sort the art by date, keep the order for work
+    // data.sort((a, b) => a.date - b.date);
     case "work":
       return detail == undefined
         ? html` <${Nav}
               context=${context}
-              blurb=${context == "art"
+              blurb=${context != "work"
                 ? html`Playful misuse, amateur mistakes, lazy shortcuts, glitchy games, noise,
                   feedback, janky hardware, and shoddy software.`
                 : html`Product designer / engineer with an interest in building a more equitable
@@ -374,7 +381,8 @@ function App(_) {
     selectedContext = search[0];
     console.log("search", search);
     const contexts = {
-      art: arts,
+      art: arts.filter((item) => !item.tags.includes("music")),
+      music: arts.filter((item) => item.tags.includes("music")),
       work: works,
       contact: undefined,
       about: undefined,
