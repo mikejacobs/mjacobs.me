@@ -228,9 +228,9 @@ export let deets = {
         height="500"
         scrolling="yes"
         frameborder="no"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1539197581&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1539197581&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false"
       ></iframe>
-
+      <br><br><br>
       Selected solo music 2011 - 2018:
 
       <iframe
