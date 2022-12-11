@@ -223,7 +223,15 @@ export let deets = {
   },
   jacmb: function ({ path }) {
     return html`
-      Selected solo music 2011 - 2018.
+      <iframe
+        width="100%"
+        height="500"
+        scrolling="yes"
+        frameborder="no"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1539197581&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+      ></iframe>
+
+      Selected solo music 2011 - 2018:
 
       <iframe
         width="100%"
