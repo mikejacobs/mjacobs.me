@@ -223,16 +223,10 @@ export let deets = {
   },
   jacmb: function ({ path }) {
     return html`
-      <iframe
-        width="100%"
-        height="500"
-        scrolling="yes"
-        frameborder="no"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1539197581&color=%23ff5500&auto_play=false&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false&visual=false"
-      ></iframe>
-      <br><br><br>
-      Selected solo music 2011 - 2018:
-
+      <iframe width="100%" height="500" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1539197581&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/jacmb" title="jacmb" target="_blank" style="color: #cccccc; text-decoration: none;">jacmb</a> · <a href="https://soundcloud.com/jacmb/sets/something-we-make" title="Something We Make" target="_blank" style="color: #cccccc; text-decoration: none;">Something We Make</a></div>
+      <p>
+        Selected solo music 2011 - 2018:
+      </p>
       <iframe
         width="100%"
         height="500"
