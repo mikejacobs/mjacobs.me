@@ -107,7 +107,7 @@ function Nav({ context, blurb }) {
     <div class="intro${position}">
       <div class="nav">
         <a href="/"><strong>Michael${nbsp}Jacobs</strong></a>
-        <!-- <a href="?work" class=${context == "work" && "active"}>Work</a> -->
+        <a href="?work" class=${context == "work" && "active"}>Work</a>
         <a href="?art" class=${context == "art" && "active"}>Art</a>
         <a href="?music" class=${context == "music" && "active"}>Music</a>
         <!-- <a href="?about" class=${context == "about" && "active"}>About</a> -->

@@ -7,7 +7,7 @@ const works = [
     tags: ["mobile", "design", "research"],
     date: new Date("6/1/2021"),
     hasDetail: true,
-    description: "Currently leading design at the 100% worker-owned rideshare cooperative",
+    description: "Head of Product at the 100% worker-owned rideshare cooperative",
   },
   {
     directory: "promise-web",
@@ -16,7 +16,7 @@ const works = [
     tags: ["web", "design", "research"],
     date: new Date("1/1/2018"),
     hasDetail: false,
-    description: "Drop-in pre-trial support program for criminal justice systems",
+    description: "Drop-in pre-trial support program to keep people out of jail",
   },
   {
     directory: "promise-mobile",
@@ -35,7 +35,7 @@ const works = [
     tags: ["design", "mobile"],
     date: new Date("6/1/2014"),
     hasDetail: false,
-    description: "Co-led design for launch of carpooling ride option",
+    description: "Co-led design for launch of the carpooling ride option",
   },
   {
     directory: "synoptic",
