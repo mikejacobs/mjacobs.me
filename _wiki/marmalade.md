@@ -26,9 +26,9 @@ tags:
 	<p>Instructions</p>
 	<ul>
 		<li>Peel, remove seeds, and then mash half of the oranges. Make sure to leave the pith (this provides pectin for gumminess). </li>
-		<li>For the other half, leave the peel on, remove seeds, and then slice very thinly (I used a food processor). The peel can be too bitter for some people’s taste. For less bitterness, peel more of the </li>oranges. 
+		<li>For the other half, leave the peel on, remove seeds, and then slice very thinly (I used a food processor). The peel can be too bitter for some people’s taste. For less bitterness, peel more of theoranges. </li>
 		<li>Add all ingredients to pot
-			Heat to boil and then simmer with top for 2 hours
-		Turn to medium and remove lid, cook for 30 min while stirring —frequently toward the end to avoid burning </li>
+			Heat to boil and then simmer with top for 2 hours</li>
+		<li>Turn to medium and remove lid, cook for 30 min while stirring —frequently toward the end to avoid burning </li>
 	</ul>
 </section>
