@@ -1,0 +1,144 @@
+<table class="wikitable">
+	<tbody><tr>
+		<th>
+		</th>
+		<th><a href="/wiki/Refback" title="Refback">Refback</a>
+		</th>
+		<th><a href="/wiki/Trackback" title="Trackback">Trackback</a>
+		</th>
+		<th><a href="/wiki/Pingback" title="Pingback">Pingback</a>
+		</th>
+		<th><a href="/wiki/Webmention" title="Webmention">Webmention</a>
+		</th></tr>
+		<tr>
+			<td>Trigger mechanism
+			</td>
+			<td>Visitor to linking site clicks on the link, and their browser takes them to the linked site
+			</td>
+			<td>Code on linking server examines added or updated documents, extracts links, and sends notification to linked server for each link found
+			</td>
+			<td>Code on linking server examines added or updated documents, extracts links, and sends notification to linked server for each link found
+			</td>
+			<td>Code on linking server examines added or updated documents, extracts links, and sends notification to linked server for each link found
+			</td></tr>
+			<tr>
+				<td>Notification medium
+				</td>
+				<td><a href="/wiki/HTTP_referrer" class="mw-redirect" title="HTTP referrer">HTTP referrer</a> value
+				</td>
+				<td>HTTP POST<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>
+				</td>
+				<td><a href="/wiki/XML-RPC" title="XML-RPC">XML-RPC</a> call
+				</td>
+				<td>HTTP POST with source and target parameters<sup id="cite_ref-2" class="reference"><a href="#cite_note-2">[2]</a></sup>
+				</td></tr>
+				<tr>
+					<td>Capture mechanism
+					</td>
+					<td>Examination of incoming HTTP referrer values
+					</td>
+					<td>Trackback capture script
+					</td>
+					<td>XML-RPC function
+					</td>
+					<td>Webmention capture script
+					</td></tr>
+					<tr>
+						<td>Information sent by linking server
+						</td>
+						<td>None
+						</td>
+						<td>
+							<ul><li>Linking site name <i>(Optional)</i></li>
+								<li>Linking post title <i>(Optional)</i></li>
+								<li>Linking post excerpt <i>(Optional)</i></li>
+								<li>Linking post URL</li></ul>
+							</td>
+							<td>
+								<ul><li>Linked post URL</li>
+									<li>Linking post URL</li></ul>
+								</td>
+								<td>
+									<ul><li>Linked post URL (target)</li>
+										<li>Linking post URL (source)</li></ul>
+									</td></tr>
+									<tr>
+										<td>Additional information presented to linked server
+										</td>
+										<td>HTTP referrer sent by a visitor's browser upon clicking the link
+										</td>
+										<td>IP address of linking server
+										</td>
+										<td>IP address of linking server
+										</td>
+										<td>IP address of linking server
+										</td></tr>
+										<tr>
+											<td>Autodiscovery mechanism (how the linking server finds out how and where to send the notification)
+											</td>
+											<td>None
+											</td>
+											<td>LINK tag in the header of the linked page or trackback RDF documents
+											</td>
+											<td>Special HTTP header or LINK tag on the linked page
+											</td>
+											<td>HTTP Link header or link element on the linked page
+											</td></tr>
+											<tr>
+												<td>Action required when notification is received
+												</td>
+												<td>
+													<ul><li>Extract <a href="/wiki/HTTP_referrer" class="mw-redirect" title="HTTP referrer">referrer</a> value from incoming HTTP headers</li>
+														<li>Retrieve referring page</li>
+														<li>Parse retrieved page for desired information</li></ul>
+													</td>
+													<td>
+														<ul><li>Gather desired information from
+															<ul><li>Given parameters</li>
+																<li>or retrieving and parsing the given URL</li></ul></li></ul>
+															</td>
+															<td>
+																<ul><li>Retrieve page at "linking post URL"</li>
+																	<li>Parse retrieved page for desired information</li></ul>
+																</td>
+																<td>Verifying that linking page does indeed link to linked page is recommended, not explicitly required
+																</td></tr>
+																<tr>
+																	<td>Advantages
+																	</td>
+																	<td>Requires no special code on linking server (the link itself becomes the notification when someone clicks on it)
+																	</td>
+																	<td>All the information desired by the linked server (Linking site name, post title, excerpt) is present in the notification itself
+																	</td>
+																	<td>
+																		<ul><li>Notification mechanism has a complete technical specification</li>
+																			<li>Less susceptible to spamming</li></ul>
+																		</td>
+																		<td>
+																			<ul><li>Uses well-known parts of HTTP wherever possible (autodiscovery, encoding of data, response status)</li>
+																				<li>Reuses pingback's existing semantics</li>
+																				<li>Minimum amount of data transferred on-the-wire</li></ul>
+																			</td></tr>
+																			<tr>
+																				<td>Disadvantages
+																				</td>
+																				<td>
+																					<ul><li>No notification unless someone actually clicks on the link</li>
+																						<li>Relies upon visitors' browsers sending proper HTTP referrer information</li>
+																						<li>Linked site must retrieve and parse linking site's page to extract the information it wants</li></ul>
+																					</td>
+																					<td>
+																						<ul><li>Notification requires positive action by linking server</li>
+																							<li>Notification mechanism has only a partial technical specification</li>
+																							<li>Autodiscovery information may prevent XHTML validation</li></ul>
+																						</td>
+																						<td>
+																							<ul><li>Notification requires positive action by linking server</li>
+																								<li>Linked site must retrieve and parse linking site's page to extract the information it wants</li>
+																								<li>Can be abused for DDOS attacks<sup id="cite_ref-3" class="reference"><a href="#cite_note-3">[3]</a></sup></li></ul>
+																							</td>
+																							<td>
+																								<ul><li>Notification requires positive action by linking server</li>
+																									<li>Linked site must retrieve and parse linking site's page to extract the information it wants</li>
+																									<li>Relatively new, so less widely implemented</li></ul>
+																								</td></tr></tbody></table>

@@ -1,0 +1,8 @@
+timezone: Phoenix/USA
+collections:
+  wiki:
+    output: true
+    sort_by: updated
+  projects:
+    output: true
+    sort_by: date

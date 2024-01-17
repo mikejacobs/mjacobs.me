@@ -2,7 +2,7 @@
 ---
 <html>
 <head>
-  <title>JACMB</title>
+  <title>Projects - JACMB</title>
   <link rel="stylesheet" href="style.css" />
   <meta name="viewport" content="width=device-width" />
   <meta name="viewport" content="initial-scale=1.0" />
@@ -11,18 +11,18 @@
   <main>
     {% include header.html %}
     <section>
-      <h2><a id="recent">Recent Updates</a></h2>
-      <ul id="wiki-list">
-        {% for page in site.wiki reversed %}
-        {% if page.status != "draft" %}
+      <h2><a id="recent">Projects</a></h2>
+      <ul id="project-list">
+        {% for page in site.projects reversed%}
         <li>
           <wiki-date>{{ page.updated | date: "%d %b %Y" }}</wiki-date>
           <a class="wiki-list-title" href="{{ page.url }}">{{ page.title }}</a>
           {% for tag in page.tags %}
           <wiki-tag>{{ tag }}</wiki-tag>
           {% endfor %}
+          <!-- <img src='{{page.path | replace: "index.md", ""}}{{page.featuredImage}}'/> -->
+          <img src='{{page.url | replace: "index.html", ""}}{{page.featuredImage}}'/>
         </li>
-        {% endif %}
         {% endfor %}
       </ul>
     </section>
@@ -44,15 +44,15 @@
       <details>
         <summary>Prototyping a different internet</summary>
         <p> 
-          A long-running project to make an internet thing in a long-neglected direction. It's along the same lines as the folk interfaces mentioned by <a href="https://cristobal.space/writing/folk.html">Cristóbal Sciutto</a> in that it's meant for mostly myself and <a href="https://mastodon.social/@lukexi">@lukexi</a> to make things, but with the aditional use case of sharing the creations.
+          A long-running project to make an internet thing in a long-forgotten direction. It's along the same lines as the folk interfaces mentioned by <a href="https://cristobal.space/writing/folk.html">Cristóbal Sciutto</a> in that it's meant for mostly myself and <a href="https://mastodon.social/@lukexi">@lukexi</a> to make things, but with the aditional use case of sharing the creations. You can <a href="https://proyekt.net">try it out</a>. Be mindful it's a work in progress (see construction gif above) and might be a glorious mess.
         </p>
       </details>  
     </section>
     <section>
       <h2><a name="about">About</a></h2>
-      <img style="width: 150px; border-radius: 150px; float: right; mix-blend-mode: luminosity; margin-left:40px;margin-bottom:20px" src="../images/fish_eye.jpg">
+      <img style="width: 150px; border-radius: 150px; float: right; mix-blend-mode: luminosity; margin-left:40px;" src="../images/fish_eye.jpg">
       <p>
-        Hi, I'm Michael Jacobs. Jacmb is my internet handle. Here you'll find me exploring optimistic visions of the future, mutual aid, growing food, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios. 
+        Hi, I'm Michael Jacobs. This is my personal website. Here you'll find me exploring optimistic visions of the future, mutual aid, growing food, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios. 
 
         <!-- social ecology, degrowth, usufruct, permaculture, DIY, from-scratch cooking, natural building, crafts pushed aside in the descent to rampant consumerism. -->
       </p>

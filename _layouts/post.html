@@ -1,0 +1,31 @@
+---
+---
+  
+<html>
+<head>
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="/style.css" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="initial-scale=1.0" />
+</head>
+<body>
+  <main>
+    {% include header.html %}
+    <section>
+      <h1>{{ page.title }}</h1>
+      <!-- <time>{{ page.date | date: "%-d %B %Y" }}</time> -->
+      <!-- <time>{{ page.date | date: "%-d %B %Y" }}</time> -->
+      <!-- &#9788; -->
+      <!-- &boxbox; -->
+      <time>
+        Created {{ page.published | date: "%-d %b %Y" }} &#12316; Edited {{ page.updated | date: "%-d %b %Y" }}
+      </time>
+      {% for tag in page.tags %}
+        <wiki-tag>{{ tag }}</wiki-tag>
+      {% endfor %}
+    </section>
+    {{ content }}
+    {% include footer.html %}
+  </main>
+</body>
+</html>
