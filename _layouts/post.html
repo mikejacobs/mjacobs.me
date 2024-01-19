@@ -20,9 +20,9 @@
       <time>
         Created {{ page.published | date: "%b %-d %Y" }} &#12316; Edited {{ page.updated | date: "%b %-d %Y" }}
       </time>
-      {% for tag in page.tags %}
+<!--       {% for tag in page.tags %}
         <wiki-tag>{{ tag }}</wiki-tag>
-      {% endfor %}
+      {% endfor %} -->
     </section>
     {{ content }}
     {% include footer.html %}

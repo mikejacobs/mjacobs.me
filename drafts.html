@@ -1,35 +1,42 @@
 ---
 ---
 <html>
-<head>
-  <title>JACMB</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="viewport" content="initial-scale=1.0" />
-</head>
-<body class="day">
-  <main>
-    {% include header.html %}
-    <section>
-      <h2><a id="recent">Recent Updates w/ Drafts</a></h2>
-      <ul id="wiki-list">
-        {% for page in site.wiki reversed %}
-
-        <li>
-          <wiki-date>{{ page.updated | date: "%d %b %Y" }}</wiki-date>
-          <a class="wiki-list-title" href="{{ page.url }}">{{ page.title }}</a>
-          {% if page.status == "draft" %}
-            <wiki-tag style="background:black;color: white">draft</wiki-tag>
-          {% endif %}
-          {% for tag in page.tags %}
-            <wiki-tag>{{ tag }}</wiki-tag>
+  <head>
+    <title>
+      JACMB
+    </title>
+    <link href="style.css" rel="stylesheet"/>
+    <meta content="width=device-width" name="viewport"/>
+    <meta content="initial-scale=1.0" name="viewport"/>
+  </head>
+  <body class="day">
+    <main>
+      {% include header.html %}
+      <section>
+        <h2>
+          <a id="recent">
+            Recent Drafts
+          </a>
+        </h2>
+        <ul id="wiki-list">
+          {% for page in site.drafts reversed %}
+          <li>
+            <wiki-date>
+              {{ page.updated | date: "%d %b %Y" }}
+            </wiki-date>
+            <a class="wiki-list-title" href="{{ page.url }}">
+              {{ page.title }}
+            </a>
+            {% for tag in page.tags %}
+            <wiki-tag>
+              {{ tag }}
+            </wiki-tag>
+            {% endfor %}
+          </li>
           {% endfor %}
-        </li>
-        {% endfor %}
-      </ul>
-    </section>
-    
-  {% include footer.html %}
+        </ul>
+      </section>
+      {% include footer.html %}
     </main>
-</body>
+  </body>
 </html>

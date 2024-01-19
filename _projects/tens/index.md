@@ -5,9 +5,8 @@ category: "tech"
 date: "01/02/2020"
 description: "Synchronized music video"
 tags:
-  - programming
-  - library
-  - open source
+  - video
+  - music
 ---
 
 <style>

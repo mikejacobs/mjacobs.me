@@ -1,5 +1,8 @@
 timezone: Phoenix/USA
 collections:
+  drafts:
+    output: true
+    sort_by: updated
   wiki:
     output: true
     sort_by: updated

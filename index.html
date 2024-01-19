@@ -11,26 +11,41 @@
   <main>
     {% include header.html %}
     <section>
-      <h2><a id="recent">Recent Updates</a></h2>
+      <h3><a id="recent">Recent Updates</a></h3>
       <ul id="wiki-list">
         {% for page in site.wiki reversed %}
         {% if page.status != "draft" %}
         <li>
           <wiki-date>{{ page.updated | date: "%b %d %Y" }}</wiki-date>
           <a class="wiki-list-title" href="{{ page.url }}">{{ page.title }}</a>
-          {% for tag in page.tags %}
+<!--           {% for tag in page.tags %}
           <wiki-tag>{{ tag }}</wiki-tag>
-          {% endfor %}
+          {% endfor %} -->
         </li>
         {% endif %}
         {% endfor %}
       </ul>
     </section>
+<!--     <section>
+      <h3><a id="recent">Topics</a></h3>
+      <p>
+      {% assign tags =  site.wiki | map: 'tags' | join: ','  | split: ',' | uniq %}
+      {% for tag in tags %}
+      <wiki-tag>{{ tag }}</wiki-tag>
+        <ul>
+        {% for note in site.wiki %}
+          {% if note.tags contains tag %}
+          <li><a href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </p>
+    </section> -->
     <section>
-      <h2><a id="now">What I'm Doing Now</a></h2>
+      <h3><a id="now">What I'm Doing Now</a></h3>
       <details>
         <summary>Embracing the small / weird / wild web</summary>
-        <p>In the rush to the new crop of corporate-owned social media sites, I've chosen a different path. Instead, I'm gleefully riding the resurgence in <a href="https://diagram.website">personal internet</a> (as opposed to the big box sites we all flocked to for quite a while) and simple HTML sites made by individuals. Though "internet sovereignty"<span class="callout">&midast;</span><span class="sidenote">&midast; An internet system in which the people who produce, distribute, and consume internet also control the mechanisms and policies of internet production and distribution. (This is the wikipedia definition for food sovereignty with the word "internet" replacing instances of "food")</span> is a better description of the ethos I'm seeing and seeking.</p>
+        <p>In the rush to the new crop of corporate-owned social media sites, I've chosen a different path. Instead, I'm gleefully riding the resurgence in <a href="https://diagram.website">the internet</a> that is more personal, distributed, human, and handmade. The term "internet sovereignty"<span class="callout">&midast;</span><span class="sidenote">&midast; An internet system in which the people who produce, distribute, and consume internet also control the mechanisms and policies of internet production and distribution. (This is the wikipedia definition for food sovereignty with the word "internet" replacing instances of "food")</span> is a good descriptor of what I'm seeing and seeking.</p>
         <p>
           The ongoing redesign of this website <a href="http://textfiles.com/underconstruction/"><img src="../images/construction.gif" style="float:left; margin-right: 20px"></a>was a step in that direction. As was joining Mastodon &mdash; where I am finding more aligned minds and sense of community than I ever did on Twitter etc.
         </p>
@@ -49,10 +64,10 @@
       </details>  
     </section>
     <section>
-      <h2><a name="about">About</a></h2>
+      <h3><a name="about">About</a></h3>
       <img style="width: 150px; border-radius: 150px; float: right; mix-blend-mode: luminosity; margin-left:40px;margin-bottom:20px" src="../images/fish_eye.jpg">
       <p>
-        Hi, I'm Michael Jacobs. Jacmb is my internet handle. Here you'll find me exploring optimistic visions of the future, mutual aid, growing food, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios. 
+        Hi, I'm Michael Jacobs. Here you'll find my explorations: optimistic visions of the future, growing food, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios. 
 
         <!-- social ecology, degrowth, usufruct, permaculture, DIY, from-scratch cooking, natural building, crafts pushed aside in the descent to rampant consumerism. -->
       </p>
@@ -68,7 +83,7 @@
       I have a number of creative pursuits: composing experimental music, dreaming up and programming video games, making digital art and bringing it into the real world with homemade machines.
     </p> -->
   </section>
-  {% include footer.html %}
+      {% include footer.html %}
     </main>
 </body>
 </html>

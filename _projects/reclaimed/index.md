@@ -1,9 +1,9 @@
 ---
 title: "Reclaimed"
-featuredImage: "aristid.jpg"
+featuredImage: "stbw.png"
 category: "tech"
 date: "10/01/2016"
-description: "Fractal music slicing"
+description: "Group show featuring recycled materials"
 tags:
   - programming
 ---
