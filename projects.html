@@ -1,48 +1,66 @@
 ---
 ---
-<html>
-  <head>
-    <title>
-      Projects - JACMB
-    </title>
-    <link href="style.css" rel="stylesheet"/>
-    <meta content="width=device-width" name="viewport"/>
-    <meta content="initial-scale=1.0" name="viewport"/>
-  </head>
-  <body class="day">
-    <main>
-      {% include header.html %}
-      <section class="wide">
-        <h2>
-          <a id="recent">
-            Projects
-          </a>
-        </h2>
-        <ul id="project-list">
-          {% for page in site.projects reversed%}
-          <li>
-            <a href="{{ page.url }}">
-              <img src='{{page.url | replace: "index.html", ""}}{{page.featuredImage}}'/>
-              <div class="title">
-                {{ page.title }}
-              </div>
-            </a>
-            <div>
-              {{page.description}}
-            </div>
-            <div style="text-align: center;">
-              {% for tag in page.tags %}
-              <wiki-tag>
-                {{tag}}
-              </wiki-tag>
-              {% endfor %}
-            </div>
-            <!-- <img src='{{page.path | replace: "index.md", ""}}{{page.featuredImage}}'/> -->
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% include footer.html %}
-    </main>
-  </body>
-</html>
+
+{% include header.html %}
+<style type="text/css">
+  #project-list {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    overflow: hidden;
+  }
+  #project-list::after {
+    clear: both;
+  }
+  #project-list li {
+    width: 24em;
+    float: left;
+    text-align: center;
+  }
+  #project-list li .title {
+    display: block;
+    text-align: center;
+    margin: 10px auto 0px;
+    font-weight: bold;
+  }
+  #project-list li:nth-child(even) {
+    margin-top: 12em;
+  }
+  #project-list img {
+    /*  width: 400px;*/
+    width: 100%;
+    display: block;
+    border-radius: 999px;
+  }
+</style>
+<section class="wide">
+  <h2>
+    <a id="recent">
+      Projects
+    </a>
+  </h2>
+  <ul id="project-list">
+    {% for page in site.projects reversed%}
+    <li>
+      <a href="{{ page.url }}">
+        <img src='{{page.url | replace: "index.html", ""}}{{page.featuredImage}}'/>
+        <div class="title">
+          {{ page.title }}
+        </div>
+      </a>
+      <div class="description">
+        {{page.description}}
+      </div>
+<!--       <div style="text-align: center;">
+        {% for tag in page.tags %}
+        <wiki-tag>
+          {{tag}}
+        </wiki-tag>
+        {% endfor %}
+      </div> -->
+      <!-- <img src='{{page.path | replace: "index.md", ""}}{{page.featuredImage}}'/> -->
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% include footer.html %}

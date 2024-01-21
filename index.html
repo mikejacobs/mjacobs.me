@@ -1,17 +1,8 @@
 ---
 ---
-<html>
-<head>
-  <title>JACMB</title>
-  <link rel="stylesheet" href="style.css" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="viewport" content="initial-scale=1.0" />
-</head>
-<body class="day">
-  <main>
     {% include header.html %}
     <section>
-      <h3><a id="recent">Recent Updates</a></h3>
+      <h2><a id="recent">Recent Updates</a></h2>
       <ul id="wiki-list">
         {% for page in site.wiki reversed %}
         {% if page.status != "draft" %}
@@ -27,7 +18,7 @@
       </ul>
     </section>
 <!--     <section>
-      <h3><a id="recent">Topics</a></h3>
+      <h2><a id="recent">Topics</a></h2>
       <p>
       {% assign tags =  site.wiki | map: 'tags' | join: ','  | split: ',' | uniq %}
       {% for tag in tags %}
@@ -42,38 +33,38 @@
       </p>
     </section> -->
     <section>
-      <h3><a id="now">What I'm Doing Now</a></h3>
-      <details>
-        <summary>Embracing the small / weird / wild web</summary>
-        <p>In the rush to the new crop of corporate-owned social media sites, I've chosen a different path. Instead, I'm gleefully riding the resurgence in <a href="https://diagram.website">the internet</a> that is more personal, distributed, human, and handmade. The term "internet sovereignty"<span class="callout">&midast;</span><span class="sidenote">&midast; An internet system in which the people who produce, distribute, and consume internet also control the mechanisms and policies of internet production and distribution. (This is the wikipedia definition for food sovereignty with the word "internet" replacing instances of "food")</span> is a good descriptor of what I'm seeing and seeking.</p>
+      <h2><a id="now">What I'm Doing Now</a></h2>
+      <div>
+        <h3>Embracing the small / weird / wild web</h3>
+        <p>In the rush to the new crop of corporate-owned social media sites, I've chosen a different path. Instead, I'm gleefully riding the resurgence in <a href="https://diagram.website">the internet</a> that is more personal, distributed, human, and handmade. The term "internet sovereignty"<span class="callout">&midast;</span><span class="sidenote"><span class="callout">&midast;</span> An internet system in which the people who produce, distribute, and consume internet also control the mechanisms and policies of internet production and distribution. (This is the wikipedia definition for food sovereignty with the word "internet" replacing instances of "food")</span> is a good descriptor of what I'm seeing and seeking.</p>
         <p>
           The ongoing redesign of this website <a href="http://textfiles.com/underconstruction/"><img src="../images/construction.gif" style="float:left; margin-right: 20px"></a>was a step in that direction. As was joining Mastodon &mdash; where I am finding more aligned minds and sense of community than I ever did on Twitter etc.
         </p>
-      </details>
-      <details>
-        <summary>Growing a distributed farm</summary>
+      </div>
+      <div>
+        <h3>Growing a distributed farm</h3>
         <p> 
           Along with a lovely group of pals, I am in the process of creating a mutual aid organization. In the simplest of terms, the goal is to grow food with each other, for each other and others that need it. That means growing food in gardens across many locations in the Tucson Metro Area, connecting those that have access to land with those that do not. We help each other grow on the land and we all share in the abundance. Think mutual aid victory gardens with land-, labor-, skill-, and harvest-sharing. In Tucson? Give me a shout.
         </p>
-      </details>
-      <details>
-        <summary>Prototyping a different internet</summary>
+      </div>
+      <div>
+        <h3>Prototyping a different internet</h3>
         <p> 
-          A long-running project to make an internet thing in a long-neglected direction. It's along the same lines as the folk interfaces mentioned by <a href="https://cristobal.space/writing/folk.html">Cristóbal Sciutto</a> in that it's meant for mostly myself and <a href="https://mastodon.social/@lukexi">@lukexi</a> to make things, but with the aditional use case of sharing the creations.
+          A long-running project with <a href="https://mastodon.social/@lukexi">@lukexi</a> to make an internet thing in a long-neglected direction.
         </p>
-      </details>  
+      </div>  
     </section>
     <section>
-      <h3><a name="about">About</a></h3>
-      <img style="width: 150px; border-radius: 150px; float: right; mix-blend-mode: luminosity; margin-left:40px;margin-bottom:20px" src="../images/fish_eye.jpg">
+      <h2><a name="about">About</a></h2>
+      <img style="width: 150px; border-radius: 150px; float: right; margin-left:40px;margin-bottom:20px" src="../images/fish_eye.jpg">
       <p>
-        Hi, I'm Michael Jacobs. Here you'll find my explorations: optimistic visions of the future, growing food, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios. 
+        Hi, I'm Michael Jacobs. Welcome to my website. Here you'll find my explorations: optimistic visions of the future, growing food, autonomous communities, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios. 
 
         <!-- social ecology, degrowth, usufruct, permaculture, DIY, from-scratch cooking, natural building, crafts pushed aside in the descent to rampant consumerism. -->
       </p>
       <p>I sometimes share things on Mastodon: <a href="https://mastodon.social/@jacmb/111738350130839577">@jacmb@mastodon.social</a></p>
       <p>
-        The theme of this site is meant to reflect the colors of my surroundings in the Sonoran Desert. 
+        The theme of this site is meant to reflect my surroundings in the Sonoran Desert. 
       </p>
 <!--       <p>
       In what feels like a previous life, I was a designer and programmer in the tech industry. The theme of this site is meant to reflect the colors of my IRL surroundings in the Sonoran Desert. 
