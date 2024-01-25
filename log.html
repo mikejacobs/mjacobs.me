@@ -3,16 +3,16 @@
 {% include header.html %}
 <section>
   <h2>
-    You found the secret drafts folder. 
+    <a id="recent">
+      Log
+    </a>
   </h2>
-  <h2 class="subtitle">I won't ask you to leave, but please keep in mind nothing in here is finished. <b>So please don't share.</b>
-    If there's something you really like tho, do let me know.</h2>
   <ul id="wiki-list">
-    {% for page in site.drafts reversed %}
+    {% for page in site.posts reversed %}
     <li>
-      <wiki-date>
+<!--       <wiki-date>
         {{ page.updated | date: "%d %b %Y" }}
-      </wiki-date>
+      </wiki-date> -->
       <a class="wiki-list-title" href="{{ page.url }}">
         {{ page.title }}
       </a>

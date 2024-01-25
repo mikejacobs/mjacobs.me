@@ -40,6 +40,14 @@ img.full {
 .space-mono {
   font-family: SpaceMono, Menlo, Helvetica-neue, Helvetica, sans-serif;
 }
+h2 {
+  font-family: SpaceMono, Menlo, Helvetica-neue, Helvetica, sans-serif;
+  font-style: italic;
+  letter-spacing: -0.1px;
+}
+.italic {
+  font-style: italic;
+}
 nav {
   /*    margin:auto;*/
   width: 14em;
@@ -88,6 +96,9 @@ p, ul, blockquote, ol {
   /*  font-size: 12px;*/
   line-height: 1.4em;
   position: relative;
+}
+p img.full {
+  width: 100%;
 }
 ol, ul {
   /*  margin: 0px;*/
@@ -169,7 +180,7 @@ table-of-contents ol, table-of-contents ol li {
   /*  font-family: Menlo, "Courier New", monospace;*/
 }
 top-note {
-  background: var(--green-text-color);
+  background: rgb(0, 143, 105);
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
