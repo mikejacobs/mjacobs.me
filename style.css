@@ -37,6 +37,13 @@ section h3:first-child {
 img.full {
   width: 100%;
 }
+img {
+  transition: transform .2s;
+  s
+}
+img:hover {
+  /*  transform: rotate(360deg);*/
+}
 .space-mono {
   font-family: SpaceMono, Menlo, Helvetica-neue, Helvetica, sans-serif;
 }

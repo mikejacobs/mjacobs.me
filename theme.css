@@ -91,7 +91,7 @@ th {
 th, td {
   padding: 5px;
 }
-ul {
+ul, ol {
   padding-left: 15px;
 }
 blockquote {

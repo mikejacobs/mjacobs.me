@@ -3,7 +3,7 @@ collections:
   drafts:
     output: true
     sort_by: updated
-  wiki:
+  memex:
     output: true
     sort_by: updated
   projects:

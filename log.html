@@ -1,28 +1,64 @@
 ---
 ---
 {% include header.html %}
-<section>
+<style type="text/css">
+  table {
+    width: 100%;
+    border:0px;
+
+  }
+  td {
+    text-align: left;
+  }
+  iframe { 
+    display: block;
+/*    border: 1px dotted var(--cactus-green-light);*/
+/*    position: absolute;*/
+/*    top: 0px;*/
+/*    left: 0px;*/
+    width: 1000px;
+    height: 1000px;
+    transform-origin: 0 0;
+    transform: scale(0.5, 0.5);
+    border-radius: 999px;
+  }
+  log-preview { 
+    position: relative;
+    padding: 0px;
+    width: 1000px;
+    height: 1000px;
+}
+</style>
+<section class="wide">
   <h2>
     <a id="recent">
       Log
     </a>
   </h2>
-  <ul id="wiki-list">
-    {% for page in site.posts reversed %}
-    <li>
-<!--       <wiki-date>
-        {{ page.updated | date: "%d %b %Y" }}
-      </wiki-date> -->
-      <a class="wiki-list-title" href="{{ page.url }}">
-        {{ page.title }}
-      </a>
-<!--       {% for tag in page.tags %}
-      <wiki-tag>
-        {{ tag }}
-      </wiki-tag>
-      {% endfor %} -->
-    </li>
+
+<table>
+  <tbody>
+    {% assign sorted = site.memex | sort: 'date' | reverse%}
+    {% for item in sorted %}
+    
+      {% if item.status != "draft" %}
+      <tr>
+        <td>
+          <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>
+          <a class="wiki-list-title" href="{{ item.url }}">{{ item.title }}</a>
+        </td>
+        <td>
+         <!--  <log-preview>
+          <iframe lazy src="{{ item.url }}" onload="console.log(this.scroll);this.scroll(0,100)"></iframe>
+          </log-preview> -->
+        </td>
+      </tr>
+      {% endif %}
+    
     {% endfor %}
-  </ul>
+  </tbody>
+</table>
+
+
 </section>
 {% include footer.html %}

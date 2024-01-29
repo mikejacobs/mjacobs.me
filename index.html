@@ -8,14 +8,14 @@
 <!--       <p>
         Welcome to the personal website of Michael Jacobs. That's me, hi! Here you'll find me exploring optimistic visions of the future, growing food, creating music and art, building community interdependence, crafts pushed aside in the decent to rampant consumerism, from-scratch cooking, and figuring out how to best use technology in those scenarios.
       </p> -->
-      <h6 class="space-mono" style="text-align: left; margin-top:0px; color: var(--cactus-green-light);margin-bottom: 1em;"><em>Eyes open, ears on, fingers wiggling, arms waving in your direction.</em></h6>
+      <h6 class="space-mono" style="text-align: left; margin-top:0px; color: var(--cactus-green-light);margin-bottom: 1em;"><em><span style="font-weight: normal;">Eyes open, ears on, fingers wiggling, arms waving in your direction. </span>Welcome to my digital backyard garden.</em></h6>
       <!-- <h6>Eyes open, ears on, fingers wiggling, arms waving in your direction.</h6> -->
       <p>
-        Former software maker turned human in the real world. Harvesting the Sonoran desert rainwater to grow community foodscapes. Sharing the abundance. Building dual power.
+         Former techie scum turned human in the real world. Harvesting the Sonoran desert rainwater to grow community foodscapes. Sharing the abundance. Building dual power.
       </p><p>
-        Making: music, art, video games, and massive amounts of hummus.
+        Making lately: music, art, video games, and massive amounts of hummus.
       </p><p>
-        Exploring: optimistic visions of the future (social ecology, degrowth, usufruct, permaculture), DIY, natural building, from-scratch cooking, crafts pushed aside in the descent to rampant consumerism, and figuring out how to carefully and minimually use technology in those scenarios.
+        Exploring lately: optimistic visions of the future (social ecology, degrowth, usufruct, permaculture), natural building, from-scratch cooking, crafts pushed aside in the descent to rampant consumerism, and figuring out how to carefully and minimually use technology in those scenarios.
       </p>
       <!-- <p> -->
         <!-- Hi, I'm Michael Jacobs. Welcome to my website. Here you'll find my explorations: optimistic visions of the future, growing food, autonomous communities, craft, from-scratch cooking, creating music and art, and figuring out how to best use technology in those scenarios.  -->
@@ -37,12 +37,15 @@
     <section>
       <h2><a id="recent">Recent Updates</a></h2>
       <ul id="wiki-list">
-        {% for page in site.wiki reversed %}
-        {% if page.status != "draft" %}
+        {% assign sorted = site.memex | sort: 'date' | reverse%}
+        {% for item in sorted limit: 6%}
+
+        {% if item.status != "draft" %}
+        
         <li>
-          <wiki-date>{{ page.updated | date: "%b %d %Y" }}</wiki-date>
-          <a class="wiki-list-title" href="{{ page.url }}">{{ page.title }}</a>
-<!--           {% for tag in page.tags %}
+          <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>
+          <a class="wiki-list-title" href="{{ item.url }}">{{ item.title }}</a>
+<!--           {% for tag in item.tags %}
           <wiki-tag>{{ tag }}</wiki-tag>
           {% endfor %} -->
         </li>
