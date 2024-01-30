@@ -1,0 +1,341 @@
+---
+title: "Pong Wars 4D"
+published: 2024-01-29
+updated: 2024-01-29
+tags: 
+- programming
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pong wars</title>
+    <link rel="canonical" href="https://pong-wars.koenvangilst.nl/" />
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #172b36 0%, #d9e8e3 100%);
+      }
+
+      #container {
+        display: flex;
+        width:100%;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      #pongCanvas {
+        display: block;
+        border-radius: 4px;
+        overflow: hidden;
+        width: 100%;
+        margin-top: auto;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      }
+
+      #score {
+        font-family: monospace;
+        margin-top: 30px;
+        font-size: 20px;
+        padding-left: 20px;
+        color: #172b36;
+      }
+
+      #made {
+        font-family: monospace;
+        margin-top: auto;
+        margin-bottom: 20px;
+        font-size: 12px;
+        padding-left: 20px;
+      }
+
+      #made a {
+        color: #172b36;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <canvas id="pongCanvas"></canvas>
+      <div id="score"></div>
+      <p id="made">
+        forked from
+        <a href="https://github.com/vnglst/pong-wars">pong wars</a>
+      </p>
+    </div>
+  </body>
+
+  <script>
+
+    // Idea for Pong wars: https://twitter.com/nicolasdnl/status/1749715070928433161
+    const canvas = document.getElementById("pongCanvas");
+    const ctx = canvas.getContext("2d");
+    const scoreElement = document.getElementById("score");
+
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+
+    const delta = 12.5
+
+    const colors = ["#540bde", "#2ceaba", "#ff8d76", "#a89e50"]
+
+    const balls = [
+      {
+        color:colors[0],
+        // top left
+        x: canvas.width / 4,
+        y: canvas.height / 4,
+        dx: delta,
+        dy: -delta
+      },
+      { 
+        color: colors[1],
+        // bottom left
+        x: canvas.width / 4,
+        y: (canvas.height / 4) * 3,
+        dx: delta,
+        dy: -delta
+      },
+      { 
+        color: colors[2],
+        // top right
+        x: (canvas.width / 4) * 3,
+        y: canvas.height / 4,
+        dx: delta,
+        dy: -delta
+      },
+      { 
+        color: colors[3],
+        // bottom right
+        x: (canvas.width / 4) * 3,
+        y: (canvas.height / 4) * 3,
+        dx: delta,
+        dy: -delta
+      },
+    ]
+
+    const SQUARE_SIZE = 40;
+
+    const numSquaresX = canvas.width / SQUARE_SIZE;
+    const numSquaresY = canvas.height / SQUARE_SIZE;
+
+    let squares = [];
+
+    for (let i = 0; i < numSquaresX; i++) {
+      squares[i] = []
+      for (let j = 0; j < numSquaresY; j++) {
+
+        if (i < numSquaresX / 2) { 
+          if (j < numSquaresY / 2) {
+            // top left 
+            squares[i][j] = balls[0].color 
+          } else {
+            // bottom left
+            squares[i][j] = balls[1].color 
+          }
+        } else {
+          if (j < numSquaresY / 2) { 
+            // top right
+            squares[i][j] = balls[2].color 
+          } else {
+            // bottom right
+            squares[i][j] = balls[3].color 
+          }
+        }
+      }
+    }
+
+//  two balls
+    // for (let i = 0; i < numSquaresX; i++) {
+    //   squares[i] = [];
+    //   for (let j = 0; j < numSquaresY; j++) {
+    //     squares[i][j] = i < numSquaresX / 2 ? DAY_COLOR : NIGHT_COLOR;
+    //   }
+    // }
+
+    // let x1 = canvas.width / 4;
+    // let y1 = canvas.height / 2;
+    // let dx1 = 12.5;
+    // let dy1 = -12.5;
+
+    // let x2 = (canvas.width / 4) * 3;
+    // let y2 = canvas.height / 2;
+    // let dx2 = -12.5;
+    // let dy2 = 12.5;
+
+    let iteration = 0;
+
+    function drawBall(x, y, color) {
+      ctx.beginPath();
+      ctx.arc(x, y, SQUARE_SIZE / 2, 0, Math.PI * 2, false);
+      // ctx.fillStyle = color;
+      ctx.fillStyle = "white";
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawSquares() {
+      for (let i = 0; i < numSquaresX; i++) {
+        for (let j = 0; j < numSquaresY; j++) {
+          ctx.fillStyle = squares[i][j];
+          ctx.fillRect(
+            i * SQUARE_SIZE,
+            j * SQUARE_SIZE,
+            SQUARE_SIZE,
+            SQUARE_SIZE
+          );
+        }
+      }
+    }
+
+    function randomNum(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function updateSquareAndBounce(x, y, dx, dy, color) {
+      let updatedDx = dx;
+      let updatedDy = dy;
+
+      // Check multiple points around the ball's circumference
+      for (let angle = 0; angle < Math.PI * 2; angle += Math.PI / 4) {
+        let checkX = x + Math.cos(angle) * (SQUARE_SIZE / 2);
+        let checkY = y + Math.sin(angle) * (SQUARE_SIZE / 2);
+
+        let i = Math.floor(checkX / SQUARE_SIZE);
+        let j = Math.floor(checkY / SQUARE_SIZE);
+
+        if (i >= 0 && i < numSquaresX && j >= 0 && j < numSquaresY) {
+          if (squares[i][j] !== color) {
+            squares[i][j] = color;
+
+            // Determine bounce direction based on the angle
+            if (Math.abs(Math.cos(angle)) > Math.abs(Math.sin(angle))) {
+              updatedDx = -updatedDx;
+            } else {
+              updatedDy = -updatedDy;
+            }
+
+            // Add some randomness to the bounce to prevent the balls from getting stuck in a loop
+            updatedDx += randomNum(-0.01, 0.01);
+            updatedDy += randomNum(-0.01, 0.01);
+          }
+        }
+      }
+
+      return { dx: updatedDx, dy: updatedDy };
+    }
+
+    function updateScoreElement() {
+      return
+      let dayScore = 0;
+      let nightScore = 0;
+      for (let i = 0; i < numSquaresX; i++) {
+        for (let j = 0; j < numSquaresY; j++) {
+          if (squares[i][j] === DAY_COLOR) {
+            dayScore++;
+          } else if (squares[i][j] === NIGHT_COLOR) {
+            nightScore++;
+          }
+        }
+      }
+
+      scoreElement.textContent = `day ${dayScore} | night ${nightScore}`;
+    }
+
+    function checkBoundaryCollision(x, y, dx, dy) {
+      if (x + dx > canvas.width - SQUARE_SIZE / 2 || x + dx < SQUARE_SIZE / 2) {
+        dx = -dx;
+      }
+      if (
+        y + dy > canvas.height - SQUARE_SIZE / 2 ||
+        y + dy < SQUARE_SIZE / 2
+      ) {
+        dy = -dy;
+      }
+
+      return { dx: dx, dy: dy };
+    }
+
+    // function checkBallCollision(x, y, dx, dy) {
+    //   balls.forEach( ball => {
+    //     balls.forEach( otherball => {
+    //       if(ball.color = otherball.color) return;
+    //       if(ball.)
+    //     })
+    //   })
+    //   return { dx: dx, dy: dy };
+    // }
+
+    function animate() {
+
+        // request another frame
+
+        requestAnimationFrame(animate);
+
+        // calc elapsed time since last loop
+
+        now = Date.now();
+        elapsed = now - then;
+
+        // if enough time has elapsed, draw the next frame
+
+        if (elapsed > fpsInterval) {
+
+            // Get ready for next frame by setting then=now, but also adjust for your
+            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+            then = now - (elapsed % fpsInterval);
+
+            // Put your drawing code here
+            draw();
+
+        }
+    }
+
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawSquares();
+      for (ball of balls) {
+        // console.log(ball.x, ball.y, ball.ball_color); 
+        drawBall(ball.x, ball.y); 
+        let bounce = updateSquareAndBounce(ball.x, ball.y, ball.dx, ball.dy, ball.color);
+        ball.dx = bounce.dx;
+        ball.dy = bounce.dy;
+
+        let boundary = checkBoundaryCollision(ball.x, ball.y, ball.dx, ball.dy);
+        ball.dx = boundary.dx;
+        ball.dy = boundary.dy;
+
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+      }
+
+      iteration++;
+      if (iteration % 1_000 === 0) console.log("interation", iteration);
+
+      updateScoreElement();
+    }
+
+    var stop = false;
+    var frameCount = 0;
+    var fps, fpsInterval, startTime, now, then, elapsed;
+
+    function startAnimating(fps) {
+        fpsInterval = 1000 / fps;
+        then = Date.now();
+        startTime = then;
+        animate();
+    }
+    startAnimating(60)
+  </script>
+</html>
