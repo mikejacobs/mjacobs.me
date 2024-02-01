@@ -38,10 +38,11 @@
 
 <table>
   <tbody>
-    {% assign sorted = site.memex | sort: 'date' | reverse%}
-    {% for item in sorted %}
-    
-      {% if item.status != "draft" %}
+
+    {% assign sorted = site.memex | sort: 'published' | reverse %}
+    {% for item in sorted%}
+
+    {% if item.status != "draft" %}
       <tr>
         <td>
           <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>

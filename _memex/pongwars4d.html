@@ -9,7 +9,6 @@ tags:
 <html>
   <head>
     <title>Pong wars</title>
-    <link rel="canonical" href="https://pong-wars.koenvangilst.nl/" />
     <style>
       html {
         height: 100%;
@@ -69,8 +68,7 @@ tags:
       <canvas id="pongCanvas"></canvas>
       <div id="score"></div>
       <p id="made">
-        forked from
-        <a href="https://github.com/vnglst/pong-wars">pong wars</a>
+        fork by <a href="/">jacmb</a> from <a href="https://github.com/vnglst/pong-wars">pong wars</a>
       </p>
     </div>
   </body>
@@ -155,23 +153,6 @@ tags:
       }
     }
 
-//  two balls
-    // for (let i = 0; i < numSquaresX; i++) {
-    //   squares[i] = [];
-    //   for (let j = 0; j < numSquaresY; j++) {
-    //     squares[i][j] = i < numSquaresX / 2 ? DAY_COLOR : NIGHT_COLOR;
-    //   }
-    // }
-
-    // let x1 = canvas.width / 4;
-    // let y1 = canvas.height / 2;
-    // let dx1 = 12.5;
-    // let dy1 = -12.5;
-
-    // let x2 = (canvas.width / 4) * 3;
-    // let y2 = canvas.height / 2;
-    // let dx2 = -12.5;
-    // let dy2 = 12.5;
 
     let iteration = 0;
 
@@ -266,36 +247,15 @@ tags:
       return { dx: dx, dy: dy };
     }
 
-    // function checkBallCollision(x, y, dx, dy) {
-    //   balls.forEach( ball => {
-    //     balls.forEach( otherball => {
-    //       if(ball.color = otherball.color) return;
-    //       if(ball.)
-    //     })
-    //   })
-    //   return { dx: dx, dy: dy };
-    // }
-
     function animate() {
 
-        // request another frame
-
         requestAnimationFrame(animate);
-
-        // calc elapsed time since last loop
 
         now = Date.now();
         elapsed = now - then;
 
-        // if enough time has elapsed, draw the next frame
-
         if (elapsed > fpsInterval) {
-
-            // Get ready for next frame by setting then=now, but also adjust for your
-            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
             then = now - (elapsed % fpsInterval);
-
-            // Put your drawing code here
             draw();
 
         }

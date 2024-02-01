@@ -1,0 +1,64 @@
+---
+layout: post
+title: "Favorite HTML Entities"
+published: 2023-01-31
+updated: 2023-01-31
+tags:
+ - programming
+ - web
+entities:
+  - acd
+  - deg
+  - horbar
+  - rarr
+  - otimes
+  - smile
+  - sung
+  - sext
+  - boxbox
+  - block
+---
+<style type="text/css">
+	entity-box {
+		font-size: 100px;
+		text-align: center;
+/*		display: block;*/
+/*		max-width: 25%;*/
+/*		float:left;*/
+		background: rgba(255,255,255,0.5);
+/*		margin-bottom: 20px;*/
+		padding-bottom:20px;
+		flex: 1 1 150px;
+		font-family: "Times","Times New Roman","serif","sans-serif",system-ui,-apple-system,BlinkMacSystemFont,"Avenir Next","Avenir","Segoe UI","Lucida Grande","Helvetica Neue","Helvetica","Fira Sans","Roboto","Noto","Droid Sans","Cantarell","Oxygen","Ubuntu","Franklin Gothic Medium","Century Gothic","Liberation Sans",sans-serif,"EmojiSymbols";
+		
+	}
+	entity-code {
+		display: block;
+		font-size: 16px;
+	}
+	section.flex {
+/*		width: 500px;*/
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+</style>
+
+<section class="flex">
+	{% assign sorted = [] %}
+	{% for entity in page.entities %}
+	<entity-box>
+		&{{entity}};
+		<entity-code>&amp;{{entity}};</entity-code>
+	</entity-box>
+	{% endfor %}
+</section>
+<section>
+	<p>
+		&hearts;
+		&hopf;
+		&topf;
+		&mopf;
+		&lopf;
+	</p>
+</section>

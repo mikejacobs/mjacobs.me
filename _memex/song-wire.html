@@ -7,7 +7,56 @@ tags:
  - music
 ---
 
+<style type="text/css">
+	top-bg {
+		background: url("/images/wire-cover.jpg");
+		background-size: cover;
+		mix-blend-mode: color;
+		opacity: 1 !important;
+	}
+	nav {
+/*		background: white;*/
+	}
+	jewel-case {
+		background: url("/images/jewel-case.jpg") no-repeat;
+		background-size: contain;
+		mix-blend-mode: multiply;
+		opacity: 1 !important;
+		width: 500px;
+		height: 434px;
+		display: block;
+		position: relative;
+	}
+	case-side img, case-cover img{
+		width:100%;
+	}
+	case-side{
+		position: absolute;
+		left:8px;
+		top:11px;
+		width: 34px;
+	}
+	case-cover{
+		position: absolute;
+		left:49px;
+		top:13px;
+		width:441px;
+		height:200px;
+	}
+
+</style>
 <section>
+	<jewel-case>
+		<case-side>
+			<img src="/images/wire-side.png">
+		</case-side>
+		<case-cover>
+			<img src="/images/wire-cover.jpg">
+		</case-cover>
+	</jewel-case>
+<!-- <figure>
+	<img src="/images/wire.png" class="full" >
+</figure> -->
 	<p>
 		<audio controls src="/music/Wire%20(Fight).mp3"></audio>
 	</p>
