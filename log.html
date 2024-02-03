@@ -36,29 +36,22 @@
     </a>
   </h2>
 
-<table>
-  <tbody>
-
+  <ul id="wiki-list">
     {% assign sorted = site.memex | sort: 'published' | reverse %}
-    {% for item in sorted%}
+    {% for item in sorted %}
 
     {% if item.status != "draft" %}
-      <tr>
-        <td>
-          <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>
-          <a class="wiki-list-title" href="{{ item.url }}">{{ item.title }}</a>
-        </td>
-        <td>
-         <!--  <log-preview>
-          <iframe lazy src="{{ item.url }}" onload="console.log(this.scroll);this.scroll(0,100)"></iframe>
-          </log-preview> -->
-        </td>
-      </tr>
-      {% endif %}
-    
+
+    <li>
+        <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>
+        <a class="wiki-list-title" href="{{ item.url }}">{{ item.title }}</a>
+        <!--           {% for tag in item.tags %}
+      <wiki-tag>{{ tag }}</wiki-tag>
+      {% endfor %} -->
+    </li>
+    {% endif %}
     {% endfor %}
-  </tbody>
-</table>
+</ul>
 
 
 </section>
