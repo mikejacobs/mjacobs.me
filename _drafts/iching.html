@@ -1,0 +1,234 @@
+---
+layout: post
+title: "i ching"
+published: 2024-02-04
+updated: 2024-02-04
+tags:
+    - draft
+---
+<style type="text/css">
+	section.flex {
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+	.icontainer {
+		float:left;
+		padding-bottom:20px;
+		flex: 1 1 100px;
+		text-align: center;
+	}
+	.ichar {
+		font-size:64px;
+		display:block;
+	}
+	.iname {
+		font-size:14px;
+		display:block;
+		margin-top: -20px;
+	}
+</style>
+<section class="flex" id="output">
+
+</section>
+<script type="text/javascript">
+const iching = [
+	{
+		char: "&#x4DC0;",
+		meaning: "Creative Heaven"
+	},{
+		char: "&#x4DC1;",
+		meaning: "Receptive Earth"
+	},{
+		char: "&#x4DC2;",
+		meaning: "Difficulty at the Beginning"
+	},{
+		char: "&#x4DC3;",
+		meaning: "Youthful Folly"
+	},{
+		char: "&#x4DC4;",
+		meaning: "Waiting"
+	},{
+		char: "&#x4DC5;",
+		meaning: "Conflict"
+	},{
+		char: "&#x4DC6;",
+		meaning: "Army"
+	},{
+		char: "&#x4DC7;",
+		meaning: "Holding Together"
+	},{
+		char: "&#x4DC8;",
+		meaning: "Small Taming"
+	},{
+		char: "&#x4DC9;",
+		meaning: "Treading"
+	},{
+		char: "&#x4DCA;",
+		meaning: "Peace"
+	},{
+		char: "&#x4DCB;",
+		meaning: "Standstill"
+	},{
+		char: "&#x4DCC;",
+		meaning: "Fellowship"
+	},{
+		char: "&#x4DCD;",
+		meaning: "Great Possession"
+	},{
+		char: "&#x4DCE;",
+		meaning: "Modesty"
+	},{
+		char: "&#x4DCF;",
+		meaning: "Enthusiasm"
+	},{
+		char: "&#x4DD0;",
+		meaning: "Following"
+	},{
+		char: "&#x4DD1;",
+		meaning: "Work On the Decayed"
+	},{
+		char: "&#x4DD2;",
+		meaning: "Approach"
+	},{
+		char: "&#x4DD3;",
+		meaning: "Contemplation"
+	},{
+		char: "&#x4DD4;",
+		meaning: "Biting Through"
+	},{
+		char: "&#x4DD5;",
+		meaning: "Grace"
+	},{
+		char: "&#x4DD6;",
+		meaning: "Splitting Apart"
+	},{
+		char: "&#x4DD7;",
+		meaning: "Return"
+	},{
+		char: "&#x4DD8;",
+		meaning: "Innocence"
+	},{
+		char: "&#x4DD9;",
+		meaning: "Great Taming"
+	},{
+		char: "&#x4DDA;",
+		meaning: "Mouth Corners"
+	},{
+		char: "&#x4DDB;",
+		meaning: "Great Preponderance"
+	},{
+		char: "&#x4DDC;",
+		meaning: "Abysmal Water"
+	},{
+		char: "&#x4DDD;",
+		meaning: "Clinging Fire"
+	},{
+		char: "&#x4DDE;",
+		meaning: "Influence"
+	},{
+		char: "&#x4DDF;",
+		meaning: "Duration"
+	},{
+		char: "&#x4DE0;",
+		meaning: "Retreat"
+	},{
+		char: "&#x4DE1;",
+		meaning: "Great Power"
+	},{
+		char: "&#x4DE2;",
+		meaning: "Progress"
+	},{
+		char: "&#x4DE3;",
+		meaning: "Darkening of the Light"
+	},{
+		char: "&#x4DE4;",
+		meaning: "Family"
+	},{
+		char: "&#x4DE5;",
+		meaning: "Opposition"
+	},{
+		char: "&#x4DE6;",
+		meaning: "Obstruction"
+	},{
+		char: "&#x4DE7;",
+		meaning: "Deliverance"
+	},{
+		char: "&#x4DE8;",
+		meaning: "Decrease"
+	},{
+		char: "&#x4DE9;",
+		meaning: "Increase"
+	},{
+		char: "&#x4DEA;",
+		meaning: "Breakthrough"
+	},{
+		char: "&#x4DEB;",
+		meaning: "Coming to Meet"
+	},{
+		char: "&#x4DEC;",
+		meaning: "Gathering Together"
+	},{
+		char: "&#x4DED;",
+		meaning: "Pushing Upward"
+	},{
+		char: "&#x4DEE;",
+		meaning: "Oppression"
+	},{
+		char: "&#x4DEF;",
+		meaning: "Well"
+	},{
+		char: "&#x4DF0;",
+		meaning: "Revolution"
+	},{
+		char: "&#x4DF1;",
+		meaning: "Cauldron"
+	},{
+		char: "&#x4DF2;",
+		meaning: "Arousing Thunder"
+	},{
+		char: "&#x4DF3;",
+		meaning: "Keeping Still Mountain"
+	},{
+		char: "&#x4DF4;",
+		meaning: "Development"
+	},{
+		char: "&#x4DF5;",
+		meaning: "Marrying Maiden"
+	},{
+		char: "&#x4DF6;",
+		meaning: "Abundance"
+	},{
+		char: "&#x4DF7;",
+		meaning: "Wanderer"
+	},{
+		char: "&#x4DF8;",
+		meaning: "Gentle Wind"
+	},{
+		char: "&#x4DF9;",
+		meaning: "Joyous Lake"
+	},{
+		char: "&#x4DFA;",
+		meaning: "Dispersion"
+	},{
+		char: "&#x4DFB;",
+		meaning: "Limitation"
+	},{
+		char: "&#x4DFC;",
+		meaning: "Inner Truth"
+	},{
+		char: "&#x4DFD;",
+		meaning: "Small Preponderance"
+	},{
+		char: "&#x4DFE;",
+		meaning: "After Completion"
+	},{
+		char: "&#x4DFF;",
+		meaning: "Before Completion"
+	}
+]
+let output = document.querySelector("#output")
+iching.forEach( i => {
+	output.innerHTML += `<div class="icontainer"><span class="ichar">${i.char}</span><span class="iname">${i.meaning}</span></div>`
+})
+</script>

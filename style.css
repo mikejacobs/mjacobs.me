@@ -150,12 +150,21 @@ details figure {
 }
 figure {
   margin-left: 0px;
+  margin-right: 0px;
 }
 figcaption {
   font-size: 12px;
   opacity: 0.75;
   text-align: center;
   margin-top: 5px;
+}
+type-flair {
+  font-size: 64px;
+  margin-bottom: 0px;
+  color: var(--sand-highlight);
+  text-align: left;
+  font-family: "Times", "Times New Roman", "serif", "sans-serif", system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif, "EmojiSymbols";
+  font-weight: 300;
 }
 .sidenote {
   position: absolute;
