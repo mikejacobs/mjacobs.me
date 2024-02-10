@@ -5,6 +5,7 @@
   --sand-highlight: #C78F69;
   --cactus-green: #2e6021;
   --cactus-green-light: #008F69;
+  --turquoise: rgb(0, 194, 196);
   --adobe-red: indianred;
   --almond: #f4e5d0;
   /*  --sand-dark: #FCF2EB;*/
@@ -21,13 +22,14 @@
 /* Base */
 
 body {
-  background-color: var(--sand-light);
+  /*  background-color: var(--background-color);*/
   /*  background-color: var(--almond);*/
+  min-height: 100vh;
   margin: 0px;
-  color: #414141;
+  color: var(--text-color);
   /*  color: var(--coffee);*/
   /*    color: var(--licorice);*/
-  color: black;
+  /*  color: black;*/
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: 0.1px;
@@ -36,13 +38,17 @@ body {
   position: relative;
 }
 h1 {
-  color: var(--cactus-green-light);
+  color: var(--text-color);
   /*  color: var(--cactus-green);*/
 }
 h2 {
   color: var(--beaver);
+  color: var(--sand-highlight);
+  color: var(--text-color);
+  /*  text-decoration: overline;*/
+  /*  color: indianred;*/
   /*  color: black;*/
-  font-size: 2em;
+  font-size: 1.9em;
   line-height: 1.1em;
 }
 h2.subtitle {
@@ -56,7 +62,8 @@ h3 {
   color: var(--sand-highlight);
 }
 h4 {
-  color: var(--khaki);
+  /*  color: palevioletred;*/
+  color: lightcoral;
 }
 h5 {
   color: var(--sand-highlight);
@@ -74,12 +81,13 @@ h4, h5, h6 {
 }
 h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
   margin-top: 0px;
+  /*  margin-bottom: 10px;*/
 }
 a[href] {
-  color: var(--cactus-green);
+  color: var(--link-color);
 }
 a[href]:hover {
-  color: var(--cactus-green-light);
+  color: var(--link-color-hover);
 }
 table {
   border: 1px solid #000;
@@ -96,6 +104,7 @@ th {
 }
 th, td {
   padding: 5px;
+  border: 1px solid;
 }
 ul, ol {
   padding-left: 15px;

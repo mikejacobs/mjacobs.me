@@ -57,8 +57,10 @@ entities:
   - "#10054"
   - "#10055"
   - "#10059"
-  - "፨"
+  - "#4968"
   - "#3572"
+  - "#71114"
+  - "#71127"
 ---
 <style type="text/css">
 	entity-box {
@@ -67,12 +69,23 @@ entities:
 /*		display: block;*/
 /*		max-width: 25%;*/
 /*		float:left;*/
-		background: rgba(255,255,255,0.5);
 /*		margin-bottom: 20px;*/
 		padding-bottom:20px;
 		flex: 1 1 150px;
 		font-family: "Times","Times New Roman","serif","sans-serif",system-ui,-apple-system,BlinkMacSystemFont,"Avenir Next","Avenir","Segoe UI","Lucida Grande","Helvetica Neue","Helvetica","Fira Sans","Roboto","Noto","Droid Sans","Cantarell","Oxygen","Ubuntu","Franklin Gothic Medium","Century Gothic","Liberation Sans",sans-serif,"EmojiSymbols";
 		
+	}
+
+	@media (prefers-color-scheme: dark) {
+		entity-box {
+			background: rgba(0,0,0,0.25);
+		}
+	}
+	@media (prefers-color-scheme: light) {
+		entity-box {
+			background: rgba(255,255,255,0.5);
+
+		}
 	}
 	entity-code {
 		display: block;
@@ -87,7 +100,6 @@ entities:
 </style>
 
 <section class="flex">
-	{% assign sorted = [] %}
 	{% for entity in page.entities %}
 	<entity-box>
 		&{{entity}};

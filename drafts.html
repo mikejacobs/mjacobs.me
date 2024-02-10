@@ -8,20 +8,17 @@
   <h2 class="subtitle">I won't ask you to leave, but please keep in mind nothing in here is finished. <b>So please don't share.</b>
     If there's something you really like tho, do let me know.</h2>
   <ul id="wiki-list">
-    {% for page in site.drafts reversed %}
+    {% assign sorted = site.drafts | sort: 'updated' | reverse %}
+      {% for item in sorted %}
+
     <li>
-      <wiki-date>
-        {{ page.updated | date: "%d %b %Y" }}
-      </wiki-date>
-      <a class="wiki-list-title" href="{{ page.url }}">
-        {{ page.title }}
-      </a>
-<!--       {% for tag in page.tags %}
-      <wiki-tag>
-        {{ tag }}
-      </wiki-tag>
+        <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>
+        <a class="wiki-list-title" href="{{ item.url }}">{{ item.title }}</a>
+        <!--           {% for tag in item.tags %}
+      <wiki-tag>{{ tag }}</wiki-tag>
       {% endfor %} -->
     </li>
+
     {% endfor %}
   </ul>
 </section>

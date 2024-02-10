@@ -1,3 +1,35 @@
+/* Light mode */
+
+@media (prefers-color-scheme: light) {
+  html {
+    --background-color: var(--sand-light);
+    --text-color: var(--coffee);
+    --nav-text-color: var(--coffee);
+    --link-color: var(--cactus-green);
+    --link-color-hover: var(--cactus-green-light);
+    background-color: var(--background-color);
+  }
+  top-bg {
+    opacity: 0.6;
+  }
+}
+/* dark mode */
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --background-color: #2d2d2d;
+    --text-color: #D4D0C7;
+    --nav-text-color: var(--text-color);
+    /*    --link-color: var(--cactus-green-light);*/
+    --link-color: var(--cactus-green-light);
+    --link-color-hover: #00cb95;
+    ;
+    background-color: var(--background-color);
+  }
+  top-bg {
+    opacity: 0.3;
+  }
+}
 #horizon {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgb(134, 121, 84, 0.2) 100%);
   height: 100px;
@@ -26,7 +58,7 @@ top-bg {
   left: 0px;
   bottom: 0px;
   height: 100%;
-  opacity: 0.6;
+  /*  opacity: 0.6;*/
   background: url("/images/brownmountain.jpg") repeat;
   mix-blend-mode: color;
   background-size: cover;
@@ -77,7 +109,7 @@ nav li {
   padding: 0px;
 }
 nav a[href] {
-  color: var(--coffee);
+  color: var(--nav-text-color);
   /*  color: black;*/
 }
 #content, section, footer, header {
@@ -113,7 +145,7 @@ ol, ul {
   /*    list-style-position: inside;*/
 }
 li {
-  /*  margin-left:15px;*/
+  margin-left: 5px;
 }
 section {
   position: relative;
@@ -161,15 +193,15 @@ figcaption {
 type-flair {
   font-size: 64px;
   margin-bottom: 0px;
-  color: var(--sand-highlight);
+  color: var(--khaki);
   text-align: left;
   font-family: "Times", "Times New Roman", "serif", "sans-serif", system-ui, -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif, "EmojiSymbols";
   font-weight: 300;
 }
-.sidenote {
+.sidenote, aside {
   position: absolute;
   /*  font-family: Menlo, "Courier New", monospace;*/
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.1em;
   width: 14em;
   display: block;
@@ -197,7 +229,7 @@ table-of-contents {
 table-of-contents ol, table-of-contents ol li {
   padding: 0px;
   margin: 0px;
-  font-size: 12px;
+  font-size: 13px;
   list-style-position: inside;
   /*  font-family: Menlo, "Courier New", monospace;*/
 }
@@ -215,6 +247,7 @@ top-note {
 }
 #wiki-list li {
   margin-bottom: 15px;
+  margin-left: 0px !important;
 }
 .wiki-list-title {
   /*  font-size: 14px;*/
@@ -236,7 +269,7 @@ wiki-tag {
 }
 time {
   font-size: 14px;
-  display: inline-block;
+  display: block;
   margin-top: -20px;
   /*  font-size: 12px;*/
   opacity: 0.5;
@@ -263,7 +296,7 @@ time {
   section, footer {
     margin: 0px !important;
   }
-  .sidenote {
+  .sidenote, aside {
     position: unset;
     display: inline-block;
     width: auto;
