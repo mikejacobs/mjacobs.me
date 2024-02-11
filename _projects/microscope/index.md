@@ -1,5 +1,7 @@
 ---
 title: "The Microscope Taught Me..."
+layout: project
+featuredImage:
 featuredImage: "movlow.gif"
 category: "tech"
 date: "04/09/2015"

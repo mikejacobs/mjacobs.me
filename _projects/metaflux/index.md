@@ -1,5 +1,7 @@
 ---
 title: "Metaflux"
+layout: project
+featuredImage:
 featuredImage: "output.gif"
 category: "tech"
 date: "10/03/2018"

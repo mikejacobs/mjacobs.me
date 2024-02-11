@@ -1,5 +1,7 @@
 ---
 title: "Jacmb"
+layout: project
+featuredImage:
 featuredImage: "maki.jpg"
 category: "tech"
 date: "10/01/2007"

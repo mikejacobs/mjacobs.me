@@ -1,5 +1,7 @@
 ---
 title: "Pendrillum"
+layout: project
+featuredImage:
 featuredImage: "drill.gif"
 category: "tech"
 date: "11/01/2017"

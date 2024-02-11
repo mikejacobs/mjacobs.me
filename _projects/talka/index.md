@@ -1,5 +1,7 @@
 ---
 title: "Talka"
+layout: project
+featuredImage:
 featuredImage: "ss.jpg"
 category: "tech"
 date: "10/01/2015"

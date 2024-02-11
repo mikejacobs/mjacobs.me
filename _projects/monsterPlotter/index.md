@@ -1,5 +1,7 @@
 ---
 title: "Monster Plotter"
+layout: project
+featuredImage:
 featuredImage: "cover2.gif"
 category: "tech"
 date: "4/01/2020"

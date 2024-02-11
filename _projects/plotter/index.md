@@ -1,5 +1,7 @@
 ---
 title: "Pantograph Plotter"
+layout: project
+featuredImage:
 featuredImage: "plotter.jpg"
 category: "tech"
 date: "06/01/2017"

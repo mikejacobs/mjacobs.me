@@ -1,5 +1,7 @@
 ---
 title: "Pixel Pattern Maker"
+layout: project
+featuredImage:
 featuredImage: "pixel.png"
 category: "tech"
 date: "10/01/2013"

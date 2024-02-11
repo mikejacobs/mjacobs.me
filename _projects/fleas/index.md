@@ -1,5 +1,7 @@
 ---
 title: "Fleas"
+layout: project
+featuredImage:
 featuredImage: "fleas.png"
 category: "games"
 date: "10/01/2011"

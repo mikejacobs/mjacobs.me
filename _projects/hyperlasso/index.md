@@ -1,5 +1,7 @@
 ---
 title: "Hyperlasso"
+layout: project
+featuredImage:
 featuredImage: "aristid.jpg"
 category: "tech"
 date: "10/01/2016"

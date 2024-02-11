@@ -1,5 +1,7 @@
 ---
 title: "Vectorray"
+layout: project
+featuredImage:
 featuredImage: "vectorray.png"
 category: "tech"
 date: "01/01/2017"

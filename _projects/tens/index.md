@@ -1,5 +1,7 @@
 ---
 title: "Tens"
+layout: project
+featuredImage:
 featuredImage: "movlow.gif"
 category: "tech"
 date: "01/02/2020"

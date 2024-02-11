@@ -1,5 +1,6 @@
 ---
 title: "Videos"
+layout: project
 featuredImage: "vid.gif"
 category: "tech"
 date: "01/01/2017"
