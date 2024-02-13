@@ -2,11 +2,19 @@
 ---
 {% include header.html %}
 <section>
+  <type-flair>🤫</type-flair>
   <h2>
-    You found the secret drafts folder. 
+    Good sleuthing, you found the secret drafts folder.
   </h2>
-  <h2 class="subtitle">I won't ask you to leave, but please keep in mind nothing in here is finished. <b>So please don't share.</b>
-    If there's something you really like tho, do let me know.</h2>
+  <blockquote>Fred Rogers said you can grow ideas in the garden of your mind. Sometimes, once they’re little seedlings and can stand on their own, it helps to plant them outside, in a garden, next to the others.</blockquote>
+  <p>
+    - <a href="https://thecreativeindependent.com/essays/laurel-schwulst-my-website-is-a-shifting-house-next-to-a-river-of-knowledge-what-could-yours-be/">Laurel Schwulst</a>
+  </p>
+  <p>
+    These are my not-yet-ready seedlings for the cyber garden. I won't ask you to leave, but do tread lightly and keep in mind nothing in here is finished. <abbr title="If there's something you really like tho, do let me know."><b>So please don't share.</b></abbr>
+  </p>
+  
+
   <ul id="wiki-list">
     {% assign sorted = site.drafts | sort: 'updated' | reverse %}
       {% for item in sorted %}
