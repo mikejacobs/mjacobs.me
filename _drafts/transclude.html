@@ -1,0 +1,61 @@
+---
+layout: post
+title: "Transcluding"
+published: 2024-01-13
+updated: 2024-01-25
+tags: 
+---
+<script type="module" >
+function transclude(toReplace) {
+    let path = toReplace.getAttribute("src")
+    fetch(path)
+    .then(response => {
+        if (!response.ok) { 
+            throw Error(response.statusText);
+        } else {
+            return response.text();
+        }
+    })
+    .then(html => {
+        html = document.createRange().createContextualFragment(html);
+        toReplace.replaceWith(html)
+        return true
+    })
+    .catch(err => {
+        console.error('Transclusion error:', path, err);
+        return false
+    })
+    .then(saveConfirmation)
+}
+document.addEventListener("DOMContentLoaded", (event) => {
+    Array.from(document.querySelectorAll("transclude-html")).forEach(transclude)
+})
+</script>
+<style type="text/css">
+    section.test {
+        height: 400px;
+    }
+</style>
+<section>
+    <h3>Testing Transclusion Methods</h3>
+    <p>
+        In the following sections, only the text of the David Graeber quote is transcluded from <a href="/drafts/transclude-test.html">/drafts/transclude-test.html</a>, while the image and attribution are local to this page. 
+    </p>
+    <p>The height of each section is hard-coded so content won't shift on the page when it loads.</p>
+</section>
+<section class="test">
+    <h4>DOMContentLoaded Transclusion</h4>
+    <img src="/images/graeber.jpg" style="width: 45%; float: right; margin-left: 5%;"/>
+    <blockquote><transclude-html src="transclude-test.html">Loading...</transclude-html></blockquote>
+    <p>
+        David Graeber, <i>The Utopia of Rules</i>
+    </p>
+</section>
+<!-- <section class="test">
+    <h4>Inline Element Onload Transclusion</h4>
+    <img src="/images/graeber.jpg" style="width: 45%; float: right; margin-left: 5%;"/>
+    <blockquote><transclude-html onload="transclude(this);" src="transclude-test.html"></transclude-html></blockquote>
+    <p>
+        David Graeber, <i>The Utopia of Rules</i>
+    </p>
+</section> -->

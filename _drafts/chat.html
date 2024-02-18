@@ -1,0 +1,213 @@
+---
+layout: post
+title: "Chat"
+published: 2024-01-13
+updated: 2024-01-25
+tags: 
+---
+<style type="text/css">
+    chat-container {
+        display: block;
+        height: 300px;
+        overflow-y:scroll;
+    }
+    chat-message {
+        display: block;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        background: url("");
+    }
+    chat-message .message {
+        clear:both;
+    }
+    chat-message .author {
+        float:left;
+        color: indianred;
+    }
+    chat-message .timestamp {
+        float: right;
+        font-size: 12px;
+        font-family: monospace;
+        margin-right: 10px;
+    }
+    textarea {
+        width: 100%;
+        height: 80px;
+        font-size: 14px;
+    }
+</style>
+<section>
+<div style="background: blue; width: 100px; height: 100px; border-radius: 100px; align-content: center; justify-content: center; text-align: center; /* display: flex; */ line-height: 90px;"><input type="checkbox" name="hi"></div></section>
+<section>
+    <chat-container></chat-container>
+    <textarea id="msg-compose"></textarea>
+    <button id="send-button">Send</button>
+</section>
+
+<template id="chat-message-template">
+    <chat-message>
+        <div class="author"></div>
+        <div class="timestamp"></div>
+        <div class="message"></div>
+    </chat-message>
+</template>
+<iframe src="https://pol.social/@varelse/111942829687928098/embed" width="400" allowfullscreen="allowfullscreen" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"></iframe>
+
+<script>
+
+//data!
+
+fetch("chat.json")
+.then(response => {
+    if (!response.ok) { 
+        throw Error(response.statusText);
+    } else {
+        return response.json();
+    }
+})
+.then(json => {
+    processChat(json)
+})
+.catch(err => {
+    console.error('Error:', err)
+})
+
+function sendMessage(msg){
+    fetch(`/${path}/core-update`, 
+        { 
+            method: "POST", 
+            body: msg,
+            headers: { "Content-type": "text/plain; charset=UTF-8" } 
+        })
+        // .then(response => {
+        //     saveConfirmation(response.ok)
+        //     if (!response.ok) { 
+        //         throw Error(response.statusText);
+        //     } else {
+        //         return response.text();
+        //     }
+        // })
+        // .then(updatePreview);
+}
+
+// chat!
+
+let chatContainer = document.querySelector("chat-container")
+let msgTemplate = document.querySelector("#chat-message-template").content.querySelector("chat-message");
+let sendButton = document.querySelector("#send-button")
+let msgCompose = document.querySelector("#msg-compose")
+
+function processChat(json) {
+    json.forEach(msg => {
+        console.log("msg", msg)
+        chatContainer.appendChild(makeChatMsg(msg))
+    })
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+function makeChatMsg(msg){
+    let msgEl = msgTemplate.cloneNode(true);
+
+    const formatter = new Intl.DateTimeFormat('en', {dateStyle: 'short', timeStyle: 'short', hour12: true});
+    const arr = formatter.format(msg.timestamp).split(',');
+    const time = `${arr[0]}${arr[1]}`;
+
+    msgEl.querySelector(".author").innerHTML = msg.author
+    msgEl.querySelector(".timestamp").innerHTML = time
+    msgEl.querySelector(".message").innerHTML = msg.message
+    
+    return msgEl
+}
+
+sendButton.addEventListener("click", () => {
+    let newMsg = [{
+        timestamp: +new Date(),
+        author: "jacmb",
+        message: msgCompose.value
+    }]
+    // send to server
+    // sendMessage()
+    // send to chat
+    processChat(newMsg)
+})
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+            console.log("enter")
+        }
+    })
+</script>
+<script type="text/javascript">
+    function setupFileDrop() {
+      let body = document.body;
+      let upload = document.querySelector("upload-indicator")
+    
+      let dragStart = (event) => {
+        // console.log("body drag");
+        event.preventDefault();
+        event.stopPropagation();
+        body.classList.add("is-dragover");
+        upload.innerHTML = "Drop it!"
+      };
+    
+      let dragEnd = (event) => {
+        body.classList.remove("is-dragover");
+      };
+    
+      body.addEventListener("dragover", dragStart, false);
+      body.addEventListener("dragenter", dragStart, false);
+      body.addEventListener("dragout", dragEnd, false);
+      body.addEventListener("dragleave", dragEnd, false);
+    
+      body.addEventListener("drop", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+    
+          body.classList.remove("is-dragover");
+          body.classList.remove("is-uploading");
+          Array.from(event.dataTransfer.files).forEach((file, i) => {
+            let fileName = file.name;
+            let fileType = file.type;
+    
+            // let scrap = new Scrap({
+            //   x: `${(event.pageX + i * 50) * zoomLevel}px`,
+            //   y: `${(event.pageY + i * 50) * zoomLevel}px`,
+            // });
+    
+            // let upload = document.createElement("div");
+            // scrap.element.appendChild(upload);
+            // scrap.setInnerHTML("");
+    
+            let xhr = upload_file(file);
+    
+            let xhr_progress = (e) => {
+              if (e.lengthComputable) {
+                const percentage = Math.round((e.loaded * 100) / e.total);
+                upload.innerHTML = `<div>${percentage}% of ${fileName}</div>`;
+              }
+            };
+    
+            let xhr_loaded = (e) => {
+              xhr.upload.removeEventListener("progress", xhr_progress, false);
+              scrap.textEditor.classList.remove("unedited");
+              scrap.element.removeChild(upload);
+              scrap.setInnerHTML(getTemplate(fileName, fileType, scrap.id));
+              scrap.exportScrap();
+            };
+    
+            xhr.upload.addEventListener("progress", xhr_progress, false);
+    
+            xhr.addEventListener("readystatechange", (e) => {
+              if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log("done uploading", fileName);
+                xhr_loaded();
+              } else if (xhr.readyState == 4 && xhr.status != 200) {
+                console.log("error uploading", fileName);
+              }
+            });
+          });
+        },
+        false
+      );
+    }
+</script>
