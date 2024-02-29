@@ -62,6 +62,7 @@ top-bg {
   background: url("/images/brownmountain.jpg") repeat;
   mix-blend-mode: color;
   background-size: cover;
+  z-index: -1;
 }
 section h3:first-child {
   margin-top: 0px;

@@ -1,0 +1,1438 @@
+---
+layout: post
+title: "HTML Colors Sorted"
+published: 2024-02-28
+updated: 2024-02-28
+tags:
+ - software
+ - web
+---
+<style>
+  .color-table__color{
+    width: 3.125rem;
+    height: 1.75rem;
+    border-radius: 0.25rem;
+  }
+  table {
+    width: 100%;
+  }
+  color-group {
+    display: block;
+    margin-bottom: 20px;
+  }
+  html-color {
+    padding: 20px;
+    display:block;
+  }
+</style>
+
+    <html-colors></html-colors>
+<template id="color">
+  <html-color><color-name></color-name></html-color>
+</template>
+<template id="group">
+  <color-group>
+    <h3></h3>
+    <group-colors></group-colors>
+  </color-group>
+</template>
+
+
+<script type="text/javascript">
+  fetch('/html-colors.json')
+    .then((response) => response.json())
+    .then(fillTemplates);
+
+  function fillTemplates(json) {
+    const colorTemplate = document.querySelector("#color");
+    const groupTemplate = document.querySelector("#group");
+
+    json.forEach( group => {
+      let gt = groupTemplate.content.cloneNode(true);
+      gt.querySelector("h3").innerText = group.id
+
+      group.colors.forEach( color => {
+        let ct = colorTemplate.content.cloneNode(true);
+        ct.querySelector("color-name").innerText = color.name
+        ct.querySelector("html-color").setAttribute("data-hex", color.hex)
+        ct.querySelector("html-color").setAttribute("data-rgb", color.rgb)
+        ct.querySelector("html-color").setAttribute("data-name", color.name)
+        ct.querySelector("html-color").setAttribute("data-hsl", color.hsl)
+        ct.querySelector("html-color").style.background = color.rgb
+        ct.querySelector("color-name").style.color = invertColor(color.hex, true)
+        gt.querySelector("group-colors").appendChild(ct)
+      })
+
+      document.querySelector("html-colors").appendChild(gt)
+    })
+  }
+  function invertColor(hex, bw) {
+    if (hex.indexOf('#') === 0) {
+        hex = hex.slice(1);
+    }
+    // convert 3-digit hex to 6-digits.
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    if (hex.length !== 6) {
+        throw new Error('Invalid HEX color.');
+    }
+    var r = parseInt(hex.slice(0, 2), 16),
+        g = parseInt(hex.slice(2, 4), 16),
+        b = parseInt(hex.slice(4, 6), 16);
+    if (bw) {
+        // https://stackoverflow.com/a/3943023/112731
+        return (r * 0.299 + g * 0.587 + b * 0.114) > 186
+            ? '#000000'
+            : '#FFFFFF';
+    }
+    // invert color components
+    r = (255 - r).toString(16);
+    g = (255 - g).toString(16);
+    b = (255 - b).toString(16);
+    // pad each with zeros and return
+    return "#" + padZero(r) + padZero(g) + padZero(b);
+  }
+</script>
+
+
+    <!-- <section id="red">
+        <script>
+  // var colorSections = []
+  // Array.from(document.querySelectorAll("section")).forEach( el => {
+  //   let colorGroup = {id: el.id, colors: []}
+  //   Array.from(el.querySelectorAll("tbody tr")).forEach( row => {
+  //     let color = {}
+  //     color.name = row.querySelector(".color-table__cell--name").innerText
+  //     color.hex = row.querySelector(".color-table__cell--hex").innerText
+  //     color.rgb = row.querySelector(".color-table__cell--rgb").innerText
+  //     color.hsl = row.querySelector(".js-color").getAttribute("data-hsl")
+  //     colorGroup.colors.push(color)
+  //   })
+  //   colorSections.push(colorGroup)
+  // })
+  // document.write(JSON.stringify(colorSections))
+</script>
+      <div class="color-group">
+        <h3 class="color-group__title">Red HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #CD5C5C;" data-hex="#CD5C5C" data-rgb="rgb(205, 92, 92)" data-hsl="hsl(0, 53%, 58%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">IndianRed</td>
+                <td class="color-table__cell color-table__cell--hex">#CD5C5C</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(205, 92, 92)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F08080;" data-hex="#F08080" data-rgb="rgb(240, 128, 128)" data-hsl="hsl(0, 79%, 72%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightCoral</td>
+                <td class="color-table__cell color-table__cell--hex">#F08080</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(240, 128, 128)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FA8072;" data-hex="#FA8072" data-rgb="rgb(250, 128, 114)" data-hsl="hsl(6, 93%, 71%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Salmon</td>
+                <td class="color-table__cell color-table__cell--hex">#FA8072</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(250, 128, 114)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #E9967A;" data-hex="#E9967A" data-rgb="rgb(233, 150, 122)" data-hsl="hsl(15, 72%, 70%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkSalmon</td>
+                <td class="color-table__cell color-table__cell--hex">#E9967A</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(233, 150, 122)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFA07A;" data-hex="#FFA07A" data-rgb="rgb(255, 160, 122)" data-hsl="hsl(17, 100%, 74%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightSalmon</td>
+                <td class="color-table__cell color-table__cell--hex">#FFA07A</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 160, 122)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DC143C;" data-hex="#DC143C" data-rgb="rgb(220, 20, 60)" data-hsl="hsl(348, 83%, 47%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Crimson</td>
+                <td class="color-table__cell color-table__cell--hex">#DC143C</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(220, 20, 60)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF0000;" data-hex="#FF0000" data-rgb="rgb(255, 0, 0)" data-hsl="hsl(0, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Red</td>
+                <td class="color-table__cell color-table__cell--hex">#FF0000</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 0, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #B22222;" data-hex="#B22222" data-rgb="rgb(178, 34, 34)" data-hsl="hsl(0, 68%, 42%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">FireBrick</td>
+                <td class="color-table__cell color-table__cell--hex">#B22222</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(178, 34, 34)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #8B0000;" data-hex="#8B0000" data-rgb="rgb(139, 0, 0)" data-hsl="hsl(0, 100%, 27%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkRed</td>
+                <td class="color-table__cell color-table__cell--hex">#8B0000</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(139, 0, 0)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="pink">
+      <div class="color-group">
+        <h3 class="color-group__title">Pink HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFC0CB;" data-hex="#FFC0CB" data-rgb="rgb(255, 192, 203)" data-hsl="hsl(350, 100%, 88%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Pink</td>
+                <td class="color-table__cell color-table__cell--hex">#FFC0CB</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 192, 203)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFB6C1;" data-hex="#FFB6C1" data-rgb="rgb(255, 182, 193)" data-hsl="hsl(351, 100%, 86%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightPink</td>
+                <td class="color-table__cell color-table__cell--hex">#FFB6C1</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 182, 193)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF69B4;" data-hex="#FF69B4" data-rgb="rgb(255, 105, 180)" data-hsl="hsl(330, 100%, 71%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">HotPink</td>
+                <td class="color-table__cell color-table__cell--hex">#FF69B4</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 105, 180)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF1493;" data-hex="#FF1493" data-rgb="rgb(255, 20, 147)" data-hsl="hsl(328, 100%, 54%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DeepPink</td>
+                <td class="color-table__cell color-table__cell--hex">#FF1493</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 20, 147)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #C71585;" data-hex="#C71585" data-rgb="rgb(199, 21, 133)" data-hsl="hsl(322, 81%, 43%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumVioletRed</td>
+                <td class="color-table__cell color-table__cell--hex">#C71585</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(199, 21, 133)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DB7093;" data-hex="#DB7093" data-rgb="rgb(219, 112, 147)" data-hsl="hsl(340, 60%, 65%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PaleVioletRed</td>
+                <td class="color-table__cell color-table__cell--hex">#DB7093</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(219, 112, 147)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="orange">
+      <div class="color-group">
+        <h3 class="color-group__title">Orange HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFA07A;" data-hex="#FFA07A" data-rgb="rgb(255, 160, 122)" data-hsl="hsl(17, 100%, 74%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightSalmon</td>
+                <td class="color-table__cell color-table__cell--hex">#FFA07A</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 160, 122)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF7F50;" data-hex="#FF7F50" data-rgb="rgb(255, 127, 80)" data-hsl="hsl(16, 100%, 66%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Coral</td>
+                <td class="color-table__cell color-table__cell--hex">#FF7F50</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 127, 80)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF6347;" data-hex="#FF6347" data-rgb="rgb(255, 99, 71)" data-hsl="hsl(9, 100%, 64%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Tomato</td>
+                <td class="color-table__cell color-table__cell--hex">#FF6347</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 99, 71)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF4500;" data-hex="#FF4500" data-rgb="rgb(255, 69, 0)" data-hsl="hsl(16, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">OrangeRed</td>
+                <td class="color-table__cell color-table__cell--hex">#FF4500</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 69, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF8C00;" data-hex="#FF8C00" data-rgb="rgb(255, 140, 0)" data-hsl="hsl(33, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkOrange</td>
+                <td class="color-table__cell color-table__cell--hex">#FF8C00</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 140, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFA500;" data-hex="#FFA500" data-rgb="rgb(255, 165, 0)" data-hsl="hsl(39, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Orange</td>
+                <td class="color-table__cell color-table__cell--hex">#FFA500</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 165, 0)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="yellow">
+      <div class="color-group">
+        <h3 class="color-group__title">Yellow HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFD700;" data-hex="#FFD700" data-rgb="rgb(255, 215, 0)" data-hsl="hsl(51, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Gold</td>
+                <td class="color-table__cell color-table__cell--hex">#FFD700</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 215, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFF00;" data-hex="#FFFF00" data-rgb="rgb(255, 255, 0)" data-hsl="hsl(60, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Yellow</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFF00</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 255, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFFE0;" data-hex="#FFFFE0" data-rgb="rgb(255, 255, 224)" data-hsl="hsl(60, 100%, 94%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightYellow</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFFE0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 255, 224)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFACD;" data-hex="#FFFACD" data-rgb="rgb(255, 250, 205)" data-hsl="hsl(54, 100%, 90%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LemonChiffon</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFACD</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 250, 205)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FAFAD2;" data-hex="#FAFAD2" data-rgb="rgb(250, 250, 210)" data-hsl="hsl(60, 80%, 90%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightGoldenrodYellow</td>
+                <td class="color-table__cell color-table__cell--hex">#FAFAD2</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(250, 250, 210)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFEFD5;" data-hex="#FFEFD5" data-rgb="rgb(255, 239, 213)" data-hsl="hsl(37, 100%, 92%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PapayaWhip</td>
+                <td class="color-table__cell color-table__cell--hex">#FFEFD5</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 239, 213)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFE4B5;" data-hex="#FFE4B5" data-rgb="rgb(255, 228, 181)" data-hsl="hsl(38, 100%, 85%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Moccasin</td>
+                <td class="color-table__cell color-table__cell--hex">#FFE4B5</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 228, 181)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFDAB9;" data-hex="#FFDAB9" data-rgb="rgb(255, 218, 185)" data-hsl="hsl(28, 100%, 86%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PeachPuff</td>
+                <td class="color-table__cell color-table__cell--hex">#FFDAB9</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 218, 185)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #EEE8AA;" data-hex="#EEE8AA" data-rgb="rgb(238, 232, 170)" data-hsl="hsl(55, 67%, 80%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PaleGoldenrod</td>
+                <td class="color-table__cell color-table__cell--hex">#EEE8AA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(238, 232, 170)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F0E68C;" data-hex="#F0E68C" data-rgb="rgb(240, 230, 140)" data-hsl="hsl(54, 77%, 75%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Khaki</td>
+                <td class="color-table__cell color-table__cell--hex">#F0E68C</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(240, 230, 140)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #BDB76B;" data-hex="#BDB76B" data-rgb="rgb(189, 183, 107)" data-hsl="hsl(56, 38%, 58%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkKhaki</td>
+                <td class="color-table__cell color-table__cell--hex">#BDB76B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(189, 183, 107)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="purple">
+      <div class="color-group">
+        <h3 class="color-group__title">Purple HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #E6E6FA;" data-hex="#E6E6FA" data-rgb="rgb(230, 230, 250)" data-hsl="hsl(240, 67%, 94%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Lavender</td>
+                <td class="color-table__cell color-table__cell--hex">#E6E6FA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(230, 230, 250)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #D8BFD8;" data-hex="#D8BFD8" data-rgb="rgb(216, 191, 216)" data-hsl="hsl(300, 24%, 80%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Thistle</td>
+                <td class="color-table__cell color-table__cell--hex">#D8BFD8</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(216, 191, 216)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DDA0DD;" data-hex="#DDA0DD" data-rgb="rgb(221, 160, 221)" data-hsl="hsl(300, 47%, 75%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Plum</td>
+                <td class="color-table__cell color-table__cell--hex">#DDA0DD</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(221, 160, 221)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #EE82EE;" data-hex="#EE82EE" data-rgb="rgb(238, 130, 238)" data-hsl="hsl(300, 76%, 72%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Violet</td>
+                <td class="color-table__cell color-table__cell--hex">#EE82EE</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(238, 130, 238)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DA70D6;" data-hex="#DA70D6" data-rgb="rgb(218, 112, 214)" data-hsl="hsl(302, 59%, 65%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Orchid</td>
+                <td class="color-table__cell color-table__cell--hex">#DA70D6</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(218, 112, 214)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF00FF;" data-hex="#FF00FF" data-rgb="rgb(255, 0, 255)" data-hsl="hsl(300, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Fuchsia</td>
+                <td class="color-table__cell color-table__cell--hex">#FF00FF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 0, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FF00FF;" data-hex="#FF00FF" data-rgb="rgb(255, 0, 255)" data-hsl="hsl(300, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Magenta</td>
+                <td class="color-table__cell color-table__cell--hex">#FF00FF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 0, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #BA55D3;" data-hex="#BA55D3" data-rgb="rgb(186, 85, 211)" data-hsl="hsl(288, 59%, 58%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumOrchid</td>
+                <td class="color-table__cell color-table__cell--hex">#BA55D3</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(186, 85, 211)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #9370DB;" data-hex="#9370DB" data-rgb="rgb(147, 112, 219)" data-hsl="hsl(260, 60%, 65%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumPurple</td>
+                <td class="color-table__cell color-table__cell--hex">#9370DB</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(147, 112, 219)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #663399;" data-hex="#663399" data-rgb="rgb(102, 51, 153)" data-hsl="hsl(270, 50%, 40%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">RebeccaPurple</td>
+                <td class="color-table__cell color-table__cell--hex">#663399</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(102, 51, 153)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #8A2BE2;" data-hex="#8A2BE2" data-rgb="rgb(138, 43, 226)" data-hsl="hsl(271, 76%, 53%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">BlueViolet</td>
+                <td class="color-table__cell color-table__cell--hex">#8A2BE2</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(138, 43, 226)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #9400D3;" data-hex="#9400D3" data-rgb="rgb(148, 0, 211)" data-hsl="hsl(282, 100%, 41%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkViolet</td>
+                <td class="color-table__cell color-table__cell--hex">#9400D3</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(148, 0, 211)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #9932CC;" data-hex="#9932CC" data-rgb="rgb(153, 50, 204)" data-hsl="hsl(280, 61%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkOrchid</td>
+                <td class="color-table__cell color-table__cell--hex">#9932CC</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(153, 50, 204)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #8B008B;" data-hex="#8B008B" data-rgb="rgb(139, 0, 139)" data-hsl="hsl(300, 100%, 27%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkMagenta</td>
+                <td class="color-table__cell color-table__cell--hex">#8B008B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(139, 0, 139)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #800080;" data-hex="#800080" data-rgb="rgb(128, 0, 128)" data-hsl="hsl(300, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Purple</td>
+                <td class="color-table__cell color-table__cell--hex">#800080</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(128, 0, 128)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #4B0082;" data-hex="#4B0082" data-rgb="rgb(75, 0, 130)" data-hsl="hsl(275, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Indigo</td>
+                <td class="color-table__cell color-table__cell--hex">#4B0082</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(75, 0, 130)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #6A5ACD;" data-hex="#6A5ACD" data-rgb="rgb(106, 90, 205)" data-hsl="hsl(248, 53%, 58%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SlateBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#6A5ACD</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(106, 90, 205)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #483D8B;" data-hex="#483D8B" data-rgb="rgb(72, 61, 139)" data-hsl="hsl(248, 39%, 39%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkSlateBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#483D8B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(72, 61, 139)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #7B68EE;" data-hex="#7B68EE" data-rgb="rgb(123, 104, 238)" data-hsl="hsl(249, 80%, 67%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumSlateBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#7B68EE</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(123, 104, 238)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="green">
+      <div class="color-group">
+        <h3 class="color-group__title">Green HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #ADFF2F;" data-hex="#ADFF2F" data-rgb="rgb(173, 255, 47)" data-hsl="hsl(84, 100%, 59%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">GreenYellow</td>
+                <td class="color-table__cell color-table__cell--hex">#ADFF2F</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(173, 255, 47)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #7FFF00;" data-hex="#7FFF00" data-rgb="rgb(127, 255, 0)" data-hsl="hsl(90, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Chartreuse</td>
+                <td class="color-table__cell color-table__cell--hex">#7FFF00</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(127, 255, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #7CFC00;" data-hex="#7CFC00" data-rgb="rgb(124, 252, 0)" data-hsl="hsl(90, 100%, 49%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LawnGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#7CFC00</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(124, 252, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00FF00;" data-hex="#00FF00" data-rgb="rgb(0, 255, 0)" data-hsl="hsl(120, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Lime</td>
+                <td class="color-table__cell color-table__cell--hex">#00FF00</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 255, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #32CD32;" data-hex="#32CD32" data-rgb="rgb(50, 205, 50)" data-hsl="hsl(120, 61%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LimeGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#32CD32</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(50, 205, 50)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #98FB98;" data-hex="#98FB98" data-rgb="rgb(152, 251, 152)" data-hsl="hsl(120, 93%, 79%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PaleGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#98FB98</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(152, 251, 152)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #90EE90;" data-hex="#90EE90" data-rgb="rgb(144, 238, 144)" data-hsl="hsl(120, 73%, 75%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#90EE90</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(144, 238, 144)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00FA9A;" data-hex="#00FA9A" data-rgb="rgb(0, 250, 154)" data-hsl="hsl(157, 100%, 49%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumSpringGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#00FA9A</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 250, 154)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00FF7F;" data-hex="#00FF7F" data-rgb="rgb(0, 255, 127)" data-hsl="hsl(150, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SpringGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#00FF7F</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 255, 127)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #3CB371;" data-hex="#3CB371" data-rgb="rgb(60, 179, 113)" data-hsl="hsl(147, 50%, 47%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumSeaGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#3CB371</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(60, 179, 113)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #2E8B57;" data-hex="#2E8B57" data-rgb="rgb(46, 139, 87)" data-hsl="hsl(146, 50%, 36%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SeaGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#2E8B57</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(46, 139, 87)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #228B22;" data-hex="#228B22" data-rgb="rgb(34, 139, 34)" data-hsl="hsl(120, 61%, 34%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">ForestGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#228B22</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(34, 139, 34)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #008000;" data-hex="#008000" data-rgb="rgb(0, 128, 0)" data-hsl="hsl(120, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Green</td>
+                <td class="color-table__cell color-table__cell--hex">#008000</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 128, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #006400;" data-hex="#006400" data-rgb="rgb(0, 100, 0)" data-hsl="hsl(120, 100%, 20%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#006400</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 100, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #9ACD32;" data-hex="#9ACD32" data-rgb="rgb(154, 205, 50)" data-hsl="hsl(80, 61%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">YellowGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#9ACD32</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(154, 205, 50)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #6B8E23;" data-hex="#6B8E23" data-rgb="rgb(107, 142, 35)" data-hsl="hsl(80, 60%, 35%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">OliveDrab</td>
+                <td class="color-table__cell color-table__cell--hex">#6B8E23</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(107, 142, 35)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #808000;" data-hex="#808000" data-rgb="rgb(128, 128, 0)" data-hsl="hsl(60, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Olive</td>
+                <td class="color-table__cell color-table__cell--hex">#808000</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(128, 128, 0)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #556B2F;" data-hex="#556B2F" data-rgb="rgb(85, 107, 47)" data-hsl="hsl(82, 39%, 30%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkOliveGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#556B2F</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(85, 107, 47)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #66CDAA;" data-hex="#66CDAA" data-rgb="rgb(102, 205, 170)" data-hsl="hsl(160, 51%, 60%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumAquamarine</td>
+                <td class="color-table__cell color-table__cell--hex">#66CDAA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(102, 205, 170)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #8FBC8B;" data-hex="#8FBC8B" data-rgb="rgb(143, 188, 139)" data-hsl="hsl(115, 27%, 64%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkSeaGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#8FBC8B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(143, 188, 139)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #20B2AA;" data-hex="#20B2AA" data-rgb="rgb(32, 178, 170)" data-hsl="hsl(177, 70%, 41%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightSeaGreen</td>
+                <td class="color-table__cell color-table__cell--hex">#20B2AA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(32, 178, 170)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #008B8B;" data-hex="#008B8B" data-rgb="rgb(0, 139, 139)" data-hsl="hsl(180, 100%, 27%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkCyan</td>
+                <td class="color-table__cell color-table__cell--hex">#008B8B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 139, 139)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #008080;" data-hex="#008080" data-rgb="rgb(0, 128, 128)" data-hsl="hsl(180, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Teal</td>
+                <td class="color-table__cell color-table__cell--hex">#008080</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 128, 128)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="blue">
+      <div class="color-group">
+        <h3 class="color-group__title">Blue HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00FFFF;" data-hex="#00FFFF" data-rgb="rgb(0, 255, 255)" data-hsl="hsl(180, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Aqua</td>
+                <td class="color-table__cell color-table__cell--hex">#00FFFF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 255, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00FFFF;" data-hex="#00FFFF" data-rgb="rgb(0, 255, 255)" data-hsl="hsl(180, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Cyan</td>
+                <td class="color-table__cell color-table__cell--hex">#00FFFF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 255, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #E0FFFF;" data-hex="#E0FFFF" data-rgb="rgb(224, 255, 255)" data-hsl="hsl(180, 100%, 94%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightCyan</td>
+                <td class="color-table__cell color-table__cell--hex">#E0FFFF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(224, 255, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #AFEEEE;" data-hex="#AFEEEE" data-rgb="rgb(175, 238, 238)" data-hsl="hsl(180, 65%, 81%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PaleTurquoise</td>
+                <td class="color-table__cell color-table__cell--hex">#AFEEEE</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(175, 238, 238)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #7FFFD4;" data-hex="#7FFFD4" data-rgb="rgb(127, 255, 212)" data-hsl="hsl(160, 100%, 75%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Aquamarine</td>
+                <td class="color-table__cell color-table__cell--hex">#7FFFD4</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(127, 255, 212)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #40E0D0;" data-hex="#40E0D0" data-rgb="rgb(64, 224, 208)" data-hsl="hsl(174, 72%, 56%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Turquoise</td>
+                <td class="color-table__cell color-table__cell--hex">#40E0D0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(64, 224, 208)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #48D1CC;" data-hex="#48D1CC" data-rgb="rgb(72, 209, 204)" data-hsl="hsl(178, 60%, 55%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumTurquoise</td>
+                <td class="color-table__cell color-table__cell--hex">#48D1CC</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(72, 209, 204)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00CED1;" data-hex="#00CED1" data-rgb="rgb(0, 206, 209)" data-hsl="hsl(181, 100%, 41%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkTurquoise</td>
+                <td class="color-table__cell color-table__cell--hex">#00CED1</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 206, 209)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #5F9EA0;" data-hex="#5F9EA0" data-rgb="rgb(95, 158, 160)" data-hsl="hsl(182, 25%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">CadetBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#5F9EA0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(95, 158, 160)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #4682B4;" data-hex="#4682B4" data-rgb="rgb(70, 130, 180)" data-hsl="hsl(207, 44%, 49%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SteelBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#4682B4</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(70, 130, 180)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #B0C4DE;" data-hex="#B0C4DE" data-rgb="rgb(176, 196, 222)" data-hsl="hsl(214, 41%, 78%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightSteelBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#B0C4DE</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(176, 196, 222)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #B0E0E6;" data-hex="#B0E0E6" data-rgb="rgb(176, 224, 230)" data-hsl="hsl(187, 52%, 80%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">PowderBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#B0E0E6</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(176, 224, 230)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #ADD8E6;" data-hex="#ADD8E6" data-rgb="rgb(173, 216, 230)" data-hsl="hsl(195, 53%, 79%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#ADD8E6</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(173, 216, 230)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #87CEEB;" data-hex="#87CEEB" data-rgb="rgb(135, 206, 235)" data-hsl="hsl(197, 71%, 73%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SkyBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#87CEEB</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(135, 206, 235)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #87CEFA;" data-hex="#87CEFA" data-rgb="rgb(135, 206, 250)" data-hsl="hsl(203, 92%, 75%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightSkyBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#87CEFA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(135, 206, 250)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00BFFF;" data-hex="#00BFFF" data-rgb="rgb(0, 191, 255)" data-hsl="hsl(195, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DeepSkyBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#00BFFF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 191, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #1E90FF;" data-hex="#1E90FF" data-rgb="rgb(30, 144, 255)" data-hsl="hsl(210, 100%, 56%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DodgerBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#1E90FF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(30, 144, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #6495ED;" data-hex="#6495ED" data-rgb="rgb(100, 149, 237)" data-hsl="hsl(219, 79%, 66%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">CornflowerBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#6495ED</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(100, 149, 237)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #7B68EE;" data-hex="#7B68EE" data-rgb="rgb(123, 104, 238)" data-hsl="hsl(249, 80%, 67%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumSlateBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#7B68EE</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(123, 104, 238)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #4169E1;" data-hex="#4169E1" data-rgb="rgb(65, 105, 225)" data-hsl="hsl(225, 73%, 57%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">RoyalBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#4169E1</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(65, 105, 225)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #0000FF;" data-hex="#0000FF" data-rgb="rgb(0, 0, 255)" data-hsl="hsl(240, 100%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Blue</td>
+                <td class="color-table__cell color-table__cell--hex">#0000FF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 0, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #0000CD;" data-hex="#0000CD" data-rgb="rgb(0, 0, 205)" data-hsl="hsl(240, 100%, 40%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MediumBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#0000CD</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 0, 205)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #00008B;" data-hex="#00008B" data-rgb="rgb(0, 0, 139)" data-hsl="hsl(240, 100%, 27%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#00008B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 0, 139)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #000080;" data-hex="#000080" data-rgb="rgb(0, 0, 128)" data-hsl="hsl(240, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Navy</td>
+                <td class="color-table__cell color-table__cell--hex">#000080</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 0, 128)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #191970;" data-hex="#191970" data-rgb="rgb(25, 25, 112)" data-hsl="hsl(240, 64%, 27%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MidnightBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#191970</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(25, 25, 112)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="brown">
+      <div class="color-group">
+        <h3 class="color-group__title">Brown HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFF8DC;" data-hex="#FFF8DC" data-rgb="rgb(255, 248, 220)" data-hsl="hsl(48, 100%, 93%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Cornsilk</td>
+                <td class="color-table__cell color-table__cell--hex">#FFF8DC</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 248, 220)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFEBCD;" data-hex="#FFEBCD" data-rgb="rgb(255, 235, 205)" data-hsl="hsl(36, 100%, 90%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">BlanchedAlmond</td>
+                <td class="color-table__cell color-table__cell--hex">#FFEBCD</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 235, 205)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFE4C4;" data-hex="#FFE4C4" data-rgb="rgb(255, 228, 196)" data-hsl="hsl(33, 100%, 88%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Bisque</td>
+                <td class="color-table__cell color-table__cell--hex">#FFE4C4</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 228, 196)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFDEAD;" data-hex="#FFDEAD" data-rgb="rgb(255, 222, 173)" data-hsl="hsl(36, 100%, 84%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">NavajoWhite</td>
+                <td class="color-table__cell color-table__cell--hex">#FFDEAD</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 222, 173)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F5DEB3;" data-hex="#F5DEB3" data-rgb="rgb(245, 222, 179)" data-hsl="hsl(39, 77%, 83%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Wheat</td>
+                <td class="color-table__cell color-table__cell--hex">#F5DEB3</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(245, 222, 179)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DEB887;" data-hex="#DEB887" data-rgb="rgb(222, 184, 135)" data-hsl="hsl(34, 57%, 70%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">BurlyWood</td>
+                <td class="color-table__cell color-table__cell--hex">#DEB887</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(222, 184, 135)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #D2B48C;" data-hex="#D2B48C" data-rgb="rgb(210, 180, 140)" data-hsl="hsl(34, 44%, 69%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Tan</td>
+                <td class="color-table__cell color-table__cell--hex">#D2B48C</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(210, 180, 140)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #BC8F8F;" data-hex="#BC8F8F" data-rgb="rgb(188, 143, 143)" data-hsl="hsl(0, 25%, 65%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">RosyBrown</td>
+                <td class="color-table__cell color-table__cell--hex">#BC8F8F</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(188, 143, 143)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F4A460;" data-hex="#F4A460" data-rgb="rgb(244, 164, 96)" data-hsl="hsl(28, 87%, 67%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SandyBrown</td>
+                <td class="color-table__cell color-table__cell--hex">#F4A460</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(244, 164, 96)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DAA520;" data-hex="#DAA520" data-rgb="rgb(218, 165, 32)" data-hsl="hsl(43, 74%, 49%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Goldenrod</td>
+                <td class="color-table__cell color-table__cell--hex">#DAA520</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(218, 165, 32)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #B8860B;" data-hex="#B8860B" data-rgb="rgb(184, 134, 11)" data-hsl="hsl(43, 89%, 38%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkGoldenrod</td>
+                <td class="color-table__cell color-table__cell--hex">#B8860B</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(184, 134, 11)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #CD853F;" data-hex="#CD853F" data-rgb="rgb(205, 133, 63)" data-hsl="hsl(30, 59%, 53%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Peru</td>
+                <td class="color-table__cell color-table__cell--hex">#CD853F</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(205, 133, 63)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #D2691E;" data-hex="#D2691E" data-rgb="rgb(210, 105, 30)" data-hsl="hsl(25, 75%, 47%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Chocolate</td>
+                <td class="color-table__cell color-table__cell--hex">#D2691E</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(210, 105, 30)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #8B4513;" data-hex="#8B4513" data-rgb="rgb(139, 69, 19)" data-hsl="hsl(25, 76%, 31%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SaddleBrown</td>
+                <td class="color-table__cell color-table__cell--hex">#8B4513</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(139, 69, 19)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #A0522D;" data-hex="#A0522D" data-rgb="rgb(160, 82, 45)" data-hsl="hsl(19, 56%, 40%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Sienna</td>
+                <td class="color-table__cell color-table__cell--hex">#A0522D</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(160, 82, 45)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #A52A2A;" data-hex="#A52A2A" data-rgb="rgb(165, 42, 42)" data-hsl="hsl(0, 59%, 41%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Brown</td>
+                <td class="color-table__cell color-table__cell--hex">#A52A2A</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(165, 42, 42)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #800000;" data-hex="#800000" data-rgb="rgb(128, 0, 0)" data-hsl="hsl(0, 100%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Maroon</td>
+                <td class="color-table__cell color-table__cell--hex">#800000</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(128, 0, 0)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="white">
+      <div class="color-group">
+        <h3 class="color-group__title">White HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFFFF;" data-hex="#FFFFFF" data-rgb="rgb(255, 255, 255)" data-hsl="hsl(0, 0%, 100%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">White</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFFFF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 255, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFAFA;" data-hex="#FFFAFA" data-rgb="rgb(255, 250, 250)" data-hsl="hsl(0, 100%, 99%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Snow</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFAFA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 250, 250)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F0FFF0;" data-hex="#F0FFF0" data-rgb="rgb(240, 255, 240)" data-hsl="hsl(120, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">HoneyDew</td>
+                <td class="color-table__cell color-table__cell--hex">#F0FFF0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(240, 255, 240)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F5FFFA;" data-hex="#F5FFFA" data-rgb="rgb(245, 255, 250)" data-hsl="hsl(150, 100%, 98%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MintCream</td>
+                <td class="color-table__cell color-table__cell--hex">#F5FFFA</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(245, 255, 250)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F0FFFF;" data-hex="#F0FFFF" data-rgb="rgb(240, 255, 255)" data-hsl="hsl(180, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Azure</td>
+                <td class="color-table__cell color-table__cell--hex">#F0FFFF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(240, 255, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F0F8FF;" data-hex="#F0F8FF" data-rgb="rgb(240, 248, 255)" data-hsl="hsl(208, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">AliceBlue</td>
+                <td class="color-table__cell color-table__cell--hex">#F0F8FF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(240, 248, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F8F8FF;" data-hex="#F8F8FF" data-rgb="rgb(248, 248, 255)" data-hsl="hsl(240, 100%, 99%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">GhostWhite</td>
+                <td class="color-table__cell color-table__cell--hex">#F8F8FF</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(248, 248, 255)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F5F5F5;" data-hex="#F5F5F5" data-rgb="rgb(245, 245, 245)" data-hsl="hsl(0, 0%, 96%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">WhiteSmoke</td>
+                <td class="color-table__cell color-table__cell--hex">#F5F5F5</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(245, 245, 245)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFF5EE;" data-hex="#FFF5EE" data-rgb="rgb(255, 245, 238)" data-hsl="hsl(25, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SeaShell</td>
+                <td class="color-table__cell color-table__cell--hex">#FFF5EE</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 245, 238)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #F5F5DC;" data-hex="#F5F5DC" data-rgb="rgb(245, 245, 220)" data-hsl="hsl(60, 56%, 91%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Beige</td>
+                <td class="color-table__cell color-table__cell--hex">#F5F5DC</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(245, 245, 220)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FDF5E6;" data-hex="#FDF5E6" data-rgb="rgb(253, 245, 230)" data-hsl="hsl(39, 85%, 95%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">OldLace</td>
+                <td class="color-table__cell color-table__cell--hex">#FDF5E6</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(253, 245, 230)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFAF0;" data-hex="#FFFAF0" data-rgb="rgb(255, 250, 240)" data-hsl="hsl(40, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">FloralWhite</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFAF0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 250, 240)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFFFF0;" data-hex="#FFFFF0" data-rgb="rgb(255, 255, 240)" data-hsl="hsl(60, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Ivory</td>
+                <td class="color-table__cell color-table__cell--hex">#FFFFF0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 255, 240)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FAEBD7;" data-hex="#FAEBD7" data-rgb="rgb(250, 235, 215)" data-hsl="hsl(34, 78%, 91%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">AntiqueWhite</td>
+                <td class="color-table__cell color-table__cell--hex">#FAEBD7</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(250, 235, 215)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FAF0E6;" data-hex="#FAF0E6" data-rgb="rgb(250, 240, 230)" data-hsl="hsl(30, 67%, 94%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Linen</td>
+                <td class="color-table__cell color-table__cell--hex">#FAF0E6</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(250, 240, 230)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFF0F5;" data-hex="#FFF0F5" data-rgb="rgb(255, 240, 245)" data-hsl="hsl(340, 100%, 97%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LavenderBlush</td>
+                <td class="color-table__cell color-table__cell--hex">#FFF0F5</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 240, 245)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #FFE4E1;" data-hex="#FFE4E1" data-rgb="rgb(255, 228, 225)" data-hsl="hsl(6, 100%, 94%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">MistyRose</td>
+                <td class="color-table__cell color-table__cell--hex">#FFE4E1</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(255, 228, 225)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section>
+    <section id="gray">
+      <div class="color-group">
+        <h3 class="color-group__title">Gray HTML Color Names</h3>
+        <table class="color-table">
+          <thead class="color-table__head">
+            <tr class="color-table__row">
+              <th class="color-table__cell color-table__cell--color">Color</th>
+              <th class="color-table__cell color-table__cell--name">Name</th>
+              <th class="color-table__cell color-table__cell--hex">Hex Code</th>
+              <th class="color-table__cell color-table__cell--rgb">RGB Code</th>
+            </tr>
+          </thead>
+          <tbody class="color-table__body">
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #DCDCDC;" data-hex="#DCDCDC" data-rgb="rgb(220, 220, 220)" data-hsl="hsl(0, 0%, 86%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Gainsboro</td>
+                <td class="color-table__cell color-table__cell--hex">#DCDCDC</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(220, 220, 220)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #D3D3D3;" data-hex="#D3D3D3" data-rgb="rgb(211, 211, 211)" data-hsl="hsl(0, 0%, 83%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightGray</td>
+                <td class="color-table__cell color-table__cell--hex">#D3D3D3</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(211, 211, 211)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #C0C0C0;" data-hex="#C0C0C0" data-rgb="rgb(192, 192, 192)" data-hsl="hsl(0, 0%, 75%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Silver</td>
+                <td class="color-table__cell color-table__cell--hex">#C0C0C0</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(192, 192, 192)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #A9A9A9;" data-hex="#A9A9A9" data-rgb="rgb(169, 169, 169)" data-hsl="hsl(0, 0%, 66%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkGray</td>
+                <td class="color-table__cell color-table__cell--hex">#A9A9A9</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(169, 169, 169)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #808080;" data-hex="#808080" data-rgb="rgb(128, 128, 128)" data-hsl="hsl(0, 0%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Gray</td>
+                <td class="color-table__cell color-table__cell--hex">#808080</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(128, 128, 128)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #696969;" data-hex="#696969" data-rgb="rgb(105, 105, 105)" data-hsl="hsl(0, 0%, 41%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DimGray</td>
+                <td class="color-table__cell color-table__cell--hex">#696969</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(105, 105, 105)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #778899;" data-hex="#778899" data-rgb="rgb(119, 136, 153)" data-hsl="hsl(210, 14%, 53%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">LightSlateGray</td>
+                <td class="color-table__cell color-table__cell--hex">#778899</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(119, 136, 153)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #708090;" data-hex="#708090" data-rgb="rgb(112, 128, 144)" data-hsl="hsl(210, 13%, 50%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">SlateGray</td>
+                <td class="color-table__cell color-table__cell--hex">#708090</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(112, 128, 144)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #2F4F4F;" data-hex="#2F4F4F" data-rgb="rgb(47, 79, 79)" data-hsl="hsl(180, 25%, 25%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">DarkSlateGray</td>
+                <td class="color-table__cell color-table__cell--hex">#2F4F4F</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(47, 79, 79)</td>
+              </tr>
+              <tr class="color-table__row">
+                <td class="color-table__cell color-table__cell--color">
+                  <div class="color-table__color js-color" style="background-color: #000000;" data-hex="#000000" data-rgb="rgb(0, 0, 0)" data-hsl="hsl(0, 0%, 0%)"></div>
+                </td>
+                <td class="color-table__cell color-table__cell--name">Black</td>
+                <td class="color-table__cell color-table__cell--hex">#000000</td>
+                <td class="color-table__cell color-table__cell--rgb">rgb(0, 0, 0)</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    </section> -->
