@@ -206,9 +206,9 @@ type-flair {
   font-size: 13px;
   line-height: 1.1em;
   width: 14em;
-  display: block;
+  display: inline;
   right: -16em;
-  margin-top: -1.4em;
+  /*  margin-top: -1.4em;*/
   /* line height */
 }
 .callout {
@@ -231,7 +231,7 @@ table-of-contents {
   margin-bottom: 40px;
   /*  float: left;*/
   position: absolute;
-  left: -15em;
+  /*  left: -15em;*/
 }
 table-of-contents ol, table-of-contents ol li {
   padding: 0px;
@@ -305,13 +305,13 @@ time {
   }
   .sidenote, aside {
     position: unset;
-    display: inline-block;
+    display: block;
     width: auto;
     margin: 10px;
     /*    opacity: 0.6;*/
     /*    float: right;*/
   }
-  .callout {
+  .callout, call-out {
     display: none;
   }
 }
