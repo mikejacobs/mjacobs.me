@@ -1,0 +1,17 @@
+<template id="sidenote-template">
+    <side-note-number></side-note-number>
+    <side-note-contents>
+        <span class="sidenote-paren"> (sidenote: </span>
+        <note-content></note-content>
+        <span class="sidenote-paren">)</span>
+    <side-note-contents>
+</template>
+<script>
+    (document.querySelectorAll("side-note")).forEach((sn, i) => {
+            const sideNote = document.getElementById("sidenote-template")
+                    .content.cloneNode(true)
+            sideNote.querySelector("note-content").innerHTML = sn.innerHTML
+            sn.innerHTML = ""
+            sn.appendChild(sideNote)
+    })
+</script>

@@ -1,0 +1,46 @@
+body {
+  counter-reset: note-counter;
+}
+side-note:not([numberless])::before {
+  counter-increment: note-counter;
+  content: "[" counter(note-counter) "]";
+  font-size: 12px;
+  vertical-align: top;
+  position: relative;
+  top: -0.5em;
+}
+@media (max-width: 1024px) {
+  side-note::before {
+    display: none !important;
+  }
+}
+.sidenote-paren {
+  display: none;
+}
+side-note-contents {
+  position: absolute;
+  font-size: 13px;
+  line-height: 1.1em;
+  width: 14em;
+  display: inline;
+  right: -16em;
+  /*  margin-top: -1.4em;*/
+}
+note-content {
+  display: inline;
+  position: relative;
+}
+side-note:not([numberless]) note-content::before {
+  content: "[" counter(note-counter) "] ";
+}
+@media (max-width: 1024px) {
+  side-note-contents {
+    position: unset;
+    display: block;
+    width: auto;
+    margin: 10px;
+  }
+  note-content::before, side-note::before {
+    display: none !important;
+  }
+}
