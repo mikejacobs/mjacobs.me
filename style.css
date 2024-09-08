@@ -253,7 +253,7 @@ top-note {
   list-style-type: none;
 }
 #wiki-list li {
-  margin-bottom: 15px;
+  /*  margin-bottom: 15px;*/
   margin-left: 0px !important;
 }
 .wiki-list-title {

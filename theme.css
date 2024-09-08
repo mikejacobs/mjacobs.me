@@ -70,7 +70,8 @@ h5 {
 }
 h6 {
   color: darkmagenta;
-  font-size: 20px;
+  /*  font-size: 20px;*/
+  font-size: 1.6em;
   text-align: center;
 }
 h1, h2, h3 {
