@@ -2,7 +2,7 @@
 title: "Hyperlasso"
 layout: project
 featuredImage:
-featuredImage: "aristid.jpg"
+featuredImage: "preview.gif"
 category: "tech"
 date: "10/01/2016"
 description: "Fractal music slicing"

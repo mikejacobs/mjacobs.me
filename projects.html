@@ -23,6 +23,10 @@
     margin: 10px auto 0px;
     font-weight: bold;
   }
+/*  #project-list li:nth-child(even) {*/
+  #project-list li {
+    margin-top: 6em;
+  }
   #project-list li:nth-child(even) {
     margin-top: 12em;
   }
@@ -41,6 +45,7 @@
   </h2>
   <ul id="project-list">
     {% for page in site.projects reversed %}
+    {% if page.title != "Hyperlasso" and page.title != "Reclaimed" %}
     <li>
       <a href="{{ page.url }}">
         <img src='{{page.url | replace: "index.html", ""}}{{page.featuredImage}}'/>
@@ -60,6 +65,7 @@
       </div> -->
       <!-- <img src='{{page.path | replace: "index.md", ""}}{{page.featuredImage}}'/> -->
     </li>
+    {% endif %}
     {% endfor %}
   </ul>
 </section>
