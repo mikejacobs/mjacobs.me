@@ -3,11 +3,15 @@
 {% include header.html %}
 
 <section>
-    <h6 class="space-mono"style="text-align: left; margin-top:0px; color: var(--cactus-green-light);margin-bottom: 1em; line-height: 1.3em;">
-    Welcome to my corner of the post-digital-enclosure cyberbadlands.</em>
-    </h6>
+    <div class="space-mono" style="text-align: left; margin-top:0px; margin-bottom: 1em; line-height: 1.6em;">
+        <em>
+            <span style="font-weight: normal; opacity:0.5;">::arms waving in your direction::</span><br><br>
+            <span style="font-weight: 600; font-size:1.6em;">Welcome to my corner of the post-digital-enclosure cyberbadlands.</span>
+        </em>
+    </div>
 </section>
 <section>
+    <h3><a id="recent">Recent</a></h3>
     <ul id="wiki-list">
         {% assign sorted = site.memex | sort: 'published' | reverse %}
         {% for item in sorted limit: 6 %}
