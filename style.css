@@ -131,7 +131,7 @@ main {
 footer {
   clear: both;
 }
-p, ul, blockquote, ol {
+p, ul, blockquote, ol, details {
   /*  font-family: Menlo, "Courier New", monospace;*/
   /*  font-size: 12px;*/
   line-height: 1.4em;
@@ -159,10 +159,15 @@ section.wide {
 }
 details {
   margin-top: 20px;
-  margin-left: 0px;
+  margin-left: 40px;
 }
 summary {
   cursor: pointer;
+  margin-left: -40px;
+  /*  margin-bottom: 20px;*/
+}
+details[open] summary {
+  margin-bottom: 20px;
 }
 summary:hover {
   text-decoration: underline;
