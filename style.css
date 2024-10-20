@@ -148,6 +148,11 @@ ol, ul {
 li {
   margin-left: 5px;
 }
+blockquote.large {
+  font-size: 20px;
+  font-style: italic;
+  font-family: SpaceMono, Menlo, Helvetica-neue, Helvetica, sans-serif;
+}
 section {
   position: relative;
   clear: both;
@@ -283,7 +288,11 @@ time {
   font-size: 14px;
   display: block;
   margin-top: -20px;
-  /*  font-size: 12px;*/
+  opacity: 0.5;
+  font-family: Menlo, "Courier New", monospace;
+}
+.license {
+  font-size: 14px;
   opacity: 0.5;
   font-family: Menlo, "Courier New", monospace;
 }
