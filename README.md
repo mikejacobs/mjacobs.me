@@ -1,4 +1,4 @@
-# mjacobs.me: personal website
+# jacmb.com: personal website
 
 ## Run locally
 - use chruby to install specific ruby version mentioned https://pages.github.com/versions/
