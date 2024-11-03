@@ -232,7 +232,7 @@ abbr[title] {
 }
 hr {
   margin: 60px 0px;
-  border: 1px dotted black;
+  border: 1px dotted var(--link-color);
   opacity: 0.2;
 }
 table-of-contents {
