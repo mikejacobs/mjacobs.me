@@ -1,6 +1,6 @@
 ---
 ---
-{% include header.html %}
+
 
 <section>
     <div class="space-mono" style="text-align: left; margin-top:0px; margin-bottom: 1em; line-height: 1.6em;">
@@ -10,7 +10,7 @@
         </em>
     </div>
 </section>
-<section>
+<section style="display: none;">
     <h3><a id="recent">Recent</a></h3>
     <ul id="wiki-list">
         {% assign sorted = site.memex | sort: 'published' | reverse %}
