@@ -1,0 +1,103 @@
+{
+    "latitude": 32.223236,
+    "longitude": -110.96512,
+    "generationtime_ms": 0.1379251480102539,
+    "utc_offset_seconds": -25200,
+    "timezone": "America/Denver",
+    "timezone_abbreviation": "GMT-7",
+    "elevation": 730,
+    "daily_units": {
+        "time": "iso8601",
+        "weather_code": "wmo code",
+        "temperature_2m_max": "°F",
+        "temperature_2m_min": "°F",
+        "sunrise": "iso8601",
+        "sunset": "iso8601",
+        "daylight_duration": "s",
+        "precipitation_sum": "inch",
+        "precipitation_probability_max": "%"
+    },
+    "daily": {
+        "time": [
+            "2025-03-02",
+            "2025-03-03",
+            "2025-03-04",
+            "2025-03-05",
+            "2025-03-06",
+            "2025-03-07",
+            "2025-03-08"
+        ],
+        "weather_code": [
+            3,
+            3,
+            0,
+            3,
+            51,
+            51,
+            0
+        ],
+        "temperature_2m_max": [
+            74.9,
+            56.4,
+            64.8,
+            76,
+            68.5,
+            56.6,
+            62.6
+        ],
+        "temperature_2m_min": [
+            44.6,
+            39.5,
+            32.8,
+            55.7,
+            53.3,
+            45.8,
+            47.7
+        ],
+        "sunrise": [
+            "2025-03-02T06:49",
+            "2025-03-03T06:48",
+            "2025-03-04T06:46",
+            "2025-03-05T06:45",
+            "2025-03-06T06:44",
+            "2025-03-07T06:43",
+            "2025-03-08T06:42"
+        ],
+        "sunset": [
+            "2025-03-02T18:22",
+            "2025-03-03T18:23",
+            "2025-03-04T18:23",
+            "2025-03-05T18:24",
+            "2025-03-06T18:25",
+            "2025-03-07T18:26",
+            "2025-03-08T18:26"
+        ],
+        "daylight_duration": [
+            41584.55,
+            41702.37,
+            41820.07,
+            41937.58,
+            42054.8,
+            42171.65,
+            42288.44
+        ],
+        "precipitation_sum": [
+            0,
+            0,
+            0,
+            0,
+            0.004,
+            0.067,
+            0
+        ],
+        "precipitation_probability_max": [
+            0,
+            2,
+            1,
+            1,
+            31,
+            34,
+            3
+        ]
+    }
+}

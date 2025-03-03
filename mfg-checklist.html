@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DMDM MFG Checklist</title>
+	<style>
+	    #checklist li {
+	        list-style-type: none;
+	        /*margin-bottom: 20px;*/
+	        /*display: block;*/
+	        border: 2px solid black;
+	        border-bottom: 0px solid black;
+	        padding: 10px;
+	    }
+	</style>
+</head>
+<body>
+	<ul id="checklist"></ul>
+	<template id="checklist-item">
+		<li></li>
+	</template>
+	<script type="text/javascript">
+		var source = [
+			{description: "Tubed", info:"(backing, inner webbing, omni tape – single cross bar)", level: 0, kind: "sewing"}, 
+			{description: "Tip rounded", info:"", level: 1, kind: "assembly"}, 
+			{description: "Rounded tip sealed", info:"", level: 2, kind: "assembly"}, 
+			{description: "Rounded tip sewn", info:"", level: 3, kind: "assembly"}, 
+			{description: "Second cross bar sewn", info:"(closer to rounded tip)", level: 3, kind: "sewing"}, 
+			{description: "Backplate riveted", info:"", level: 1, kind: "assembly"}, 
+			{description: "Windlass added", info:"", level: 2, kind: "assembly"}, 
+			{description: "Buckle added", info:"(w/ binder clip)", level: 2, kind: "assembly"}, 
+			{description: "Buckle sewn", info:"(double stitch using spacer)", level: 3, kind: "sewing"}, 
+			{description: "Windlass clip added", info:"", level: 1, kind: "assembly"}, 
+			{description: "Hook & loop adhered to clip", info:"", level: 2, kind: "sewing"}, 
+			{description: "Final inspection", info:"", level: 0, kind: "sewing"}, 
+		];
+		let checklist = document.querySelector("#checklist");
+		let template = document.querySelector("#checklist-item");
+
+		source.forEach(item => {
+			let clone = template.content.cloneNode(true);
+			let el = clone.querySelector("li")
+			el.innerText = item.description;
+// 			let shade = 
+			el.style["border-left"] = `${item.level * 20 + 2}px solid black`;
+// 			el.classList.add(`level-${item.level}`);
+			
+			checklist.appendChild(clone);
+		});
+
+	</script>
+</body>
+</html>

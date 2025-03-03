@@ -1,0 +1,332 @@
+<head>
+	<style type="text/css">
+		body {
+			font-family: "Atkinson Hyperlegible";
+		}
+
+		h1 {
+			font-size: 38px;
+		}
+
+		column-title {
+			text-transform: uppercase;
+			font-weight: bold;
+			color: #7C7C7C;
+		}
+
+		.month {
+			display:none;
+			width: 400px;
+		}
+		.month.active {
+			display:block;
+		}
+		.month.next {
+			display:block;
+		}
+		.month ul {
+			padding-left: 15px;
+		}
+		.month li {
+			margin-bottom: 10px;
+/*			list-style-type: none;*/
+		}
+		.month li small{
+			display: none;
+			margin-top: 10px;
+		}
+		.month li input[type="checkbox" i] {
+			position:absolute;
+			margin-left: -24px;
+		}
+		forecast-chart {
+			display: block;
+			width: 100px;
+			height: 100px;
+		}
+		/*	grid	*/
+		/* container */
+		.responsive-three-column-grid {
+		    display:block;
+		}
+
+		/* columns */
+		.responsive-three-column-grid > page-column {
+		    padding:1rem;
+		    display: block;
+		}
+
+		/* tablet breakpoint */
+		@media (min-width:768px) {
+		    .responsive-three-column-grid {
+		        display: grid;
+		        grid-auto-rows: 1fr;
+		        grid-template-columns: 1fr 1fr 1fr;
+		    }
+		}
+
+	</style>
+<!-- 	<script type="text/javascript">
+		const latitude = 32.2309868363516;
+		const longitude = -110.91850343900622;
+	</script> -->
+</head>
+<body>
+	<h1>01 March '25</h1>
+	<div class="responsive-three-column-grid">
+		<page-column id="log">
+			<column-title>Grow log</column-title>
+		</page-column>
+		<page-column id="weather">
+			<column-title>Current Conditions</column-title>
+			<current-icon></current-icon>
+			<current-temp></current-temp>
+			<current-text></current-text>
+		</page-column>
+		<page-column id="guide">
+			<column-title>Growing Guidance</column-title>
+			<div id="January" class="month">
+				<h2 class="month-name">January</h2>
+				<p>Sow beets, lettuce, carrots, parsley, peas, radishes, spinach, turnips, onions, potatoes, cabbage, broccoli, kohlrabi, kale, Chinese cabbage, Chinese celery, cilantro, collards, leeks, mustard greens, Swiss chard</p>
+				<p>Plant bare-root plants</p>
+			</div>
+			<div id="February" class="month">
+				<h2 class="month-name">February</h2>
+				<p>Plant beets, broccoli, cabbage, carrot, cauliflower, Chinese cabbage, Chinese celery, cilantro, collard, kale, kohlrabi, lettuce, mustard green, onion sets, pea, radish, spinach, Swiss chard, turnip, Jerusalem artichoke</p>
+				<p>Plant bush beans, cucumbers, squash, dill, chard, and sweet corn late in the month</p>
+				<p>Mulch potatoes and onion</p>
+			</div>
+			<div id="March" class="month">
+				<h2 class="month-name">March</h2>
+				<p>March 15 is traditionally the last day of frost. If the native velvet mesquite trees are leafing out that, too, is a good sign that we will now be frost free until fall.</p>
+				<ul>
+					<li>Last sowing of carrots, beets, and heat tolerant leaf lettuce</li>
+					<li>Set out transplants of tomatoes and peppers</li>
+					<li>Plant basil, squash, sweet corn, Lima beans, snap beans, cantaloupes, watermelon
+					<small>
+						If planting corn consider the traditional "three sisters" arrangement of corn, beans, and squash or melons together. The corn creates a trellis and shade. The beans fix nitrogen in the soil and grow up the corn. The squash or melons
+						take advantage of the shade and nitrogen while creating a living-mulch over the ground to protect the soil.
+					</small>
+					</li>
+					<li>After danger of frost you can plant Lima beans, black-eyed peas, cane sorghum, chilies, chiltepines, cotton, gourds, indigo, panic grass, teosinte, tobacco, tomatillos</li>
+					<li>Mulch trees, shrubs, and vegetables (will retain moisture and lessen stress on plants as temperatures warm up</li>
+					<li>Plant such annuals as marigolds to add color and deter pests from garden</li>
+					<li>You may want to sow tall plants such as sunflowers and amaranth on the west side of your plot to screen other plants from the hot afternoon sun.</li>
+				</ul>
+				
+			</div>
+			<div id="April" class="month">
+				<h2 class="month-name">April</h2>
+				<p>
+					Plant okra, asparagus, beans, cherry tomatoes, sunflowers, amaranth, cucumber, eggplant, melons, Lima beans, black-eyed peas, cane sorghum, chilies, chiltepines, cotton, gourds, indigo, panic grass, teosinte, tobacco, tomatillos,
+					muskmelon
+				</p>
+				<p>Still not too late to plant pumpkins, cantelopes, squash</p>
+				<p>Plant summer bulbs: caladium, anna, dahlia, glads, iris</p>
+				<p>
+					Warm-to-hot-season greens such as amaranth, purslane, lambsquarters, Malabar spinach, and Yakina Savoy lettuce can be sown now and grown through summer — all will appreciate afternoon shade from a tall trellis, native mesquite tree,
+					or sunflowers to the west.
+				</p>
+			</div>
+			<div id="May" class="month">
+				<h2 class="month-name">May</h2>
+				<p>Plant heat tolerant veggies: Lima beans, eggplants, peanuts, peppers, sweet potatoes</p>
+			</div>
+			<div id="June" class="month">
+				<h2 class="month-name">June</h2>
+				<p>Cover tomatoes with shade cloth or perhaps you have grown some shade</p>
+				<p>Sow fall tomatoes indoors</p>
+				<p>Make sure you have covered the soil with mulch to retain moisture and reduce plant stress</p>
+			</div>
+			<div id="July" class="month">
+				<h2 class="month-name">July</h2>
+				<p>With the monsoon rains plant tepary beans, devil’s claw, corn, purslane</p>
+				<p>Start tomatoes, peppers, eggplants inside</p>
+				<p>If you want, some folks now prune their tomato plants by 2/3</p>
+				<p>Hand pollinate squash and melon flowers in the early morning or increase pollinator habitat and they’ll do the work for you</p>
+				<p>
+					With the first good summer rain, plant seed of native perennial plants within or beside water-harvesting earthworks, especially coyote gourds.<br />
+					Wildlands Restoration is a great source for native Sonoran desert wildflower and restoration seed (Spadefoot Nursery and Native Seeds/SEARCH sell their seed).
+				</p>
+			</div>
+			<div id="August" class="month">
+				<h2 class="month-name">August</h2>
+				<p>You can sow sweet corn again</p>
+				<p>Set out tomato, pepper plants mid month</p>
+				<p>Direct seed cucumbers and bush beans late in the month</p>
+				<p>Set out transplants of broccoli, cabbage, and cauliflower</p>
+			</div>
+			<div id="September" class="month">
+				<h2 class="month-name">September</h2>
+				<p>Plant most greens such as spinach, lettuce, chard, collards, kale, mustard greens, etc.</p>
+				<p>Plant garlic, carrots, onions, parsley, peas, cilantro, radishes, sweet peas, beets, broccoli, cabbage, Chinese cabbage and celery, turnips, garbanzos, lentils, desert chia, rutabaga, artichoke, and nasturtiums</p>
+				<p>
+					Start thinking about neighborhood street and shade tree planting programs. Contact Trees for Tucson 791-3109 and see
+					<a href="https://dunbarspringneighborhoodforesters.org/plant-resources/recommended-native-tree-understory-plant-lists/">www.DunbarSpringNeighborhoodForesters.org</a> for recommended tree and understory plant lists.
+				</p>
+			</div>
+			<div id="October" class="month">
+				<h2 class="month-name">October</h2>
+				<p>Plant carrots, beets, broccoli, spinach, garbanzos, lentils, desert chia, cilantro, peas, parsnip, salsify</p>
+				<p>
+					Sow native wildflowers.<br />
+					Wildlands Restoration is a great source for native Sonoran desert wildflower and restoration seed (Spadefoot Nursery and Native Seeds/SEARCH sell their seed).
+				</p>
+			</div>
+			<div id="November" class="month">
+				<h2 class="month-name">November</h2>
+				<p>Plant peas, fava beans, beets, carrots, lettuce, spinach, mustard, turnips, chard, horseradish, rhubarb</p>
+				<p>Set out seedlings of celery, cabbage, broccoli, Brussel sprouts</p>
+				<p>Plant hardy herbs like cilantro</p>
+				<p>Plant hollyhocks, calendula, alyssum, bachelor buttons, freesias</p>
+			</div>
+			<div id="December" class="month">
+				<h2 class="month-name">December</h2>
+				<p>Late in month, start tomatoes, peppers, and eggplants indoors</p>
+				<p>
+					With the first good winter rain, <a href="https://dunbarspringneighborhoodforesters.org/welcome/planting-native-seeds-with-the-rains/">plant native wildflower seed within and beside water-harvesting earthworks</a>.<br />
+					Wildlands Restoration is a great source for native Sonoran desert wildflower and restoration seed (Spadefoot Nursery and Native Seeds/SEARCH sell their seed).
+				</p>
+			</div>
+		</col-umn>
+	<forecast-chart></forecast-chart>
+	<!-- <img src="https://forecast.weather.gov/meteograms/Plotter.php?lat=32.2219&lon=-110.9712&wfo=TWC&zcode=AZZ504&gset=20&gdiff=9&unit=0&tinfo=MN7&ahour=0&pcmd=10001111100000000000000000000000000000000000000000000000000&lg=en&indu=1!1!1!&dd=&bw=&hrspan=48&pqpfhr=6&psnwhr=6"> -->
+	<script type="text/javascript">
+		// growing guidance
+		const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+		const month_num = (new Date()).getMonth();
+		const next_month_num = month_num + 1 < 12 ? month_num + 1 : 0;
+
+		let this_month = month[month_num];
+		let next_month = month[next_month_num];
+
+		let this_month_el = document.querySelector("#" + this_month);
+		let next_month_el = document.querySelector("#" + next_month);
+
+		this_month_el.classList.add("active")
+		next_month_el.classList.add("next")
+
+
+		// weather
+		const latitude = 32.2219
+		const longitude = -110.9712
+
+		const weather_icons = "weather-icons-wmo.json"
+		const nws_xml = `https://forecast.weather.gov/MapClick.php?lat=${latitude}&lon=${longitude}&unit=0&lg=english&FcstType=dwml`
+		const open_meteo = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,precipitation_sum,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FDenver`
+
+		function init() {
+			console.log("loaded");
+
+			Promise.all([
+				// fetch(nws_xml),
+				fetch(weather_icons)
+				fetch(open_meteo)
+			])
+			.then(responses => {
+				return Promise.all(responses.map(response => {
+					return response.text();
+				}));
+			})
+			.then(parseResponses)
+			.catch(error => {
+				console.log(error);
+			});
+		}
+
+		function parseResponses(rtexts) {
+			rtexts.forEach(rtext => {
+				console.log(`rtext[0]:`, rtext[0]);
+				if (rtext[0] == "<") {
+				parseXML(rtext)
+				} else {
+
+				}
+			})
+			
+		}
+
+		function parseXML(xml) {
+		    const parser = new DOMParser();
+		    const xmlDoc = parser.parseFromString(xml, "text/xml");
+		    // console.log(xmlDoc.documentElement.nodeName);
+		    // console.log(xmlDoc.documentElement);
+		    // let forecast = xmlDoc.querySelector("data[type='forecast']")
+		    // console.log("forecast", forecast)
+
+		    // let lows_data = xmlDoc.querySelector("temperature[type='minimum']")
+		    // let lows = Array.from(lows_data.querySelectorAll("value"))
+		    // 	.map(low => parseInt(low.childNodes[0].nodeValue))
+		    // console.log("lows", lows)
+		    // let highs_data = xmlDoc.querySelector("temperature[type='maximum']")
+		    // let highs = Array.from(highs_data.querySelectorAll("value"))
+		    // 	.map(high => parseInt(high.childNodes[0].nodeValue))
+		    // console.log("both", interleave(lows, highs))
+
+		    // time layouts
+		    let time_layouts = {};
+		    Array
+	    	.from(xmlDoc.querySelectorAll("time-layout"))
+	    	.forEach(cond => {
+	    		let key = cond.querySelector("layout-key").childNodes[0].nodeValue
+	    		// console.log(`key:`, key);
+	    		let this_layout = {};
+	    		time_layouts[key] = Array
+	    			.from(cond.querySelectorAll("start-valid-time"))
+	    			.map(time_el => {
+	    				// console.log(`time_el:`, time_el);
+	    				return {
+	    					name: time_el.getAttribute("period-name"), 
+	    					time: time_el.childNodes[0].nodeValue
+	    				}
+	    			})
+	    	});
+		    console.log(`time_layouts:`, time_layouts);
+
+
+
+		    // let weather = xmlDoc.querySelector("weather[time-layout='k-p12h-n14-1'")
+		    // let conditions = Array
+		    // 	.from(weather.querySelectorAll("weather-conditions"))
+		    // 	.map(cond => cond.getAttribute("weather-summary"))
+		    // conditions.forEach()
+		    // console.log(`conditions:`, conditions);
+		}
+
+		const interleave = ([ x, ...xs ], ys = []) =>
+			x === undefined
+				? ys  
+				: [ x, ...interleave (ys, xs) ];
+
+		// SPARKLINES
+		/* Open in Val Town: https://www.val.town/v/stevekrouse/sparklineSVG */
+		function sparklineSVG({ strokeWidth, data, height, width, fill, stroke }) {
+		  let vb_width = data.length - 1;
+		  let vb_height = Math.max(...data);
+		  let path = [
+		    "M",
+		    ...data.map((value, i) => {
+		      let x = i;
+		      let y = vb_height - value;
+		      return `${x} ${y}${i < vb_width ? " L " : ""}`;
+		    }),
+		  ];
+		  let closedPath = [...path, ` L ${vb_width} ${vb_height} L 0 ${vb_height} Z`];
+		  return `
+		        <svg height="${height}" width="${width}" viewBox="0 0 ${vb_width} ${vb_height}" preserveAspectRatio="none" role="img" xmlns="http://www.w3.org/2000/svg">
+		            <path d="${
+		    closedPath.join("")
+		  }" stroke="transparent" fill="${fill}" />
+		            <path d="${
+		    path.join("")
+		  }" stroke-width="${strokeWidth}" vector-effect="non-scaling-stroke" stroke="${stroke}" fill="transparent" />
+		        </svg>
+		        `;
+		}
+		// Forked from https://jsfiddle.net/buk3dsqv/
+
+		init();
+
+	</script>
+</body>
