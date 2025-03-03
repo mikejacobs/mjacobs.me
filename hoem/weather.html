@@ -2,6 +2,8 @@
 	<style type="text/css">
 		body {
 			font-family: "Atkinson Hyperlegible";
+			background: linear-gradient(to bottom, rgba(137,185,136,0.25) 0%,rgba(255,255,255,1) 10%);
+/*			background: linear-gradient(to bottom, #88b98a 0%,#ffffff 20%);*/
 		}
 
 		h1 {
@@ -44,6 +46,19 @@
 			width: 100px;
 			height: 100px;
 		}
+		.forecast-day {
+
+		}
+		.current_img {
+			width: 64px;
+			height: 64px;
+			display: inline;
+		}
+		.daily_img {
+			width: 24px;
+			height: 24px;
+			display: inline;
+		}
 		/*	grid	*/
 		/* container */
 		.responsive-three-column-grid {
@@ -79,9 +94,19 @@
 		</page-column>
 		<page-column id="weather">
 			<column-title>Current Conditions</column-title>
-			<current-icon></current-icon>
-			<current-temp></current-temp>
-			<current-text></current-text>
+			<div id="current">
+				<current-icon></current-icon>
+				<current-temp-f></current-temp-f>
+				<current-temp-c></current-temp-c>
+				<current-text></current-text>
+			</div>
+			<column-title>Today's Forecast</column-title>
+			<div id="today_forecast">
+			</div>
+			<column-title>7 Day Forecast</column-title>
+			<div id="daily_forecast">
+				
+			</div>
 		</page-column>
 		<page-column id="guide">
 			<column-title>Growing Guidance</column-title>
@@ -212,39 +237,76 @@
 		const latitude = 32.2219
 		const longitude = -110.9712
 
-		const weather_icons = "weather-icons-wmo.json"
-		const nws_xml = `https://forecast.weather.gov/MapClick.php?lat=${latitude}&lon=${longitude}&unit=0&lg=english&FcstType=dwml`
-		const open_meteo = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,precipitation_sum,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FDenver`
+		const weather_icons_path = "weather-icons/production/fill/svg-static/"
+		// const weather_icons_path_line = "weather-icons/production/fill/svg-static/"
+		const weather_icons_path_line = "svg-static/"
+		const weather_icons_url = "weather-icons-wmo.json"
+		const nws_xml_url = `https://forecast.weather.gov/MapClick.php?lat=${latitude}&lon=${longitude}&unit=0&lg=english&FcstType=dwml`
+		const open_meteo_url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,is_day,precipitation,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,precipitation_sum,precipitation_probability_max&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FDenver`
+		let om_data, nws_data, weather_icons;
 
 		function init() {
 			console.log("loaded");
 
 			Promise.all([
-				// fetch(nws_xml),
-				fetch(weather_icons)
-				fetch(open_meteo)
+				fetch(open_meteo_url).then(resp => resp.json()).then(json => om_data = json),
+				fetch(weather_icons_url).then(resp => resp.json()).then(json => weather_icons = json),
+				fetch(nws_xml_url).then(resp => resp.text()).then(text => nws_data = text),
 			])
-			.then(responses => {
-				return Promise.all(responses.map(response => {
-					return response.text();
-				}));
-			})
-			.then(parseResponses)
+			.then(go)
 			.catch(error => {
 				console.log(error);
 			});
 		}
 
+		function go() {
+			console.log("all loaded")
+			console.log(`open_meteo:`, om_data);
+			console.log(`weather_icons:`, weather_icons);
+			// console.log(`nws_data:`, nws_data);
+			let current_is_day = om_data.current.is_day ? "day" : "night"
+			let weather_state = weather_icons[om_data.current.weather_code][current_is_day]
+			document.querySelector("current-icon").innerHTML = `<img class="current_img" src="${weather_icons_path}${weather_state.icon}">`
+			document.querySelector("current-text").innerText = weather_state.description
+			document.querySelector("current-temp-f").innerHTML = `${Math.round(om_data.current.temperature_2m)}&deg;F`
+			document.querySelector("current-temp-c").innerHTML = `${Math.round(FtoC(om_data.current.temperature_2m))}&deg;C`
+			
+			daily_forecast = document.querySelector("#daily_forecast");
+
+			const weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+			om_data.daily.time.forEach((date, day) => {
+				let cont = document.createElement("div")
+				cont.classList.add("forecast-day")
+				let dow = (new Date(date)).getDay();
+
+				cont.innerHTML += `
+					${weekday[dow]}
+					<img class="daily_img" title="${weather_icons[om_data.daily.weather_code[day]]["day"].description}" 
+					src="${weather_icons_path_line}${weather_icons[om_data.daily.weather_code[day]]["day"].icon}">
+					h: ${om_data.daily.temperature_2m_max[day]}, 
+					l: ${om_data.daily.temperature_2m_min[day]},
+				`;
+				daily_forecast.appendChild(cont)
+			})
+		}
+
 		function parseResponses(rtexts) {
+			// todo do this by mime type in promise
 			rtexts.forEach(rtext => {
 				console.log(`rtext[0]:`, rtext[0]);
 				if (rtext[0] == "<") {
-				parseXML(rtext)
+					parseXML(rtext)
 				} else {
-
+					parseJSON(rtext)
 				}
 			})
 			
+		}
+
+		function parseJSON(json) {
+			const obj = JSON.parse(json);
+			console.log(`obj:`, obj);
 		}
 
 		function parseXML(xml) {
@@ -298,6 +360,8 @@
 			x === undefined
 				? ys  
 				: [ x, ...interleave (ys, xs) ];
+
+		const FtoC = (F) => (F-32) / 1.8;
 
 		// SPARKLINES
 		/* Open in Val Town: https://www.val.town/v/stevekrouse/sparklineSVG */
