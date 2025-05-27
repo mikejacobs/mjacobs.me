@@ -1,0 +1,55 @@
+---
+---
+{% include header.html %}
+
+<section>
+    <div class="space-mono" style="text-align: left; margin-top:0px; margin-bottom: 1em; line-height: 1.6em;">
+        <em>
+            <span style="font-weight: normal; opacity:0.5;">::arms waving in your direction::</span><br><br>
+            <span style="font-weight: 600; font-size:1.6em;">Welcome to my corner of the post-digital-enclosure cyberbadlands.</span>
+        </em>
+    </div>
+</section>
+<section style="">
+    <h3><a id="recent">Recent</a></h3>
+    <ul id="wiki-list">
+        {% assign sorted = site.memex | sort: 'published' | reverse %}
+        {% for item in sorted limit: 6 %}
+
+        {% if item.status != "draft" %}
+
+        <li>
+            <wiki-date>{{ item.updated | date: "%b %d %Y" }}</wiki-date>
+            <a class="wiki-list-title" href="{{ item.url }}">{{ item.title }}</a>
+            <!--           {% for tag in item.tags %}
+          <wiki-tag>{{ tag }}</wiki-tag>
+          {% endfor %} -->
+        </li>
+        {% endif %}
+        {% endfor %}
+        <br>
+        <li><a class="wiki-list-title" href="/log">More...</a>
+</li>
+    </ul>
+</section>
+<!--     <section>
+      <h2><a id="recent">Topics</a></h2>
+      <p>
+      {% assign tags =  site.wiki | map: 'tags' | join: ','  | split: ',' | uniq %}
+      {% for tag in tags %}
+      <wiki-tag>{{ tag }}</wiki-tag>
+        <ul>
+        {% for note in site.wiki %}
+          {% if note.tags contains tag %}
+          <li><a href="{{ site.baseurl }}{{ note.url }}">{{ note.title }}</a></li>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </p>
+    </section> -->
+
+{% include footer.html %}
+</main>
+</body>
+
+</html>
