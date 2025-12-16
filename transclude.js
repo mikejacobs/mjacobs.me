@@ -1,3 +1,6 @@
+// TODO:
+// - research alternatives: https://github.com/justinfagnani/html-include-element,
+
 var transclusions = [];
 function transclude(src, toReplace, live, callback, cache) {
   // this function is meant to be called in javascript
