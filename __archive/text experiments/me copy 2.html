@@ -16,7 +16,7 @@
         position:relative;
     }
     h1{
-        font-size: 30px;
+        font-size: 80px;
         font-weight:100;
         /*font-style: oblique;*/
         letter-spacing: 1.2px;
@@ -43,28 +43,27 @@
     }
     .mid{
         position:absolute;
-        top:40px;
+        top:80px;
         width: 100%;
-        height: 20px;
+        height: 80px;
         overflow: hidden;
         /*background: black;*/
         transition: all 5s ease-in-out;
         margin-top: 4px;
-        opacity: : .2;
 
     }
     .mid.on{
-        height: 20px;
+        height: 40px;
         transition: all 1s ease-in-out;
 
     }
     .mid span{
         top: 0px;
-        height: 10px;
+        height: 2px;
         position:relative;
         /*background: white;*/
         transition: all 5s ease-in-out;
-        line-height:20px;
+        line-height:40px;
     }
     .mid.on span{
         top: -85px;
@@ -80,7 +79,7 @@
 <script type="text/javascript">
     // janky shit
     var isOn = true;
-    var text = "MIKE JACOBS"
+    var text = "Live Worms"
     var numMids = 100
 
     window.onload = function(){

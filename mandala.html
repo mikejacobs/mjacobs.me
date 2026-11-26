@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mandala</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background: var(--bg, #0b0a12);
+        font-family: "Space Mono", ui-monospace, monospace;
+      }
+
+      #stage {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 0;
+        height: 0;
+      }
+
+      /* zero-size boxes at the center; controls are placed around them */
+      .ring,
+      .spin {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .ring {
+        animation: breathe 9s ease-in-out infinite;
+      }
+
+      .spin {
+        animation: spin 240s linear infinite;
+      }
+
+      /* hovering any control in a ring holds that ring still so it can be used */
+      .ring:hover,
+      .spin:hover {
+        animation-play-state: paused;
+      }
+
+      .el {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+        box-sizing: border-box;
+        transform-origin: 0 0;
+      }
+
+      .band {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        border-radius: 50%;
+        box-sizing: border-box;
+        pointer-events: none;
+      }
+
+      .band legend {
+        margin: 0 auto;
+        padding: 0 6px;
+        font-size: 11px;
+      }
+
+      #core {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        font-size: 22px;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.02);
+        }
+      }
+
+      #ctl {
+        position: fixed;
+        left: 12px;
+        bottom: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 11px;
+        color: var(--fg, #fff);
+        opacity: 0.6;
+      }
+
+      #ctl:hover {
+        opacity: 1;
+      }
+
+      #ctl input[type="number"] {
+        width: 7em;
+      }
+
+      body.paused .ring,
+      body.paused .spin {
+        animation-play-state: paused;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ring,
+        .spin {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="stage"></div>
+    <form id="ctl" onsubmit="return false">
+      <label>seed <input id="seed" type="number" min="0" /></label>
+      <button id="new" type="button">new</button>
+      <label><input id="spinning" type="checkbox" checked /> spin</label>
+      <output id="count"></output>
+    </form>
+
+    <script>
+      const PALETTES = [
+        { bg: "#0b0a12", c: ["#f6c453", "#f0754f", "#e2366b", "#8e44ad", "#3fb8af", "#f4efe1"] },
+        { bg: "#071a1f", c: ["#9be7c4", "#2ec4b6", "#ffbf69", "#ff6b6b", "#cbf3f0", "#5e60ce"] },
+        { bg: "#140b05", c: ["#ffb703", "#fb8500", "#d62828", "#eae2b7", "#8ecae6", "#219ebc"] },
+        { bg: "#0d0221", c: ["#ff2a6d", "#05d9e8", "#d1f7ff", "#7b2cbf", "#ffd166", "#01c38d"] },
+        { bg: "#101010", c: ["#e9d8a6", "#ee9b00", "#ca6702", "#bb3e03", "#94d2bd", "#0a9396"] },
+        { bg: "#05070f", c: ["#c0fdff", "#a0c4ff", "#bdb2ff", "#ffc6ff", "#fdffb6", "#ffadad"] },
+      ];
+
+      const GLYPHS = "✦✧❖✺✹❋✿❀◆◇●○◐◑☼★☆⬡⬢✶✷✸❂❉".split("");
+
+      // seeded PRNG (mulberry32) so a seed in the URL hash reproduces a mandala
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let t = Math.imul(a ^ (a >>> 15), 1 | a);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      let rand;
+      const range = (a, b) => a + rand() * (b - a);
+      const pick = (arr) => arr[Math.floor(rand() * arr.length)];
+      const chance = (p) => rand() < p;
+      const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+      let count = 0;
+
+      function make(tag, props, style) {
+        const e = document.createElement(tag);
+        Object.assign(e, props);
+        Object.assign(e.style, style);
+        count++;
+        return e;
+      }
+
+      // Each kind builds one control for slot i. x.s = slot size in px.
+      // `local` is a transform applied about the control's center.
+      // `sync(src, els, spin)` mirrors an interaction across the ring.
+      const KINDS = {
+        // toggling one inverts the rest of the ring
+        checkbox: {
+          make: (x) => ({
+            el: make("input", { type: "checkbox", checked: x.wave(x.i) > 0 }, { accentColor: x.c }),
+            local: `scale(${(x.s * 0.8) / 13})`,
+          }),
+          event: "input",
+          sync: (src, els) => els.forEach((e) => e !== src && (e.checked = !e.checked)),
+        },
+        // one radio group per symmetry sector; checking one checks the same slot in every sector
+        radio: {
+          make: (x) => {
+            const pos = x.i % x.m;
+            const e = make(
+              "input",
+              { type: "radio", name: `g${x.id}_${Math.floor(x.i / x.m)}`, checked: pos === 0 },
+              { accentColor: x.c }
+            );
+            e.dataset.pos = pos;
+            return { el: e, local: `scale(${(x.s * 0.8) / 13})` };
+          },
+          event: "change",
+          sync: (src, els) =>
+            els.forEach((e) => e.dataset.pos === src.dataset.pos && (e.checked = true)),
+        },
+        // dragging one shifts the whole ring's wave
+        range: {
+          make: (x) => {
+            const off = Math.round(40 * x.wave(x.i));
+            const e = make(
+              "input",
+              { type: "range", min: 0, max: 100, value: 50 + off },
+              { accentColor: x.c, width: barLen(x) + "px" }
+            );
+            e.dataset.off = off;
+            return { el: e, local: x.radial ? "rotate(90deg)" : "" };
+          },
+          event: "input",
+          sync: (src, els) => {
+            const base = src.value - src.dataset.off;
+            els.forEach((e) => e !== src && (e.value = base + +e.dataset.off));
+          },
+        },
+        progress: {
+          make: (x) => {
+            const e = make(
+              "progress",
+              { max: 100 },
+              { accentColor: x.c, width: barLen(x) + "px", height: clamp(x.s * 0.3, 6, 14) + "px" }
+            );
+            if (!x.indeterminate) e.value = 50 + 45 * x.wave(x.i);
+            return { el: e, local: x.radial ? "rotate(90deg)" : "" };
+          },
+        },
+        meter: {
+          make: (x) => ({
+            el: make(
+              "meter",
+              { min: 0, max: 100, low: 33, high: 66, optimum: 90, value: 50 + 48 * x.wave(x.i) },
+              { width: barLen(x) + "px", height: clamp(x.s * 0.3, 6, 14) + "px" }
+            ),
+            local: x.radial ? "rotate(90deg)" : "",
+          }),
+        },
+        // clicking any button in a ring reverses that ring's spin
+        button: {
+          make: (x) => ({
+            el: make(
+              "button",
+              { type: "button", textContent: x.glyph },
+              {
+                fontSize: x.s * 0.42 + "px",
+                padding: "0.1em 0.35em",
+                color: x.c,
+                borderRadius: x.round ? "50%" : "",
+                cursor: "pointer",
+              }
+            ),
+            local: "",
+          }),
+          event: "click",
+          sync: (src, els, spin) => {
+            const a = spin.getAnimations()[0];
+            if (a) a.playbackRate *= -1;
+          },
+        },
+        select: {
+          make: (x) => {
+            const e = make("select", {}, { fontSize: x.s * 0.32 + "px", color: x.c });
+            const opts = GLYPHS.slice(0, 6);
+            opts.forEach((g) => e.appendChild(new Option(g)));
+            e.selectedIndex = (x.i % x.m) % opts.length;
+            return { el: e, local: "" };
+          },
+          event: "change",
+          sync: (src, els) => els.forEach((e) => (e.selectedIndex = src.selectedIndex)),
+        },
+        color: {
+          make: (x) => ({
+            el: make(
+              "input",
+              { type: "color", value: x.i % 2 && x.alternate ? x.c2 : x.c },
+              { width: x.s * 0.85 + "px", height: x.s * 0.6 + "px", padding: "1px", cursor: "pointer" }
+            ),
+            local: "",
+          }),
+          event: "input",
+          sync: (src, els) => els.forEach((e) => (e.value = src.value)),
+        },
+        text: {
+          make: (x) => ({
+            el: make(
+              "input",
+              { type: "text", value: x.glyph, size: 1 },
+              {
+                width: x.s * 0.85 + "px",
+                fontSize: x.s * 0.42 + "px",
+                textAlign: "center",
+                color: x.c,
+                padding: 0,
+              }
+            ),
+            local: "",
+          }),
+          event: "input",
+          sync: (src, els) => els.forEach((e) => (e.value = src.value)),
+        },
+        number: {
+          make: (x) => ({
+            el: make(
+              "input",
+              { type: "number", min: 0, max: 9, value: x.i % x.m },
+              { width: x.s * 1.1 + "px", fontSize: x.s * 0.32 + "px", color: x.c }
+            ),
+            local: "",
+          }),
+          event: "input",
+          sync: (src, els) => els.forEach((e) => (e.value = src.value)),
+        },
+        details: {
+          make: (x) => {
+            const e = make("details", { open: x.wave(x.i) > 0.5 }, {
+              fontSize: x.s * 0.4 + "px",
+              color: x.c,
+              cursor: "pointer",
+            });
+            e.appendChild(make("summary", { textContent: x.glyph }));
+            e.appendChild(make("span", { textContent: x.glyph2 }, { color: x.c2 }));
+            return { el: e, local: "" };
+          },
+          event: "toggle",
+          sync: (src, els) => els.forEach((e) => e.open !== src.open && (e.open = src.open)),
+        },
+        textarea: {
+          make: (x) => ({
+            el: make(
+              "textarea",
+              { value: x.glyph.repeat(4), rows: 2 },
+              {
+                width: x.s * 0.9 + "px",
+                height: x.s * 0.7 + "px",
+                fontSize: x.s * 0.2 + "px",
+                color: x.c,
+                resize: "none",
+                padding: "1px",
+              }
+            ),
+            local: "",
+          }),
+          event: "input",
+          sync: (src, els) => els.forEach((e) => (e.value = src.value)),
+        },
+      };
+
+      const BARS = ["range", "progress", "meter"];
+      const SMALL = ["checkbox", "checkbox", "radio", "radio", ...BARS];
+      const BIG = Object.keys(KINDS);
+
+      // radial bars run outward; tangential bars span the gap between slots
+      function barLen(x) {
+        return x.radial ? x.s * 1.6 : x.arc * 0.85;
+      }
+
+      function addRing(parent, idx, r, n, kind, s, pal, opts) {
+        const ring = make("div", { className: "ring" }, { animationDelay: `${-idx * 0.35}s` });
+        const spin = make("div", { className: "spin" }, {
+          animationDuration: `${opts.dur}s`,
+          animationDirection: opts.reverse ? "reverse" : "normal",
+        });
+        ring.appendChild(spin);
+
+        const S = opts.S;
+        const waves = pick([1, 2, 3]);
+        const x = {
+          s,
+          n,
+          m: n / S,
+          arc: (2 * Math.PI * r) / n,
+          radial: opts.radial,
+          id: idx,
+          c: pick(pal),
+          c2: pick(pal),
+          glyph: pick(GLYPHS),
+          glyph2: pick(GLYPHS),
+          round: chance(0.5),
+          alternate: chance(0.5),
+          indeterminate: chance(0.3),
+          // S-fold symmetric wave, so every pattern repeats per sector
+          wave: (i) => Math.sin((2 * Math.PI * i * S * waves) / n),
+        };
+
+        const k = KINDS[kind];
+        const els = [];
+        for (let i = 0; i < n; i++) {
+          x.i = i;
+          const { el, local } = k.make(x);
+          const a = (i * 360) / n + opts.offset;
+          el.classList.add("el");
+          el.style.transform = `rotate(${a}deg) translateY(${-r}px) ${local} translate(-50%, -50%)`;
+          els.push(el);
+          spin.appendChild(el);
+        }
+
+        // toggle doesn't bubble, so listen on each control
+        if (k.sync) els.forEach((e) => e.addEventListener(k.event, () => k.sync(e, els, spin)));
+        parent.appendChild(ring);
+      }
+
+      function addBand(parent, r, pal) {
+        const style = pick(["solid", "dotted", "dashed", "double"]);
+        const w = style === "double" ? 4 : pick([1, 1, 2]);
+        const col = pick(pal);
+        const f = make("fieldset", { className: "band" }, {
+          width: 2 * r + "px",
+          height: 2 * r + "px",
+          left: -r + "px",
+          top: -r + "px",
+          border: `${w}px ${style} ${col}`,
+          opacity: range(0.4, 0.8),
+        });
+        if (chance(0.4)) f.appendChild(make("legend", { textContent: pick(GLYPHS) }, { color: col }));
+        parent.appendChild(f);
+      }
+
+      function build(seed) {
+        rand = mulberry32(seed);
+        count = 0;
+        const palette = pick(PALETTES);
+        const pal = palette.c;
+        document.body.style.setProperty("--bg", palette.bg);
+        document.body.style.setProperty("--fg", pal[pal.length - 1]);
+
+        const stage = document.getElementById("stage");
+        stage.innerHTML = "";
+        const root = make("div", { className: "ring" }, { animation: "none" });
+        stage.appendChild(root);
+
+        const S = pick([6, 8, 9, 10, 12]); // base symmetry
+        const maxR = 490;
+        let idx = 0;
+        const ringOpts = (o) => ({
+          S,
+          dur: range(120, 600),
+          reverse: chance(0.5),
+          offset: 0,
+          radial: false,
+          ...o,
+        });
+
+        // core: center button regenerates, wrapped in checkboxes and radios
+        const core = make("button", { id: "core", type: "button", textContent: pick(GLYPHS) }, {
+          color: pick(pal),
+        });
+        core.addEventListener("click", regenerate);
+        root.appendChild(core);
+        addRing(root, idx++, 30, S, "checkbox", 14, pal, ringOpts({ dur: 60 }));
+        addRing(root, idx++, 44, S * 2, "radio", 13, pal, ringOpts({ dur: 90, offset: 90 / S }));
+        addBand(root, 54, pal);
+
+        let r = 58;
+        while (r < maxR) {
+          // pick a target slot size, then a slot count (multiple of S) that packs the ring
+          const target = chance(0.3) ? range(36, 56) : range(14, 30);
+          const n = S * Math.max(1, Math.round((2 * Math.PI * r) / (S * target)));
+          const arc = (2 * Math.PI * r) / n;
+          const s = clamp(arc * range(0.85, 1.1), 10, 60);
+          let kind = s >= 24 ? pick(BIG) : pick(SMALL);
+          if (kind === "radio" && n / S < 2) kind = "checkbox";
+          const radial = BARS.includes(kind) && chance(0.7);
+          const extent = radial ? s * 1.6 : s;
+
+          addRing(root, idx++, r + extent / 2, n, kind, s, pal, ringOpts({
+            radial,
+            offset: chance(0.5) ? 180 / n : 0,
+          }));
+
+          r += extent + range(3, 8);
+          if (chance(0.45)) {
+            addBand(root, r, pal);
+            if (chance(0.3)) addBand(root, r + 4, pal);
+            r += 8;
+          }
+        }
+
+        // outer frame
+        addBand(root, maxR + 12, pal);
+        addRing(root, idx++, maxR + 12, S * Math.round(160 / S), "radio", 12, pal, ringOpts({ dur: 900 }));
+
+        document.getElementById("seed").value = seed;
+        document.getElementById("count").textContent = `${S}-fold · ${count.toLocaleString()} elements`;
+        fit();
+      }
+
+      function fit() {
+        const s = Math.min(window.innerWidth, window.innerHeight) / 1060;
+        document.getElementById("stage").style.transform = `scale(${s})`;
+      }
+
+      function seedFromHash() {
+        const n = parseInt(location.hash.slice(1), 10);
+        return Number.isFinite(n) ? n : Math.floor(Math.random() * 1e6);
+      }
+
+      function regenerate() {
+        location.hash = Math.floor(Math.random() * 1e6);
+      }
+
+      window.addEventListener("resize", fit);
+      window.addEventListener("hashchange", () => build(seedFromHash()));
+      document.getElementById("new").addEventListener("click", regenerate);
+      document.getElementById("seed").addEventListener("change", (e) => {
+        location.hash = e.target.value;
+      });
+      document.getElementById("spinning").addEventListener("change", (e) => {
+        document.body.classList.toggle("paused", !e.target.checked);
+      });
+
+      const initial = seedFromHash();
+      if (location.hash !== "#" + initial) history.replaceState(null, "", "#" + initial);
+      build(initial);
+    </script>
+  </body>
+</html>

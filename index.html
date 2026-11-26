@@ -1,25 +1,215 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>JACMB</title>
-    <link rel="stylesheet" href="/theme.css" />
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="stylesheet" type="text/css" href="/side-notes.css" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="viewport" content="initial-scale=1.0" />
-    <meta charset="UTF-8" />
-    <style>
-      body {
-        display: flex;
-        align-items: center;
-        height: 100vh;
-        margin: 0px;
-        padding: 0px;
+
+<head>
+  <title>LIVE WORMS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <style>
+    html {
+      background-color: greenyellow;
+    }
+
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      margin: 0;
+    }
+
+    top-bg {
+      display: block;
+      position: fixed;
+      inset: 0;
+      background: url("/images/brownmountain.jpg") repeat;
+      mix-blend-mode: color-burn;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    #container {
+      position: relative;
+      height: 850px;
+      opacity: 0.75;
+    }
+
+    #container h1 {
+      font-size: var(--animation-font-size, 124px);
+      font-weight: 100;
+      letter-spacing: calc(1.2em / 124);
+      white-space: nowrap;
+      margin: 0;
+      text-transform: uppercase;
+      text-align: center;
+      color: black;
+    }
+
+    .mid {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: calc(170em / 124);
+      overflow: hidden;
+    }
+
+    .mid.on {
+      height: 0;
+    }
+
+    .mid span {
+      top: 0;
+      position: relative;
+      line-height: calc(40em / 124);
+    }
+
+    .mid.on span {
+      top: calc(-80em / 124);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      color: black;
+      display: none;
+    }
+
+    bl-ck {
+      padding: 20px;
+    }
+
+    bl-ck.white {
+      background-color: white;
+    }
+
+    bl-ck.dark {
+      background-color: darkgoldenrod;
+      mix-blend-mode: difference;
+    }
+
+    bl-ck.text {
+      font-size: 49px;
+      line-height: 37px;
+      letter-spacing: -3px;
+      list-style-type: none;
+    }
+  </style>
+</head>
+
+<body>
+  <top-bg></top-bg>
+  <div id="container"></div>
+  <main>
+    <bl-ck class="white text">
+      <li>Keep us busy fighting fires</li>
+      <li>So we don’t have the time…</li>
+      <li>To reflect</li>
+      <li>To complain</li>
+      <li>Or to understand you</li>
+      <li>Shave off every little edge</li>
+      <li>So we don’t have the energy</li>
+      <li>To make plans</li>
+      <li>To speak out</li>
+      <li>To imagine what we want</li>
+    </bl-ck>
+    <bl-ck class="dark"></bl-ck>
+    <bl-ck class="dark"></bl-ck>
+    <bl-ck class="white text">
+      <li>Keep on saying that we’re better off</li>
+      <li>Selling all our time</li>
+      <li>On their watch</li>
+      <li>On their terms</li>
+      <li>For the money that we give right back</li>
+      <li>Then we’re told</li>
+      <li>There is no alternative to this</li>
+      <li>It’s a gift</li>
+      <li>Don’t resist</li>
+      <li>Don’t you vote?</li>
+      <li>Don’t you feel free?</li>
+      <li>Don’t insist</li>
+      <li>Don’t revolt</li>
+      <li>Don’t you dare dance while doing it</li>
+    </bl-ck>
+    <bl-ck class="white text">
+      <li>We’ve got numbers</li>
+      <li>For teaching in and walking out</li>
+      <li>Take apart the instruments</li>
+      <li>Level all the pyramids</li>
+      <li>We’ve got the numbers</li>
+      <li>To take it back and tear it down</li>
+      <li>Spread it out among us</li>
+      <li>Burn all the paths to power</li>
+    </bl-ck>
+    <bl-ck class="dark"></bl-ck>
+  </main>
+
+  <script>
+    window.addEventListener("load", () => {
+      const layerCount = 100;
+      const container = document.querySelector("#container");
+      const original = document.createElement("h1");
+      original.className = "mid";
+      const text = document.createElement("span");
+      text.textContent = "Live Worms";
+      original.appendChild(text);
+      let isExpanded = false;
+
+      function sizeAnimationText() {
+        // Measure at the animation's reference size, then scale with the viewport.
+        const probe = original.cloneNode(true);
+        probe.style.cssText = "position: fixed; visibility: hidden; width: max-content; font-size: 124px; transition: none;";
+        container.appendChild(probe);
+        const textWidth = probe.firstElementChild.getBoundingClientRect().width;
+        probe.remove();
+        container.style.setProperty("--animation-font-size", `${124 * 85 / textWidth}vw`);
       }
-    </style>
-  </head>
-  <body>
-    <top-bg></top-bg>
-    <iframe style="border: 0; width: 350px; height: 442px;margin:0px auto;" src="https://bandcamp.com/EmbeddedPlayer/track=2419846126/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://liveworms.bandcamp.com/track/scared-hands-single">Scared Hands (single) by Live Worms</a></iframe>
-  </body>
+
+      sizeAnimationText();
+      document.fonts.ready.then(sizeAnimationText);
+      document.fonts.addEventListener("loadingdone", sizeAnimationText);
+
+      const body = document.body;
+      const html = document.documentElement;
+      const pageHeight = Math.max(body.scrollHeight, body.offsetHeight,
+        html.clientHeight, html.scrollHeight, html.offsetHeight);
+      const layerSpacing = pageHeight / layerCount ;
+      const layers = [];
+
+      function collapsedOffset(index) {
+        return index * layerSpacing * Math.abs(Math.sin(index / layerSpacing));
+      }
+
+      for (let i = 0; i < layerCount; i++) {
+        const layer = original.cloneNode(true);
+        layers.push(layer);
+        container.appendChild(layer);
+      }
+
+      layers.forEach((layer, i) => {
+        const duration = i / 10;
+        layer.className = "mid on";
+        layer.style.transition = `height ${duration}s ease-in-out, margin-top ${duration}s ease-in-out`;
+        layer.firstElementChild.style.transition = `top ${duration / 2}s ease-in-out`;
+        layer.style.marginTop = `${collapsedOffset(i)}px`;
+      });
+
+      function toggleAnimation() {
+        isExpanded = !isExpanded;
+        layers.forEach((layer, i) => {
+          layer.classList.toggle("on", !isExpanded);
+          layer.style.marginTop = `${isExpanded ? i * layerSpacing : collapsedOffset(i)}px`;
+        });
+      }
+
+      function scheduleNextToggle() {
+        const delay = Math.floor(Math.random() * 8001) + 2000;
+        setTimeout(() => {
+          toggleAnimation();
+          scheduleNextToggle();
+        }, delay);
+      }
+
+      toggleAnimation();
+      scheduleNextToggle();
+    });
+  </script>
+</body>
+
 </html>
